@@ -1,0 +1,1790 @@
+Industry,MCC,MCC Title,MCC Description,Included in MCC,Connect/ISV Sub-Merchants,Pay/ISO/Direct Merchants,AML Risk Rating,Loss Risk Rating,Add'l Requirements,CNP Delayed Delivery,CP/ACH Delayed Delivery
+agriculture & veterinary services,742,veterinary services,"merchants classified with this mcc are licensed practitioners of veterinary medicine, dentistry, or surgery. this mcc includes medical practitioners of pets (e.g., dogs, cats), livestock (e.g., cattle, horses, sheep, hogs, goats, poultry), and large or exotic animals.","animal doctors, hospitals
+clinics – pet
+hospitals – pet
+pet clinics
+services – veterinary",,,1,1,,3,2
+agriculture & veterinary services,763,agricultural cooperatives,"""merchants classified with this mcc provide farm management services or engage in farming operations. also included in this mcc are associations and cooperatives that provide assistance and services to farmers in farm management. these services include, but are not limited to: financial assistance, management or complete maintenance of crops, soil preparation, planting and cultivating, aerial dusting and spraying, disease and insect control, weed control, and harvesting crops."" ","farm management
+services
+orchards
+vineyards",prohibited,,1,1,,5,2
+agriculture & veterinary services,780,horticultural and landscaping services,"merchants classified with this mcc provide landscape planning and design services. this mcc also includes merchants that offer a variety of lawn and garden services (e.g., planting, fertilizing, mowing, mulching, seeding, spraying, sod laying).","gardening services
+horticulture services
+services – gardening
+services – horticulture
+services – landscaping",,,1,3,,10,2
+contracted services,1520,general contractors–residential and commercial,"merchants classified with this mcc are general contractors primarily engaged in construction of residential and/or commercial buildings. this mcc includes contractors that perform new construction as well as remodeling, repair, additions, or alterations.","building contractors –
+ residential, commercial
+construction companies
+contractors – general
+ contractors – residential,
+ commercial",restricted/high risk,restricted/high risk,3,4,contractors license required in some cases,15,2
+contracted services,1711,"air conditioning, heating and plumbing contractors","merchants classified with this mcc are contractors that provide heating, plumbing and air conditioning services. this mcc includes contractors that perform air system balancing and testing, drainage system installation, furnace repair, irrigation system installation, refrigeration and freezer work, sewer hookups and connections, solar heating, sprinkler system installation and water pump installation and servicing.","air conditioning
+ contractors
+contractors – air
+ conditioning
+contractors – heating
+contractors – plumbing
+heating contractors
+plumbing contractors",restricted/high risk,restricted/high risk,3,3,contractors license required in some cases,7,2
+contracted services,1731,electrical contractors,"merchants classified with this mcc are contractors that provide electrical work such as fire alarm installation, sound equipment installation, telecommunications equipment installation, cable/internet installation, and telephone and telephone equipment installation.",contractors – electrical,restricted/high risk,restricted/high risk,3,3,contractors license required in some cases,7,2
+contracted services,1740,"insulation, masonry, plastering, stonework and tile setting contractors","merchants classified with this mcc are contractors that perform masonry work, stone setting and other stone work, tile setting, plain and ornamental plastering, and insulation. this mcc also includes contractors that perform bricklaying, ceramic and marble work, mosaic work, acoustical improvements, and drywall construction.","contractors – insulation
+contractors – masonry
+contractors – plastering
+contractors – stonework
+contractors – tile setting
+insulation contractors
+plastering contractors
+stonework contractors
+tile setting contractors",restricted/high risk,restricted/high risk,3,4,contractors license required in some cases,15,2
+contracted services,1750,carpentry contractors,"merchants classified with this mcc are contractors that perform carpentry work. this mcc includes contractors that do cabinet work at the construction site, framing, trim and finish work and window and door installation.",contractors – carpentry 15,restricted/high risk,restricted/high risk,3,4,contractors license required in some cases,15,2
+contracted services,1761,"roofing and siding, sheet metal work contractors","merchants classified with this mcc are contractors that install roofing and/or siding and do sheet metal work. this mcc includes contractors that perform architectural sheet metal work, ceilings and skylight installation, duct and gutter installation, and roof spraying, painting or coating.","contractors – roofing
+contractors – sheet
+ metal work
+contractors – siding
+sheet metal work
+ contractors
+siding contractors",restricted/high risk,restricted/high risk,3,4,contractors license required in some cases,15,2
+contracted services,1771,concrete work contractors,"merchants classified with this mcc are contractors that perform concrete, cement or asphalt work. this mcc includes contractors that construct private driveways and walks of all materials. also included in this category are contractors that pour concrete for foundations and perform grouting work and concrete patio and sidewalk construction.","asphalt contractors
+cement contractors
+contractors – concrete
+ work",restricted/high risk,restricted/high risk,3,4,contractors license required in some cases,15,2
+contracted services,1799,"contractors, special trade contractors–not elsewhere classified","merchants classified with this mcc are special trade contractors that perform construction work not covered with a more specific mcc. this mcc includes contractors that perform jobs such as awning installation, bath tub refinishing, fence construction, fire escape installation, house moving, home window replacement, garage door installation, ornamental metal work, swimming pool construction, glasswork, well drilling, wallpaper services, and waterproofing.","contractors – decorating
+contractors – demolition
+ services
+contractors – glasswork
+contractors – painting,
+ home and building
+contractors – paper
+ hanging
+contractors – special
+ trade contractors
+contractors – welding
+contractors – well
+ drilling
+decorating contractors
+decorators – interior
+demolition services
+garage door installation
+glasswork contractors
+interior decorators
+window replacement
+miscellaneous special
+ contractors
+painting contractors –
+ home, building
+paper hanging
+ contractors
+services – demolition
+wallpaper hangers
+welding contractors
+well drilling contractors",restricted/high risk,restricted/high risk,3,4,contractors license required in some cases,15,2
+business & professional services,2741,miscellaneous publishing and printing,"merchants classified with this mcc engage in business-to-business or wholesale printing, publishing and/or bookbinding activity. this includes merchants that print or publish maps and atlases, business newsletters, directories, sheet music, paper patterns, technical manuals and papers, telephone directories and yearbooks.","bookbinding services
+printing services
+publishing services
+services – bookbinding
+services – publishing,
+ printing",restricted/high risk,restricted/high risk,1,2,,10,2
+business & professional services,2791,"typesetting, plate making and related services","merchants classified with this mcc perform businessto-business or wholesale typesetting for the printing trade and those that make plates for printing purposes. these merchants are involved in advertisement typesetting, phototypesetting, computer-controlled typesetting, and color separations. this mcc also includes merchants that make positives and negatives from which offset lithographic plates are made. these establishments do not print from the plates they make, but prepare them only for use by other merchants. this mcc also includes merchants that provide engraving or embossing services for printing purposes, such as engraving on wood, rubber, copper, or steel, or photoengraving. ","plate making services
+services – plate making
+services – typesetting",prohibited,restricted/high risk,1,1,,5,2
+business & professional services,2842,"sanitation, polishing and specialty cleaning preparations","merchants classified with this mcc engage in the business-to-business or wholesale manufacture of polishes for wood, metal, and other materials as well as cleaning solutions, industrial and household disinfectants, and other sanitation preparations. also included in this mcc are merchants that sell nonpersonal deodorants, waxes and dressings for fabricated leather and other materials, wax removers, dry cleaning fluid and chemicals, rust and stain removers, wallpaper cleaners, and window cleaning solutions.","cleaning preparations
+materials – cleaning,
+ polishing, sanitation
+polishing preparations
+sanitation preparations",,,4,2,,8,2
+transportation services,4011,railroads–freight,merchants classified with this mcc are railroads engaged in freight transport operations.,"freight – rail, train
+transportation
+trains – freight
+transportation
+transportation – railroads,
+freight",restricted/high risk,,3,3,,15,2
+transportation services,4111,"transportation–suburban and local commuter passenger, including ferries","merchants classified with this mcc provide local and suburban mass passenger transportation over regular routes and on regular schedules. included in this category is railway commuter transportation. not included in this category are taxicabs, limousines, and bus lines.","commuter transportation –
+ferries
+commuter transportation –
+railways
+ferries
+transportation – commuter,
+local, suburban commuter
+passenger transportation
+transportation – commuter,
+railways
+transportation – ferries",prohibited,restricted/high risk,3,3,credit stability documentation and 3 months of pps + bank statements required,7,2
+transportation services,4112,passenger railways,merchants classified with this mcc are railroads that primarily provide long distance passenger transportation. this may or may not include overnight accommodations on the train during long distance travel.,"railways – passenger
+trains – passenger
+transportation –
+ passenger railways",prohibited,restricted/high risk,3,3,credit stability documentation and 3 months of pps + bank statements required,7,1
+transportation services,4119,ambulance services,merchants classified with this mcc provide emergency vehicle transportation with trained personnel. these merchants may or may not provide emergency medical treatment en route to a hospital or medical provider.,"air ambulance services
+emergency vehicle
+ services
+services – air ambulance
+services – ambulance
+services – emergency
+ vehicles
+transportation –
+ ambulance services",restricted/high risk,restricted/high risk,3,3,credit stability documentation and 3 months of pps + bank statements required,1,1
+transportation services,4121,taxicabs and limousines,merchants classified with this mcc provide transportation services by automobile and do not operate on a regular schedule or established route. this mcc includes ride-share merchants.,"cabs, taxicabs, limousines
+limousines
+services – taxicabs,
+ limousines
+transportation –
+ taxicabs, limousines",prohibited,restricted/high risk,3,5,credit stability documentation and 3 months of pps + bank statements required,7,1
+transportation services,4131,bus lines,merchants classified with this mcc provide passenger bus transportation services on a regular schedule over predetermined routes. not included are charter and tour bus operators.,"coach lines
+transportation –
+ bus lines",prohibited,restricted/high risk,3,3,credit stability documentation and 3 months of pps + bank statements required,7,2
+transportation services,4214,"motor freight carriers,trucking–local/long distance, moving and storage companies, local delivery","merchants classified with this mcc provide local or long distance trucking services, and may or may not also provide storage services.","delivery services – local
+freight carriers,
+ trucking and storage
+local delivery service
+long distance trucking
+ services
+motor freight carriers –
+ local, long distance
+ trucking
+moving companies
+moving, storage
+ companies
+services – delivery, local
+services – freight
+ carriers, trucking and
+ storage
+services – trucking, local
+ and long distance
+storage, moving
+ companies – local, long
+ distance
+trucking – local, long
+distance",restricted/high risk,restricted/high risk,3,3,credit stability documentation and 3 months of pps + bank statements required,15,2
+transportation services,4215,"courier services–air and ground, freight forwarders","merchants classified with this mcc deliver individually addressed letters, parcels, and packages, but excludes the postal services – government only (mcc 9402).","air or ground courier
+ services
+freight forwarders,
+ courier services
+ground or air courier
+ services
+services – courier, air or
+ ground
+services – freight
+ forwarders, courier services",prohibited,restricted/high risk,3,3,credit stability documentation and 3 months of pps + bank statements required,15,2
+transportation services,4225,"public warehousing–farm products, refrigerated goods, household goods storage","merchants classified with this mcc provide storage and warehousing for farm products, refrigerated storage for perishable products, and storage for household goods and furniture.","warehousing, storage
+ storage – public
+warehousing",,,3,3,,15,2
+transportation services,4411,cruise lines,"merchants classified with this mcc provide passenger transportation on the open seas or inland waters for the purpose of vacation or pleasure. these merchants typically offer food, entertainment, and cabin accommodations included in the fare and operate pre-defined and advertised routes.",ships – cruise lines,prohibited,prohibited,6,6,,90,1
+transportation services,4457,boat leases and boat rentals,"merchants classified with this mcc primarily provide boat rental and leasing services for fishing boats, noncrew houseboats, sail boats, power boats, jet skis, and yachts.","jet skis – rental, leases
+powerboats – rental,
+ leases
+rentals – boats
+rentals – jet skis
+rentals – yachts,
+ non-crew
+sailboats – rentals, leases
+yacht rentals – non-crew",prohibited,,3,3,,15,2
+transportation services,4468,"marinas, marine service/supplies","merchants classified with this mcc operate marinas and may rent boat slips and store boats. other services may include boat cleaning, incidental boat repair, and the retail sale of marine supplies. merchants located at a marina that sell fuel for consumer use in boats that do not have a separate merchant agreement from the marina are included in this category.","harbors
+services – marine, marina
+supplies – marinas, marine
+service, supplies
+yacht harbors",,,3,3,,15,2
+transportation services,4511,"air carriers, airlines–not elsewhere classified",merchants classified with this mcc are airlines and air carriers that do not have their own specific mcc.,,prohibited,restricted/high risk,5,5,"additional questionnaires/forms, licenses, and/or certification documentation required, if not prohibited (check prohibited business model list)",90,1
+transportation services,4582,"airports, airport terminals, flying fields","merchants classified with this mcc operate and maintain airports and flying fields. this includes merchants that provide aircraft cleaning and janitorial services, aircraft servicing and repair, aircraft storage at airports, and airport hangar rental. merchants located within the airport terminal that sell food, newspapers, and/or gift or souvenir items must be classified with the appropriate mcc for that business.","flying fields
+terminals – airports",prohibited,restricted/high risk,3,5,,90,2
+transportation services,4722,travel agencies and tour operators,"merchants classified with this mcc provide travel information and booking services. they act as agents on behalf of travelers in booking and ticketing air, land, or sea transportation and/or accommodation. they also arrange and assemble tours for sale through a travel agent or directly to the consumer. bus charters and tour bus operators are included in this mcc.","charter buses
+package tour operators
+tour buses
+tour operators
+travel packages
+travel wholesalers",prohibited,restricted/high risk,4,5,credit stability documentation and 3 months of pps + bank statements required,90,2
+transportation services,4723,package tour operators (germany only),merchants classified with this mcc are package tour operators in germany.,,prohibited,,4,3,,7,2
+transportation services,4761,telemarketing of travel related services and vitamins,,,,,4,3,credit stability documentation and 3 months of pps + bank statements required,15,2
+transportation services,4784,"bridge and road fees, tolls","merchants classified with this mcc collect fees associated with toll roads, highways, and bridges.","bridge, toll fees
+fees – bridge, toll",prohibited,,3,2,,5,1
+transportation services,4789,transportation services not elsewhere classified,"merchants classified with this mcc provide passenger transportation services that are not classified with a more specific mcc. this mcc includes merchants that provide transportation via horse-drawn cabs and carriages, bicycle-taxis, aerial tramways, airport shuttles, and cable cars. ferry service, bus transportation, cruise lines, passenger railways, and taxi and limousine service merchants are not included in this category.","airport shuttle
+ transportation
+miscellaneous transport
+ services
+services – transportation
+shuttle transportation",prohibited,,3,3,,1,1
+telecommunication & utility services,4812,telecommunication equipment including telephone sales,"merchants classified with this mcc sell telecommunications equipment such as telephones, fax machines, pagers, mobile phones, and other equipment related to telecommunications.","cellular telephone
+ equipment
+equipment –
+ telecommunications
+pagers, paging equipment
+telephone equipment",prohibited,restricted/high risk,4,2,,5,1
+telecommunication & utility services,4813,key-entry telecom merchant providing single local and long-distance phone calls using a central access number in a non-face-to-face environment using key entry,,,prohibited,,4,3,,15,15
+telecommunication & utility services,4814,telecommunication services including but not limited to prepaid phone services and recurring phone services,"merchants classified with this mcc provide telecommunications services including local and longdistance telephone calls, calls placed through the use of magnetic stripe-reading telephones, and fax services. merchants that provide periodic (e.g., monthly) billing of telephone calls should be classified with this mcc.","cellular telephone service
+faxing services
+local telecommunication
+ service
+long distance
+ telecommunication
+ service
+prepaid calling cards –
+ telecommunication
+ service",prohibited,,4,3,,15,15
+"digital goods, computer & technology services & sales",4816,computer network/information services,merchants classified with this mcc provide internet access. this mcc includes all merchants that provide computer network and information services and internet service providers.,"electronic bulletin board
+ access
+information services –
+ via computer networks
+internet payment
+ facilitators
+website management/
+ maintenance",prohibited,prohibited,4,4,,15,2
+telecommunication & utility services,4821,telegraph services,merchants classified with this mcc that provide telegraph and other nonverbal message communications services such as telegrams.,"cablegrams
+services – cablegrams
+services – telegraph",prohibited,,4,2,,1,1
+"financial institutions & services, securities, and insurance",4829,"wire transfer money orders (v, d, g, x) money transfer (m)","merchants classified with this mcc allow customers to transfer funds via an electronic funds transfer / wire transfer / remittance to a named entity (both cardpresent and card-absent locations including on the premises of the merchant and third-party agents such as casinos, truck stops, or check-cashing storefronts) or via an original credit transaction (e.g., via visa direct or person to person [p2p] payments). a merchant that transfers non-fiat currency such as cryptocurrency must include all required data in the authorization request and clearing record.",wire transfer,prohibited,prohibited,6,6,,2,1
+telecommunication & utility services,4899,"cable, satellite, and other pay television and radio services",merchants classified with this mcc provide the connection and ongoing delivery of television/radio/streaming content on a subscription or fee basis.,"pay radio services
+pay television services
+ cable
+satellite services
+services – cable and
+ other pay television
+ services
+services – pay radio
+ and satellite services",restricted/high risk,restricted/high risk,3,3,,14,2
+telecommunication & utility services,4900,"utilities–electric, gas, heating oil, sanitary, water","merchants classified with this mcc provide the ongoing generation, transmission, and/or distribution of electric or gas power or other utility services. this mcc also includes merchants that provide water supply system services and merchants primarily engaged in the collection and disposal of refuse.","electric utilities
+garbage collectors
+gas utilities
+public utilities
+sanitary utilities
+services – electric utilities
+services – gas utilities
+services – sanitary
+ utilities
+services – waste
+ management
+services – water utilities
+water utilities",,,4,2,,1,1
+"mobile home, vehicle, boat, aircraft dealers, rentals, and shops",5013,motor vehicle supplies and new parts,"merchants classified with this mcc are business-tobusiness or wholesale distributors of motor vehicle accessories, tools, equipment and new parts, including testing equipment, service station pumps and other equipment, glass, batteries, and engines.","automobile – motor
+ vehicle supplies, new
+ parts
+parts – motor vehicle
+ supplies, new parts
+supplies – motor vehicle
+ supplies, new parts
+vehicle supplies, new
+ parts",restricted/high risk,restricted/high risk,4,4,,15,7
+"appliances, electronics, furniture, flooring, & home furnishings",5021,office and commercial furniture,merchants classified with this mcc are business-tobusiness or wholesale manufacturers and/or distributors of office and commercial furniture.,"commercial furniture
+furniture – office,
+ commercial",restricted/high risk,restricted/high risk,4,5,,30,10
+"home improvement & hardware stores, construction & building materials stores & suppliers",5039,construction materials not elsewhere classified,893,"materials – construction
+supplies – construction
+ materials",restricted/high risk,,1,3,,10,2
+miscellaneous stores & services,5044,"office, photographic, photocopy and microfilm equipment","merchants classified with this mcc are business-tobusiness or wholesale distributors of office and photographic equipment such as film, cash registers, photocopy machines, microfilm machines, vaults and safes, typewriters, fax machines, adding machines, and mailing machines.","copy services –
+photographic, photo -copy,
+microfilm supplies
+equipment – photographic,
+photocopy, microfilm
+equipment, supplies
+microfilm supplies
+photocopy supplies
+supplies – photographic,
+ photocopy, microfilm
+ equipment, supplies",restricted/high risk,,1,3,,15,7
+"digital goods, computer & technology services & sales",5045,"computers, computer peripheral equipment, software","merchants classified with this mcc are business-tobusiness or wholesale distributors of computer hardware, software and related equipment.","equipment – computers,
+computer peripheral
+ equipment, software
+hardware – computer
+software – computer
+supplies – computers,
+ computer peripheral
+ equipment, software",restricted/high risk,restricted/high risk,3,4,,7,2
+"home improvement & hardware stores, construction & building materials stores & suppliers",5046,commercial equipment not elsewhere classified,merchants classified with this mcc are business-tobusiness or wholesale distributors of commercial machines and equipment that are not classified with a more specific mcc.,"appliance wholesaler
+commercial cooking,
+ food service equipment
+ equipment – commercial
+ food service equipment –
+ commercial cooking
+ equipment
+restaurant equipment –
+ commercial cooking,
+ food service equipment
+supplies – commercial
+ equipment",restricted/high risk,,4,5,,30,10
+"doctors, dentists, hospitals & related services",5047,dental/laboratory/medical/ophthalmic hospital equipment and supplies,"merchants classified with this mcc are business-to-business or wholesale distributors of laboratory, surgical, dental, or orthopedic equipment, patient monitoring equipment, wheel chairs, and other medical instruments, industrial safety devices, hospital equipment and hospital furniture, such as beds. ","equipment – medical,
+ dental, ophthalmic,
+ orthopedic, hospital
+ equipment, supplies
+hospital equipment,
+ supplies
+orthodontia supplies
+safety equipment
+supplies – dental
+supplies – hospital
+supplies – medical
+supplies – orthopedic
+x-ray equipment",restricted/high risk,restricted/high risk,4,4,,30,10
+"antiques, fine art, collectibles, clock, jewelry, precious stones, and silverware stores and services",5051,metal service centers and offices,"merchants classified with this mcc are business-tobusiness or wholesale marketers of semi-finished metal products, excluding precious metals. these merchants may sell metal piping and tubing, wire screening and bale ties, nails, ingots, aluminum bars, rails and accessories, metal or galvanized sheets, strip metal, iron rods, and wire rope or cable.",,prohibited,restricted/high risk,5,4,,15,7
+"appliances, electronics, furniture, flooring, & home furnishings",5065,electrical parts and equipment,"merchants classified with this mcc are business-tobusiness or wholesale distributors of electrical parts and communications equipment, such as electronic coils, capacitors, electronic condensers, diodes, semiconductor devices, public address equipment, and electric signs.","communications
+ equipment
+equipment – electrical
+parts, equipment
+parts – electrical,
+ equipment
+supplies – electrical parts,
+ equipment",restricted/high risk,,4,4,,15,7
+"home improvement & hardware stores, construction & building materials stores & suppliers",5072,hardware equipment and supplies,"merchants classified with this mcc are business-tobusiness or wholesale distributors of general hardware and cutlery such as bolts, nuts, rivets, screws, fasteners, hand tools, locks, washers, tacks, staples, nails, hand saws, saw blades, and power hand tools.","equipment – hardware,
+ equipment, supplies
+hand tools
+supplies hardware,
+ equipment, supplies",,,3,3,,15,7
+"home improvement & hardware stores, construction & building materials stores & suppliers",5074,plumbing and heating equipment,merchants classified with this mcc are business-tobusiness or wholesale distributors of hydraulic plumbing and heating equipment and supplies. this mcc does not include wholesalers of commercial refrigeration equipment or supplies or appliances such as electric or gas ranges and commercial ovens.,"equipment – heating
+ equipment, supplies
+equipment – plumbing
+ equipment, supplies
+equipment – water
+ conditioning,
+ purification, softening
+heating equipment,
+supplies
+supplies – heating
+ equipment, supplies
+supplies – plumbing
+ equipment, supplies",,,3,3,,15,7
+"home improvement & hardware stores, construction & building materials stores & suppliers",5085,industrial supplies not elsewhere classified,merchants classified with this mcc are business-tobusiness or wholesale distributors of industrial supplies that are not classified with a more specific mcc.,supplies – industrial,restricted/high risk,,5,4,,15,7
+"antiques, fine art, collectibles, clock, jewelry, precious stones, and silverware stores and services",5094,"precious stones and metals, watches and jewelry","merchants classified with this mcc are business-tobusiness or wholesale distributors of jewelry, precious stones and metals. this mcc also includes wholesalers of costume jewelry, watches and watch parts, clocks, silverware, diamonds and gem stones, precious metals, pearls, and trophies.","gemstones, precious
+ stones, metals,
+ watches, jewelry
+jewelry – fine watches",restricted/high risk,restricted/high risk,5,4,,15,7
+miscellaneous stores & services,5099,durable goods not elsewhere classified,merchants classified with this mcc are business-tobusiness or wholesale distributors of durable goods that are not classified with a more specific mcc.,"fire extinguishers
+firearms, ammunition
+gas lighting fixtures
+goods – durable
+grave stones
+luggage (business to
+ business)
+monuments
+musical instruments
+rough timber products
+signs",restricted/high risk,restricted/high risk,3,3,,15,7
+miscellaneous stores & services,5111,"stationery, office supplies, printing and writing paper",merchants classified with this mcc are business-tobusiness or wholesale distributors of stationery and office supplies and printing and writing paper.,"business supplies –
+ stationery, office, printing,
+writing supplies
+office supplies
+paper – writing, printing,
+ stationery, office supplies
+printing supplies
+supplies – stationery,
+ office supplies, printing,
+ and writing paper",,,1,1,,5,1
+"grocery, alcohol & tobacco, drug stores, restaurants, caterers, drinking establishments",5122,"drugs, drug proprietors and druggists sundries","merchants classified with this mcc are business-tobusiness or wholesale distributors of prescription drugs, proprietary drugs, vitamins, druggists’ sundries and toiletries, antiseptics, bandages, pharmaceuticals, and biological or related products.","cosmetic distributors
+distributors – drugs,
+ druggists’ sundries,
+ toiletries
+druggist supplies
+perfume distributors
+pharmaceuticals
+supplies – drugs, drug
+ proprietaries, druggist
+ sundries, vitamins",prohibited,prohibited,5,2,"additional questionnaires/forms, licenses, and/or certification documentation required, if not prohibited (check prohibited business model list)",5,1
+miscellaneous stores & services,5131,"piece goods, notions, and other dry goods","merchants classified with this mcc are business-tobusiness or wholesale distributors of piece goods, dry goods, and notions/haberdashery.","fabric goods
+hair accessories
+notions
+sewing accessories
+supplies – millinery
+textiles, textile binding",prohibited,,1,1,,5,1
+clothing and accessories stores,5137,"men’s, women’s and children’s uniforms and commercial clothing","merchants classified with this mcc are business-tobusiness or wholesale distributors of commercial work clothing and uniforms. this mcc includes wholesale distributors of graduation caps and gowns, athletic and recreational uniforms, and school uniforms, but not shoes.","children’s uniforms
+commercial clothing –
+ men’s, women’s,
+ children’s
+men’s uniforms
+professional uniforms
+uniforms – men’s,
+ women’s, children’s
+women’s uniforms",,,1,2,,5,1
+clothing and accessories stores,5139,commercial footwear,merchants classified with this mcc are business-tobusiness or wholesale distributors of commercial shoes and boots including athletic footwear.,"footwear – commercial
+shoes, shoe accessories
+ – commercial",prohibited,,3,2,,5,1
+"chemicals, fuel, & petroleum dealers, stores, & services",5169,chemicals and allied products not elsewhere classified,merchants classified with this mcc are business-tobusiness or wholesale distributors of chemicals and allied products that are not classified with a more specific mcc.,"detergents
+supplies – chemicals,
+ allied products ",prohibited,,3,1,,7,2
+"chemicals, fuel, & petroleum dealers, stores, & services",5172,petroleum and petroleum products,"merchants classified with this mcc are business-tobusiness or wholesale distributors of petroleum and petroleum products, butane gas, crude oil, fuel oil, gasoline, kerosene, lubricating oils and greases, aircraft fueling services, and naphtha.","fuel products, services
+services – fueling",,,3,1,,10,2
+miscellaneous stores & services,5192,"books, periodicals and newspapers","merchants classified with this mcc are business-tobusiness or wholesale distributors of books, periodicals, magazines, journals, and newspapers, including newspaper agencies.","journals
+magazines
+newspapers, newspaper
+ agencies
+periodicals",restricted/high risk,restricted/high risk,1,1,,10,2
+miscellaneous stores & services,5193,"florists supplies, nursery stock and flowers","merchants classified with this mcc are business-tobusiness or wholesale distributors of flowers, nursery stock and florists’ supplies, fresh and artificial flowers, and potted plants.","gardening supplies
+nursery stock
+plants
+supplies – florist supplies,
+ nursery stock, flowers",,,1,1,,5,1
+"home improvement & hardware stores, construction & building materials stores & suppliers",5198,"paints, varnishes and supplies","merchants classified with this mcc are business-tobusiness or wholesale distributors of paints, varnishes, wallpaper, and supplies, including colors and pigments, enamels, lacquers, paint brushes, paint pans, sandpaper, drop cloths, shellac, rollers, and sprayers.","supplies – paints,
+ varnishes, supplies
+varnishes, paints,
+ supplies",prohibited,,1,1,,5,1
+miscellaneous stores & services,5199,non-durable goods not elsewhere classified,"merchants classified with this mcc are business-tobusiness or wholesale distributors of nondurable goods that are not classified with a more specific mcc, such as food products, art goods, clothes hangers, foam rubber, ice, crude rubber, sponges, textile bags, burlap, canvas products, leather, and baskets.",goods – nondurable,restricted/high risk,,3,2,,7,1
+"home improvement & hardware stores, construction & building materials stores & suppliers",5200,home supply warehouse stores,"merchants classified with this mcc sell of a wide range of home products such as wallpaper, paint, lumber, garden supplies, electrical equipment and supplies and home decorating items, as well as sinks, cabinets and doors.","warehouse stores –
+ home supply",,,1,1,,5,1
+"home improvement & hardware stores, construction & building materials stores & suppliers",5211,"building materials, lumber stores","merchants classified with this mcc sell of one or more of the following products: lumber, unfinished wood products, lighting materials, concrete, sand, gravel, general building or electrical supplies, bricks, fencing, pipe, fiberglass, or molding. this mcc includes building centers that offer their products to contractors rather than to the general public and does not include home supply store chains that are frequented by the general public.","building materials
+construction materials
+materials – lumber,
+ building
+roofing materials
+supplies – lumber,
+ building materials",,,1,2,,10,2
+"home improvement & hardware stores, construction & building materials stores & suppliers",5231,"glass, paint, wallpaper stores","merchants classified with this mcc sell glass, paint and painting supplies, wallpaper and hanging supplies, and other wall covering materials.","paint, painting supplies
+supplies – glass
+supplies – paint, painting
+ supplies
+supplies – wallpaper,
+ supplies
+wallpaper, wallcovering
+ supplies store",,,1,1,,5,1
+"home improvement & hardware stores, construction & building materials stores & suppliers",5251,hardware stores,merchants classified with this mcc sell a full range of hardware supplies for purchase by the general public.,"electrical supplies
+hand tools
+lighting fixtures, supplies
+plumbing supplies
+power tools
+supplies – hardware
+stores
+tools",,,3,1,,5,1
+"home improvement & hardware stores, construction & building materials stores & suppliers",5261,lawn and garden supply stores,"merchants classified with this mcc sell nursery stock, trees, shrubs, other plants, seeds, bulbs, mulches, soil conditioners, fertilizers, pesticides, garden tools, and other garden supplies.","gardening supplies
+greenhouses
+lawn, garden supply
+plant shops
+supplies – nurseries,
+lawn, garden supply
+stores",,,3,1,,5,1
+miscellaneous stores & services,5262,Marketplaces,"entities classified with this mcc are online marketplaces that accept visa and bring together cardholders and retailers selling a range of goods or services that may otherwise qualify for different mccs, on a single ecommerce website or mobile application, under a single brand used to identify itself to cardholders. marketplaces with a single line of goods or services must use the mcc that most accurately describes that line of business. these marketplaces must meet all visa qualification requirements, and be registered with visa as a marketplace.",,restricted/high risk,restricted/high risk,4,5,always confirm dd,25,25
+"mobile home, vehicle, boat, aircraft dealers, rentals, and shops",5271,mobile home dealers,"merchants classified with this mcc sell new and used mobile homes and related parts, accessories, and equipment.","dealers – mobile home,
+ parts, equipment
+equipment – mobile
+ home parts",prohibited,,3,4,,10,2
+miscellaneous stores & services,5299,warehouse club gas,,,,,3,1,,15,2
+miscellaneous stores & services,5300,wholesale clubs,merchants classified with this mcc sell a full range of goods (often in bulk) and services in warehouse-style stores. these merchants may or may not have membership requirements.,"club stores – wholesale
+ clubs
+discount goods –
+ wholesale clubs
+warehouse retail –
+ wholesale clubs",,,3,1,,15,2
+miscellaneous stores & services,5309,duty free stores,"merchants classified with this mcc sell a variety of gift and import items that are typically exempt from customs fees, such as liquor, perfume, and jewelry.",,restricted/high risk,restricted/high risk,4,2,,15,2
+miscellaneous stores & services,5310,discount stores,merchants classified with this mcc sell a general line of merchandise and offer it at a discounted rate.,,,,3,3,,5,1
+miscellaneous stores & services,5311,department stores,"merchants classified with this mcc sell a general line of apparel, home furnishings, furniture, electronics, cosmetics, housewares, and major household appliances. these stores have departments that usually have their own separate check-out counters.",,,,3,1,,5,1
+miscellaneous stores & services,5331,variety stores,"merchants classified with this mcc sell a limited selection of various products in a lower price range. generally, these merchants sell the same type of merchandise and operate in the same manner as a discount store, but on a much smaller scale.",,,,3,1,,5,1
+miscellaneous stores & services,5399,miscellaneous general merchandise stores,"merchants classified with this mcc sell a general line of merchandise. generally, these merchants sell the same type of merchandise and operate in the same manner as a department store, but on a much smaller scale.",,,,3,3,,5,1
+"grocery, alcohol & tobacco, drug stores, restaurants, caterers, drinking establishments",5411,"grocery stores, supermarkets","merchants classified with this mcc sell a complete, full line of food merchandise for home consumption. most of the food merchandise is perishable, and perishables* must represent at least 45% of merchant’s total monthly sales volume, measured in local currency. in addition, they also sell canned, frozen, prepackaged, and dry foods, a limited selection of housewares, cleaning and polishing products, personal hygiene products, cosmetics, greeting cards, books, magazines, household items, and dry goods. these merchants may also operate specialized departments such as an in-store deli counter, meat counter, pharmacy, or floral department. * perishable goods include the following: • bakery – in store (service) • bread and baked goods – fresh • dairy – butter, margarine, cottage cheese, sour cream, toppings, dough products, eggs, juices/drinks (refrigerated), milk, pudding, desserts, snacks, spreads, dips, and yogurt • deli – in store (service) • deli – refrigerated (self service) • frozen foods – baked goods, breakfast foods, desserts, fruits, toppings, frozen novelties, ice, ice cream, juices, drinks, meal starters, pizza, snacks, hors d’oeuvres, prepared foods, unprepared meat, poultry, seafood, vegetables • meat, fish, poultry – fresh • packaged meat – deli • fresh produce • floral",,restricted/high risk,restricted/high risk,3,1,,5,1
+"grocery, alcohol & tobacco, drug stores, restaurants, caterers, drinking establishments",5422,freezer and locker meat provisioners,"merchants classified with this mcc sell fresh, frozen, or cured meats, fish, shellfish, and other seafoods. this mcc also includes bulk retail sellers of meat for freezer storage and home freezer plans.","butcher shops
+fish, seafood markets
+frozen meats, seafood
+meat markets, meat
+ lockers
+seafood markets",restricted/high risk,restricted/high risk,3,1,,7,1
+"grocery, alcohol & tobacco, drug stores, restaurants, caterers, drinking establishments",5441,"candy, nut and confectionery stores","merchants classified with this mcc are retail sellers of candy, chocolate, nuts, dried fruits, popcorn and other confections.","chocolate shops
+confectionery shops
+dried fruit shops
+nut shops
+popcorn stands",restricted/high risk,restricted/high risk,3,1,,5,1
+"grocery, alcohol & tobacco, drug stores, restaurants, caterers, drinking establishments",5451,dairy products stores,"merchants classified with this mcc sell over-thecounter packaged butter, cheese, ice cream, milk, and other dairy products.",cheese shops,restricted/high risk,restricted/high risk,3,1,,5,1
+"grocery, alcohol & tobacco, drug stores, restaurants, caterers, drinking establishments",5462,bakeries,merchants classified with this mcc sell (and may make) bakery goods.,"bagel shops
+cake shops
+cookie stores
+doughnut shops
+pastry shops
+pie shops
+wedding cakes",restricted/high risk,restricted/high risk,3,1,,5,1
+"grocery, alcohol & tobacco, drug stores, restaurants, caterers, drinking establishments",5499,"miscellaneous food stores–convenience stores, markets, specialty stores, and vending machines",merchants classified with this mcc sell specialty foods not classified with a more specific mcc.,"convenience stores
+delicatessens
+food stores – convenience
+fruit markets
+gourmet food stores
+health food stores
+mini markets
+poultry shops
+produce markets
+specialty food markets
+vegetable markets
+vitamin stores
+meal preparation kits",restricted/high risk,restricted/high risk,3,3,,7,1
+"mobile home, vehicle, boat, aircraft dealers, rentals, and shops",5511,"automobile and truck dealers–sales, service, repairs, parts and leasing","merchants classified with this mcc sell and/or lease new and used automobiles, trucks, pickups, and vans and may also conduct repair work and sell replacement parts and accessories.","automobile/truck
+ dealers (new/used)
+sales, service, repairs,
+parts, leasing
+car dealers (new/used)
+dealers – automobile/
+ truck (new/used), sales,
+service, repairs,
+ parts, leasing
+leasing – automobile,truck
+motor vehicle
+dealers(new/used)
+repairs – automobile/
+ truck dealers (new/
+ used) sales, service,
+ repairs, parts, leasing
+truck dealers (new/used)",restricted/high risk,,3,4,,30,30
+"mobile home, vehicle, boat, aircraft dealers, rentals, and shops",5521,automobile and truck dealers–(used only)–sales,"merchants classified with this mcc sell and/or lease only used automobiles, trucks, pickups and vans and may also conduct repair work and sell replacement parts and accessories.","antique automobiles
+automobiles/trucks (used
+ only)
+car dealers (used only)
+dealers – antique
+ automobiles
+dealers – automobile/
+ truck (used only)",restricted/high risk,,3,4,,30,30
+"mobile home, vehicle, boat, aircraft dealers, rentals, and shops",5532,automotive tire stores,merchants classified with this mcc sell automotive and truck tires and related parts and may also conduct tire installation and repair services.,"car tires – new only
+repairs – automotive tire
+ stores
+services – repairs/
+ automotive tire stores
+tire stores",restricted/high risk,,4,3,,10,1
+"mobile home, vehicle, boat, aircraft dealers, rentals, and shops",5533,automotive parts and accessories stores,"merchants classified with this mcc sell automobile parts, equipment, and accessories.","accessories – automotive
+automobile – parts,
+ accessories stores
+car parts, accessories
+ stores
+motor vehicle supplies,
+ parts
+parts, automotive
+supplies – automotive
+ parts, accessories stores",restricted/high risk,restricted/high risk,4,4,,10,2
+"chemicals, fuel, & petroleum dealers, stores, & services",5541,service stations (with or without ancillary services),"merchants classified with this mcc are retail sellers of engine fuel these merchants may or may not also have a convenience store, car wash, or automotive repair shop on the premises, but must sell fuel for consumer use. excluded from this category code are automated fuel dispensers, mcc 5542","filling stations –
+ automotive gasoline
+gas stations (with or
+ without ancillary services)
+gasoline – service stations
+marina service stations
+petrol – service stations
+truck stops – gasoline
+ service",prohibited,,1,1,,1,1
+"chemicals, fuel, & petroleum dealers, stores, & services",5542,"fuel dispenser, automated",merchants classified with this mcc are retail sellers of engine fuel through the use of an automated fuel dispenser (afd).,"cardholder-activated
+ fuel dispensers
+fuel dispensers –
+ automated
+gas pumps (automated
+ fuel dispensers)
+fuel – self-service
+terminals
+petrol dispensers –
+ automated petrol – selfservice terminals
+self-service terminals –
+ fuel
+self-service terminals – petrol",prohibited,,1,1,,1,1
+"mobile home, vehicle, boat, aircraft dealers, rentals, and shops",5551,boat dealers,"merchants classified with this mcc sell new and used motorboats, sailboats, and other watercraft, marine supplies, and outboard motors.","dealers – boat
+motorboat dealers
+outboard motor dealers
+powerboat dealers
+sailboat dealers",prohibited,,4,4,,10,2
+"mobile home, vehicle, boat, aircraft dealers, rentals, and shops",5552,electric vehicle charging,merchants classified with this mcc sell electricity for the purpose of fueling an automobile,,,,1,1,,1,1
+"mobile home, vehicle, boat, aircraft dealers, rentals, and shops",5561,"camper dealers, recreational and utility trailers","merchants classified with this mcc sell new and used campers, recreational and utility trailers, and related parts and accessories.","accessories – recreational
+vehicles
+camper dealers
+dealers – recreational,
+ utility trailers, camper
+ dealers
+parts, recreational
+vehicles
+rv, camper dealers
+recreational vehicle
+dealers, parts, accessories
+trailers – utility
+utility trailers",prohibited,,3,4,,10,10
+"mobile home, vehicle, boat, aircraft dealers, rentals, and shops",5571,motorcycle shops and dealers,"merchants classified with this mcc sell new and used motorcycles, motor scooters, mopeds and related parts, equipment, clothing, and accessories.","dealers – motorcycle,
+ moped, motor scooters
+ moped dealers, parts,
+ accessories
+motor scooter dealers,
+ parts, accessories
+supplies – motorcycle
+ parts, accessories",prohibited,,4,4,,10,10
+"mobile home, vehicle, boat, aircraft dealers, rentals, and shops",5592,motor home dealers,merchants classified with this mcc sell new and used motor homes and related parts and accessories.,dealers – motor homes,prohibited,,3,4,,10,10
+"mobile home, vehicle, boat, aircraft dealers, rentals, and shops",5598,snowmobile dealers,merchants classified with this mcc sell new and used snowmobiles and related parts and accessories.,dealers – snowmobiles,prohibited,,3,4,,10,10
+"mobile home, vehicle, boat, aircraft dealers, rentals, and shops",5599,"miscellaneous automotive, aircraft, and farm equipment dealers–not elsewhere classified","merchants classified with this mcc sell new and used aircraft and/or automotive, farm, and recreational vehicles, parts, equipment and supplies not classified with a more specific mcc.","airplane, aircraft dealers
+all-terrain vehicle
+ dealers
+automotive dealers –
+ miscellaneous
+ dealers – airplane,
+aircraft
+dealers – golf carts
+dealers – miscellaneous
+automotive dealers
+plane dealers – aircraft",restricted/high risk,,4,4,,10,10
+clothing and accessories stores,5611,men’s and boys’ clothing and accessories stores,merchants classified with this mcc sell men’s and boys’ ready-to-wear clothing and accessories.,"accessories – men’s,
+ boys’ clothing
+apparel – men’s, boys’
+ clothing
+boys’ clothing, accessories
+clothing – men’s, boys’
+ clothing, accessory
+ stores
+hat shops – men’s necktie
+ stores
+tie shops – men’s clothing",,,1,2,,5,1
+clothing and accessories stores,5621,women’s ready to wear stores,merchants classified with this mcc sell a general line of women’s ready-to-wear and special-event clothing.,"apparel – women’s ready-
+ to-wear stores
+bridal shops
+clothing – women’s
+ ready-to-wear stores
+coat stores – women’s
+ dress shops
+maternity stores
+outerwear stores –
+ women’s",,,1,2,,5,1
+clothing and accessories stores,5631,women’s accessory and specialty stores,"merchants classified with this mcc sell women’s clothing accessories, including handbags, hats, costume jewelry, scarves, belts, hair accessories, lingerie, and hosiery.","accessories – women’s
+ accessory, specialty
+ shops
+apparel – women’s
+ accessory, specialty
+ shops
+clothing – women’s
+ accessory, specialty
+ shops
+costume jewelry shops
+handbag stores
+hat shops – women’s
+jewelry – costume
+lingerie stores",,,3,2,,5,1
+clothing and accessories stores,5641,children’s and infants’ wear stores,merchants classified with this mcc sell children’s and infants’ clothing and accessories.,"apparel – children’s,
+ infants’ wear
+baby clothing
+clothing – children’s,
+ infants’ wear stores
+infants’ clothing",,,1,2,,5,1
+clothing and accessories stores,5651,family clothing stores,"merchants classified with this mcc sell general lines of men’s, women’s, and children’s clothing and accessories without specializing in sales for a particular gender or age group.","apparel – family clothing
+ stores
+clothing – family clothing
+ stores
+jeans, denim clothing
+ stores",,,1,2,,5,1
+clothing and accessories stores,5655,"sports apparel, and riding apparel stores","merchants classified with this mcc sell athletic, sports, and riding apparel and active wear.","active wear – sports
+ apparel
+apparel – sports, riding
+ apparel stores
+athletic apparel stores
+clothing – sports apparel,
+ riding apparel stores
+equestrian apparel
+riding apparel – sports
+ apparel",,,3,3,,7,1
+clothing and accessories stores,5661,shoe stores,"merchants classified with this mcc sell men’s, women’s, and/or children’s footwear (including athletic footwear) and accessories.","athletic shoe stores
+boot shops
+footwear stores
+western boot shops",,,3,2,,5,1
+clothing and accessories stores,5681,furriers and fur shops,"merchants classified with this mcc sell a variety of items made of animal fur, including coats, jackets, hats, and gloves.","apparel – furriers, fur
+ shops
+clothing – furriers, fur
+ shops
+coat stores – furriers",restricted/high risk,,1,3,,7,1
+clothing and accessories stores,5691,men’s and women’s clothing stores,merchants classified with this mcc sell men’s and women’s clothing and accessories but not infants’ and children’s clothing.,"apparel – men’s clothing
+ stores
+clothing – women’s
+clothing stores",,,1,3,,5,1
+clothing and accessories stores,5697,"alterations, mending, seamstresses, tailors","merchants classified with this mcc create and sell custom-made clothing and perform alterations, mending, and garment repair or restoration.","alterations
+apparel – tailors,
+ seamstresses, mending,
+ alterations
+clothing – tailors,
+ seamstresses, mending,
+ alterations
+custom made clothing
+dressmakers
+hand made clothing
+made-to-order clothing
+mending, alterations
+repairs – tailors,
+ seamstresses, mending, alterations
+seamstresses services –
+ tailors, seamstresses,
+ mending, alterations
+sewing shops –
+ alterations",restricted/high risk,,1,3,,10,1
+clothing and accessories stores,5698,wig and toupee shops,"merchants classified with this mcc sell permanently attached or temporary toupees, wigs, hair pieces, and hair extensions or provide hair weaving services.","hair pieces, extensions
+hair replacement –
+ non-surgical
+toupee stores",prohibited,,1,2,,7,2
+clothing and accessories stores,5699,accessory and apparel stores–miscellaneous,merchants classified with this mcc sell specialized lines of apparel (excluding fur) and accessories that are not classified with a more specific mcc.,"clothing – formal wear
+clothing – miscellaneous
+ apparel, accessory shops
+swim wear shop
+t-shirt stores",,,1,2,,5,1
+"appliances, electronics, furniture, flooring, & home furnishings",5712,"equipment, furniture and home furnishings stores (except appliances)",merchants classified with this mcc sell home furnishings and a wide variety of finished furniture products and accessories for the home.,"bedding, mattress stores
+custom made furniture
+equipment stores
+home furnishings,
+ furniture
+made-to-order furniture
+mattress stores
+outdoor furnishings
+patio, porch furnishings
+ stores",restricted/high risk,restricted/high risk,3,5,,30,10
+"appliances, electronics, furniture, flooring, & home furnishings",5713,floor covering stores,"merchants classified with this mcc are retail sellers of floor coverings such as carpet, area rugs, floor tile, linoleum, stone, wood, and brick, and may or may not also perform installation services. ","carpet, rug stores
+linoleum stores
+rug stores
+tile stores",restricted/high risk,restricted/high risk,4,4,,5,1
+"appliances, electronics, furniture, flooring, & home furnishings",5714,"drapery, upholstery and window coverings stores","merchants classified with this mcc sell draperies, curtains, venetian blinds, window shades, and upholstery materials.","curtain stores
+upholstery materials stores
+window-covering stores",restricted/high risk,restricted/high risk,4,4,,15,10
+"appliances, electronics, furniture, flooring, & home furnishings",5718,"fireplace, fireplace screens and accessories stores","merchants classified with this mcc sell pre-made fireplaces, wood stoves, and fireplace parts and accessories.","hearth, accessories
+ stores
+heating – fireplace,
+ accessories stores
+stoves – fireplaces,
+ accessories stores
+woodburning stoves,
+ accessories stores",,restricted/high risk,4,3,,5,1
+"appliances, electronics, furniture, flooring, & home furnishings",5719,miscellaneous house furnishing specialty shops,"merchants classified with this mcc sell miscellaneous home furnishings such as housewares, cutlery, bedding and linen, lamps and shades, mirrors and pictures, pottery, and ceramic items.","accessories – home
+ furnishings
+bed, bath shops
+cookware stores
+cutlery – kitchen
+home furnishing
+specialty stores –
+ miscellaneous
+housewares stores
+kitchenware stores
+lamp, lighting shops
+linen shops
+pottery stores",restricted/high risk,restricted/high risk,3,4,,30,10
+"appliances, electronics, furniture, flooring, & home furnishings",5722,household appliance stores,"merchants classified with this mcc sell household appliances such as gas or electric ranges and stoves, ovens, refrigerators, dishwashers, water heaters, washers and dryers, garbage disposals, sewing machines, self-contained air conditioning units, and vacuum cleaners, and may or may not also conduct repair work.","sewing machine stores
+vacuum cleaner stores",restricted/high risk,restricted/high risk,3,4,,30,10
+"appliances, electronics, furniture, flooring, & home furnishings",5732,electronics sales,"merchants classified with this mcc sell a wide variety of electronic goods such as televisions, radios, cameras, computers, tablets, and stereo components and may also sell electronic parts and or accessories for the repair, construction or assembly of electronic equipment and/or also conduct repair work.","camcorders (and other
+ electronics)
+computer hardware
+ (and other electronics)
+electronic parts
+electronic repair shops
+high fidelity equipment
+personal computers
+radios
+stereos, receivers, cd
+ equipment
+television stores
+vcr’s
+video cameras (and
+ other electronics)",restricted/high risk,restricted/high risk,3,3,,5,1
+miscellaneous stores & services,5733,"music stores–musical instruments, pianos and sheet music","merchants classified with this mcc sell musical instruments, sheet music, keyboards, instruction books, pianos, guitars and related supplies and equipment and may also offer music instruction.","guitar stores
+instruments – musical
+ pianos",,,1,2,,5,1
+"digital goods, computer & technology services & sales",5734,computer software stores,merchants classified with this mcc sell computer software programs for business and personal use and may also sell or lease computer hardware or other related products. merchants that sell applications for mobile devices should use mcc 5817.,,restricted/high risk,restricted/high risk,3,3,,2,1
+miscellaneous stores & services,5735,record shops,"merchants classified with this mcc sell records, compact discs (cds), and cassettes, and may also rent video tapes.","cd, cassette, record
+ stores
+compact disc, cassette,
+ record stores
+music stores –
+ prerecorded records,
+ cds, cassettes
+record, cd, cassette
+ stores
+used record/cd stores",,,1,1,,5,1
+"grocery, alcohol & tobacco, drug stores, restaurants, caterers, drinking establishments",5811,caterers,"merchants classified with this mcc contract with consumers to prepare and deliver (typically to a specified location) food and drinks for immediate consumption and may also provide clean-up services, tables, serving equipment, decorations, and personnel for on-site serving and cleanup.","food preparation –
+ catering",,,3,4,,15,5
+"grocery, alcohol & tobacco, drug stores, restaurants, caterers, drinking establishments",5812,eating places and restaurants,"merchants classified with this mcc prepare food and drinks for immediate consumption, typically on the merchant’s premises. these merchants typically provide table service and may include alcoholic beverages on the menu. this mcc includes food delivery.","cafes, restaurants
+cafeterias
+diners – eating
+ establishments
+restaurants
+soda fountains",,,3,1,,1,1
+"grocery, alcohol & tobacco, drug stores, restaurants, caterers, drinking establishments",5813,"bars, cocktail lounges, discotheques, nightclubs and taverns–drinking places (alcoholic beverages)","merchants classified with this mcc sell alcoholic beverages such as wine, beer, mixed drinks, and other liquors and beverages for consumption on the premises.","drinking establishments
+beer parlors
+breweries, bars
+comedy clubs
+lounges
+micro breweries
+pubs
+saloons
+tap rooms
+wine bars",restricted/high risk,restricted/high risk,3,1,"additional questionnaires/forms, licenses, and/or certification documentation required, if not prohibited (check prohibited business model list)",1,1
+"grocery, alcohol & tobacco, drug stores, restaurants, caterers, drinking establishments",5814,fast food restaurants,"merchants classified with this mcc sell prepared food and beverages for consumption either on the premises or packaged for carry-out. orders are typically made and paid for at a counter, kiosk or drive-through window.","quick service restaurants
+vending machines – food
+sandwich shops
+ice cream shops
+coffee shops
+yogurt shops
+pretzel stands",restricted/high risk,restricted/high risk,3,2,,1,1
+"digital goods, computer & technology services & sales",5815,"digital goods: books, movies, music","merchants classified with this mcc sell books, movies, digital artwork/images or music that is delivered in electronic format. merchants offering ongoing steaming of digital media content on a subscription basis should use mcc 4899",,restricted/high risk,restricted/high risk,4,3,,2,2
+"digital goods, computer & technology services & sales",5816,digital goods: games,merchants classified with this mcc sell games (including games of skill but excluding games of chance) that are delivered in electronic format.,"fantasy sports (in
+ jurisdictions where they
+ not considered gambling)",restricted/high risk,restricted/high risk,4,4,,2,2
+"digital goods, computer & technology services & sales",5817,digital goods: applications (excludes games),merchants classified with this mcc sell applications or software (excludes games) that are delivered in electronic format.,,restricted/high risk,,4,3,,2,2
+"digital goods, computer & technology services & sales",5818,digital goods: large digital goods merchant (v) digital goods: multi-category (m),"all regions (excluding europe): merchants classified with this mcc are large-volume merchants that sell digital goods (goods delivered via electronic format) with a minimum threshold of 25 million transactions annually. europe region only: merchants classified with this mcc are digital goods merchants that are categorized as pci dss level 1, as they process over 6 million visa transactions annually",,prohibited,restricted/high risk,4,4,,10,2
+"grocery, alcohol & tobacco, drug stores, restaurants, caterers, drinking establishments",5912,drug stores and pharmacies,"merchants classified with this mcc sell prescription and proprietary drugs, nonprescription (over-thecounter) medicines, vitamins, cannabis (where legal to do so) and may also sell related items such as cosmetics, toiletries, tobacco, heating pads, back supports, novelty merchandise, greeting cards, and a limited supply of food items.","medicine – prescription,
+ pharmacies
+pharmacies
+prescription medication
+toiletries",prohibited,prohibited,4,3,"additional questionnaires/forms, licenses, and/or certification documentation required, if not prohibited (check prohibited business model list)",5,1
+"grocery, alcohol & tobacco, drug stores, restaurants, caterers, drinking establishments",5921,"package stores–beer, wine and liquor","merchants classified with this mcc sell packaged alcoholic beverages such as beer, wine, and liquor for consumption off the premises and may also sell a limited variety of food and snack items, newspapers and magazines, and a limited selection of toiletries and over-the-counter medicines.",alcohol – liquor stores 5,restricted/high risk,prohibited,4,2,"additional questionnaires/forms, licenses, and/or certification documentation required, if not prohibited (check prohibited business model list)",5,1
+miscellaneous stores & services,5931,"second hand stores, used merchandise stores","merchants classified with this mcc sell used merchandise or secondhand goods such as accessories, shoes and clothing, furniture, books, bicycles, musical instruments, sewing machines, electronic equipment, appliances, and other household items. typically, the items for sale have been donated or are on consignment.","consignment shops
+secondhand stores
+thrift stores
+vintage clothing",restricted/high risk,,3,1,,5,1
+"antiques, fine art, collectibles, clock, jewelry, precious stones, and silverware stores and services",5932,"antique shops–sales, repairs and restoration services","merchants classified with this mcc sell antiques such as furniture, jewelry, cameras and photographic equipment, tools, art work, books, appliances and other household items. this mcc does not include retail sellers of antique automobiles.","services – antique
+ restoration",prohibited,restricted/high risk,4,4,,15,7
+miscellaneous stores & services,5933,pawn shops,merchants classified with this mcc lend money in exchange for personal property left with the merchants as security.,,prohibited,restricted/high risk,4,3,,5,2
+miscellaneous stores & services,5935,wrecking and salvage yards,merchants classified with this mcc provide wrecking and salvaging services.,junk yards,prohibited,restricted/high risk,5,3,,5,1
+"antiques, fine art, collectibles, clock, jewelry, precious stones, and silverware stores and services",5937,antique reproduction stores,"merchants classified with this mcc sell antique reproductions or facsimiles of clothing, furniture, rugs, paintings and art work, mirrors, glassware, jewelry, and other household and personal items and may also provide antique photograph reproduction and restoration services.",,prohibited,restricted/high risk,5,4,,14,2
+miscellaneous stores & services,5940,bicycle shops–sales and service,"merchants classified with this mcc sell bicycles, bicycle parts, and accessories (including a limited variety of related sporting apparel) and may also conduct repair work.","mountain bikes
+service – bicycles",,,1,3,,5,1
+miscellaneous stores & services,5941,sporting goods stores,"merchants classified with this mcc sell sporting goods, sports equipment, camping supplies, and related parts and accessories, and may also rent or repair equipment.","backpacking equipment
+bait, tackle stores
+billiard tables – sales
+ camping equipment
+cutlery – sporting knives
+exercise equipment
+fishing – equipment, bait,
+ tackle
+golf equipment
+gun shops
+hiking equipment
+hunting equipment,
+supplies
+in-line skates shops
+pool tables – sales
+rollerblade shops
+scuba, skin diving
+ equipment
+skateboard shops
+ski shops
+skin diving, scuba
+ equipment
+surfboards, accessories
+trekking equipment
+windsurf boards,
+ accessories",restricted/high risk,restricted/high risk,3,2,,5,1
+miscellaneous stores & services,5942,book stores,"merchants classified with this mcc sell new and/or used books, journals, magazines, textbooks, maps and atlases, audio books, and calendars.","paperbacks – book stores
+textbooks",,,1,1,,5,1
+miscellaneous stores & services,5943,"office, school supply and stationery stores","merchants classified with this mcc are retail sellers of paper goods used in offices and schools, office and school supplies, , and small office equipment and furniture.","office supply stores
+school supply store",,,1,2,,5,1
+"antiques, fine art, collectibles, clock, jewelry, precious stones, and silverware stores and services",5944,"clock, jewelry, watch and silverware stores","merchants classified with this mcc sell fine jewelry, watches, clocks, and sterling silver and silver-plated flatware and accessories, and may also repair fine jewelry.","clock shop
+diamond stores
+gems, precious metals,
+ jewelry
+jewelry – fine
+precious gems, metals,
+ jewelry
+silversmiths
+silverware stores
+watch shops",restricted/high risk,restricted/high risk,5,4,,5,1
+miscellaneous stores & services,5945,"game, toy and hobby shops","merchants classified with this mcc sell toys and games, and may also sell a limited selection of do-ityourself craft or hobby kits.","games stores
+hobby shops
+toy stores
+toy, game shops",,,1,2,,5,1
+miscellaneous stores & services,5946,camera and photographic supply stores,"merchants classified with this mcc sell cameras, film, video equipment, printers, and other photographic equipment and supplies, and may provide photo/video processing services.","camcorders,
+ photographic equipment
+equipment –
+ photographic supply
+ stores
+photography supply stores
+supplies – photographic
+video cameras,
+ photographic equipment",restricted/high risk,,3,2,,5,1
+miscellaneous stores & services,5947,"card, gift, novelty and souvenir shops","merchants classified with this mcc sell gifts and novelty items, greeting cards, balloons, souvenirs, holiday decorations, stationery, wrapping paper and bows, photo albums, and a limited selection of office supplies.","memorabilia, souvenir
+ shops
+novelty shops
+souvenir, memorabilia
+ shops",,,1,1,,5,1
+miscellaneous stores & services,5948,leather goods and luggage stores,"merchants classified with this mcc are retail sellers of luggage, trunks, briefcases, leather backpacks, wallets, purses, gloves, and other leather goods, and may also sell a limited selection of leather apparel.",,,,3,2,,5,1
+miscellaneous stores & services,5949,"fabric, needlework, piece goods and sewing stores","merchants classified with this mcc are retail sellers of fabric, patterns, yarn and other needlework/sewing supplies, and may offer sewing classes or instruction.","fabric stores
+knitting shops
+needlework shops
+supplies – sewing, fabric,
+ notions, needlework, piece goods
+yarn shops",,,1,1,,5,1
+"antiques, fine art, collectibles, clock, jewelry, precious stones, and silverware stores and services",5950,crystal and glassware stores,"merchants classified with this mcc sell glassware, china and crystal tableware, and glass, china, or crystal gift items.","china, crystal stores
+crystal stores
+cut glass, crystal",,,3,1,,5,1
+"direct marketing, door-to-door, & mail order sales & services",5960,direct marketing insurance services,"merchants classified with this mcc sell insurance via direct mail, billing statement stuffers, and magazine or television ads, all of which include either a toll-free telephone number or an address to which prospective customers may respond.","automobile insurance –
+ sales (direct marketing)
+insurance services –
+ direct marketing
+services – insurance,
+ direct marketing",prohibited,restricted/high risk,4,4,,15,2
+"direct marketing, door-to-door, & mail order sales & services",5961,mail order houses including catalog order stores,,,prohibited,restricted/high risk,5,4,,5,1
+"direct marketing, door-to-door, & mail order sales & services",5962,direct marketing–travel related arrangement services,"merchants classified with this mcc sell travel-related services (including discount travel clubs or newsletters) via outbound telemarketing calls, mailings, magazine or television ads, or other direct marketing methods that include either a toll-free telephone number or an address to which prospective customers may respond.","services – direct
+ marketing travel-
+ related arrangement
+ services
+telemarketing travel-
+ related arrangement
+ services (excluding
+ travel agencies)
+travel clubs (direct
+ marketing)
+travel-related
+ arrangement services-
+ direct marketing",prohibited,prohibited,6,6,,90,1
+"direct marketing, door-to-door, & mail order sales & services",5963,door-to-door sales,merchants classified with this mcc sell a variety of products by means of house-to-house visits.,,prohibited,prohibited,4,3,,5,1
+"direct marketing, door-to-door, & mail order sales & services",5964,direct marketing–catalog merchants,merchants classified with this mcc sell a variety of goods via catalogs and offer no means by which customers may purchase products in a face-to-face manner.,,prohibited,restricted/high risk,4,4,,5,1
+"direct marketing, door-to-door, & mail order sales & services",5965,direct marketing–combination catalog and retail merchant,"merchants classified with this mcc sell a variety of goods via catalog and one or more retail outlets. mcc 5965 is used for goods sold via catalog, while the mcc relevant to what is sold in the retail outlets is used for goods sold in the retail outlets.",,prohibited,restricted/high risk,4,3,,5,1
+"direct marketing, door-to-door, & mail order sales & services",5966,direct marketing–outbound telemarketing merchants,"merchants classified with this mcc sell a variety of products using outbound telemarketing methods, where the merchant initiates contact with prospective buyers via telephone or mailing (other than a catalog) that instructs the cardholder to contact the merchant. this mcc excludes charitable organizations that conduct outbound telemarketing.",,prohibited,prohibited,4,2,,5,1
+"direct marketing, door-to-door, & mail order sales & services",5967,direct marketing–inbound telemarketing merchants,merchants classified with this mcc sell information or content services (or goods sold through the service) that customers access via telephone or fax or over the internet.,"adult content
+audiotext merchants
+videotext merchants
+digital content merchants",prohibited,prohibited,4,2,,5,1
+"direct marketing, door-to-door, & mail order sales & services",5968,direct marketing–continuity/subscription merchants,"merchants classified with this mcc sell subscription products for delivery (such as book clubs, collectibles, magazines/newspapers cosmetics, food, clothing, “nutraceuticals”) via “direct” mail, email. apps, or salespeople. merchants not participating in direct marketing activities that happen to offer recurring purchase transactions should use the mcc that best describes their business instead. for example, merchants providing the ongoing delivery of television/radio/streaming content on a subscription basis must use mcc 4899 qualified merchants that “directly” sell subscriptions for digital goods or content may use mcc 5815, 5816, 5817, or 5818.","magazine subscription
+ (direct mail only)
+direct mail merchants",prohibited,restricted/high risk,4,4,,5,1
+"direct marketing, door-to-door, & mail order sales & services",5969,direct marketing–other direct marketers–not elsewhere classified,"merchants classified with this mcc sell products or services through a variety of direct response methods that include an order form or an address and/or telephone number the customer may use to place an order by mail, telephone, or fax and that are not classified with a more specific mcc.","classified ads –
+ newspaper (via direct
+ marketing)
+ticket agencies –
+ direct marketing",prohibited,restricted/high risk,4,4,,5,1
+miscellaneous stores & services,5970,"artist supply stores, craft shops","merchants classified with this mcc sell art and craft materials, equipment and supplies used to create other items.","supplies – art, crafts",,,1,2,,5,1
+"antiques, fine art, collectibles, clock, jewelry, precious stones, and silverware stores and services",5971,art dealers and galleries,"merchants classified with this mcc sell artwork such as paintings, photographs, or sculpture.",,restricted/high risk,restricted/high risk,4,3,,5,2
+"antiques, fine art, collectibles, clock, jewelry, precious stones, and silverware stores and services",5972,stamp and coin stores–philatelic and numismatic supplies,"merchants classified with this mcc sell postage stamps and coins, and related accessories for the purpose of stamp collecting, coin collecting or investment.","numismatic supplies
+philatelic supplies
+stamp collecting
+supplies – numismatic,
+ philatelic",prohibited,restricted/high risk,5,2,"additional questionnaires/forms, licenses, and/or certification documentation required, if not prohibited (check prohibited business model list)",5,1
+miscellaneous stores & services,5973,religious goods stores,"merchants classified with this mcc sell religious goods such as figurines, cards, devotion supplies, pictures, books, and decorative items.",,,,1,1,,5,1
+"doctors, dentists, hospitals & related services",5975,"hearing aids–sales, service, supply stores","merchants classified with this mcc sell hearing aids and related supplies, and may also conduct repair work.","repairs – hearing aids,
+ sales, service, supply,
+ stores
+service – hearing aids,
+ supplies
+supplies – hearing aids,
+service, supplies",,,3,3,,7,1
+"doctors, dentists, hospitals & related services",5976,orthopedic goods–artificial limb stores,"merchants classified with this mcc sell a variety of prosthetic devices and orthopedic goods and accessories, and may also conduct repair work.","orthotics, prosthetic,
+ devices
+prosthetic devices",,,3,3,,15,1
+clothing and accessories stores,5977,cosmetic stores,merchants classified with this mcc sell cosmetics.,make-up stores,restricted/high risk,restricted/high risk,3,2,,5,1
+miscellaneous stores & services,5978,"typewriter stores–rentals, sales, service","merchants classified with this mcc sell, rent, or lease typewriters, may also sell a limited selection of office supplies and equipment, and may also conduct repair work.",,prohibited,,1,1,,5,1
+"chemicals, fuel, & petroleum dealers, stores, & services",5983,"fuel dealers–coal, fuel oil, liquefied petroleum, wood","merchants classified with this mcc sell fuel oil, wood, coal, liquefied petroleum, aviation fuel, heating oil or gas propane for consumer use, and may also sell fuel for consumer use in automobiles.","aviation fuel
+coal dealers
+dealers – fuel dealers,
+ fuel oil, wood, coal,
+ liquefied petroleum
+home heating fuel dealers
+liquefied petroleum
+dealers
+oil dealers
+propane dealers
+wood dealers",,,3,1,,5,1
+miscellaneous stores & services,5992,florists,"merchants classified with this mcc sell cut flowers, flower arrangements, and potted plants, and may also sell novelty items.","balloon bouquets
+flower shops
+plant store",,,1,1,,5,1
+"grocery, alcohol & tobacco, drug stores, restaurants, caterers, drinking establishments",5993,cigar stores and stands,"merchants classified with this mcc sell tobacco, cigarettes, electronic cigarettes, cigars, pipes, and smokers’ supplies.","pipe shops
+smoke shops
+tobacco shops",restricted/high risk,restricted/high risk,5,2,"additional questionnaires/forms, licenses, and/or certification documentation required, if not prohibited (check prohibited business model list)",5,1
+miscellaneous stores & services,5994,news dealers and newsstands,"merchants classified with this mcc sell newspapers, magazines, journals, and other periodicals.","dealers – newspapers
+magazines (newsstands)
+newspapers
+periodicals (newsstands)",prohibited,,1,1,,5,1
+miscellaneous stores & services,5995,"pet shops, pet food and supplies","merchants classified with this mcc sell domestic pets, pet food, and pet supplies.",animals,restricted/high risk,restricted/high risk,1,1,"additional questionnaires/forms, licenses, and/or certification documentation required, if not prohibited (check prohibited business model list)",5,1
+miscellaneous stores & services,5996,swimming pools–sales and supplies,"merchants classified with this mcc sell home swimming pools, spas, hot tubs, whirlpool baths, and supplies, and may also provide installation and/or repair services.","hot tubs, spas – sales,
+ service, supplies
+services – hot tubs, spas,
+ sales, service, supplies
+services – swimming
+ pools, sales, service,
+ supplies
+supplies – hot tubs, spas
+supplies – swimming pools",,,3,4,,15,1
+miscellaneous stores & services,5997,electric razor stores–sales and service,merchants classified with this mcc sell electric razors and may also provide repair services. ,,restricted/high risk,restricted/high risk,1,2,,5,1
+miscellaneous stores & services,5998,tent and awning shops,"merchants classified with this mcc sell tents and awnings for home or business use, and may also provide repair services.","awnings – residential, commercial",,restricted/high risk,3,2,,5,1
+miscellaneous stores & services,5999,miscellaneous and specialty retail stores,merchants classified with this mcc sell unique or specialized products that are not classified with a more specific mcc.,"ammunition stores
+atlas, map stores
+beauty supply stores
+bottled and distilled
+ water dealers
+collectibles,
+ memorabilia stores-
+ sports and hobby
+ dealers – ice
+firearms, ammunition
+ stores
+fireworks stores
+frame shops –
+ photograph, poster
+gravestones,
+ monuments – sales,
+ installation
+headstones, monuments
+ice dealers
+magic shops
+map, atlas stores
+monuments,
+ gravestones – sales,
+ installation
+party supply stores
+picture frames, framing
+ shops
+specialty retail stores –
+ miscellaneous
+sunglasses stores
+supplies – beauty supply
+ stores
+supplies – party
+tombstones – sales,
+ installation
+trophy sales",restricted/high risk,restricted/high risk,3,3,,5,1
+"financial institutions & services, securities, and insurance",6010,member financial institution–manual cash disbursements,this mcc must be used for face-to-face cash disbursements.,"banks – financial institutions – manual cash disbursements cash – banks, credit unions, financial institutions credit unions – financial institutions – manual cash disbursements deposits – financial institutions manual cash disbursements savings and loans – financial institutions – manual cash disbursements travelers cheques (financial institutions) cashbanks – financial
+ institutions – manual
+ cash disbursements
+cash – banks, credit
+ unions, financial
+ institutions
+credit unions – financial
+ institutions – manual
+ cash disbursements
+deposits – financial
+institutions
+manual cash
+ disbursements
+savings and loans –
+ financial institutions –
+ manual cash
+disbursements
+travelers cheques
+ (financial institutions)
+ cash",prohibited,prohibited,5,3,"additional questionnaires/forms, licenses, and/or certification documentation required, if not prohibited (check prohibited business model list)",3,3
+"financial institutions & services, securities, and insurance",6011,member financial institution–automated cash disbursements,"this mcc must be used only for cash disbursements at automated teller machines (atms) owned, leased, controlled, or sponsored by banks, savings and loans, thrifts, and credit unions.",atm cash – disbursements cash - atm,prohibited,prohibited,5,3,"additional questionnaires/forms, licenses, and/or certification documentation required, if not prohibited (check prohibited business model list)",3,3
+"financial institutions & services, securities, and insurance",6012,member financial institution–merchandise and services,"this mcc must be used by financial institutions for the purchase of merchandise or services or the repayment of loans & debts. “financial institution” includes banks, savings and loans, thrifts, and credit unions. for example: the purchase of checks, other financial products, or promotional merchandise, deposits, the funding of an account, the purchase or reload of a stored value card, the purchase of foreign currency, non-fiat currency (for example: cryptocurrency), money orders (a negotiable paper based remittance – not a money transfer), travelers cheques, and loan fees or financial counseling service fees. this mcc must also be used for the repayment of a debt, loan, or credit card balance by a cardholder to the financial institution.","account funding –
+financial institution
+banks – financial
+institutions –
+merchandise, services
+credit unions – financial
+institutions –
+merchandise, services
+deposits – financial
+institutions
+merchandise, services –
+financial institutions
+mortgage companies –
+financial institutions
+purchase of foreign
+currency, non-fiat
+currency (for example,
+cryptocurrency), money
+orders (not money
+transfer) and travelers
+cheques – financial
+institution
+loan payments –
+financial institution
+savings and loans –
+financial institutions –
+merchandise, services
+services – banks, credit
+unions, financial
+institutions (non-cash)
+stored value card",prohibited,prohibited,5,3,"additional questionnaires/forms, licenses, and/or certification documentation required, if not prohibited (check prohibited business model list)",3,3
+"financial institutions & services, securities, and insurance",6051,quasi cash–merchant,"this mcc must be used for the funding of an account (excluding prepaid card loads), the purchase of foreign currency, non-fiat currency (for example: cryptocurrency), money orders, or travelers cheques that occurs at non-financial institutions such as currency exchanges or money order (a negotiable paper based remittance – not a money transfer) merchants.","account funding –
+ (non-financial institutions)
+currency – non-fiat (for
+ example: cryptocurrency)
+currency – foreign (nonfinancial institutions)
+exchange – foreign
+ currency (non-financial
+ institutions)
+foreign currency (non-
+ financial institutions)
+lease payments
+loan payments
+money – foreign currency
+ (non-financial institutions)
+money orders – not money
+ transfer (non-financial
+ institutions)
+mortgage companies
+ – (non-financial
+ institutions)
+services – money order,
+travelers cheques,
+foreign exchange (nonfinancial institutions)
+travelers cheques
+ (financial institutions)
+ travelers cheques
+ (non-financial institutions)",prohibited,prohibited,5,3,"additional questionnaires/forms, licenses, and/or certification documentation required, if not prohibited (check prohibited business model list)",3,3
+"financial institutions & services, securities, and insurance",6211,securities–brokers and dealers,"merchants classified with this mcc are licensed, in all jurisdictions they sell into to buy, sell and broker securities, stocks, bonds, commodities, and mutual funds. ","bond dealers
+brokers – securities,
+mutual funds, stocks,
+ commodities, bonds
+commodity dealers
+dealers – securities,
+ mutual funds, stocks,
+ commodities, bonds
+foreign currency purchase
+licensed foreign exchange
+ trading
+binary options
+investment firms –
+ dealers, brokers
+mutual funds brokers
+stock brokers",prohibited,prohibited,5,4,"additional questionnaires/forms, licenses, and/or certification documentation required, if not prohibited (check prohibited business model list)",3,3
+"financial institutions & services, securities, and insurance",6300,"insurance sales, underwriting and premiums","merchants classified with this mcc sell personal or business insurance policies such as automobile, life, health, hospital, medical, and dental insurance, homeowners’ and renters’ insurance, real estate title insurance, pet health insurance and flood, fire, or earthquake insurance.","automobile insurance –
+ sales (non-direct
+ marketing)
+health insurance – sales
+homeowners insurance –
+ sales
+life insurance – sales
+medical insurance – sales
+product warranties ",prohibited,prohibited,4,3,,15,2
+"financial institutions & services, securities, and insurance",6381,insurance–premiums,,,prohibited,,4,3,,15,2
+business & professional services,6513,real estate agents and managers–rentals,"this mcc must be used for the payment of management fees, rental commissions, rental payments, and other payments at real estate agents, brokers, and managers engaged in the rental and management of residential and commercial properties. this mcc should also be used for payments of deposits for real estate purchases short term rentals (of less than one month) must be included in mcc 7011 lodging – hotels, motels, resorts, central reservation services (not elsewhere classified) or, if appropriate, the merchant’s mcc. this mcc does not include mortgage loan payments and real estate purchases. these transactions must be identified with a more appropriate mcc such as mcc 6012 financial institutions – merchandise and services; mcc 1520 general contractors; mcc 8111 legal services and attorneys.","apartment rentals
+commercial property
+rentals
+homeowner/condo
+association fees/dues
+housing rentals
+property rentals
+real estate agents
+brokers, managers –
+ rentals
+rental services –
+ residential and
+commercial properties
+residential rentals
+service – residential and
+ commercial properties
+ rentals",restricted/high risk,,4,3,,15,15
+"financial institutions & services, securities, and insurance",6529,remote stored value load — member financial institution,this mcc must be used by merchants whose primary business is the sale of and/or any subsequent reloads of stored value cards/accounts (including visa prepaid cards) occurring at non-financial institutions. this mcc is not applicable for use with staged digital wallet operators (sdwo).,"account funding – (non-
+ financial institutions)
+stored value card/load
+ (non-financial institutions)
+stored value wallet/load
+ (non-financial institutions)",,,5,4,,60,60
+"financial institutions & services, securities, and insurance",6530,remote stored value load — merchant,,,,,5,3,,30,30
+"financial institutions & services, securities, and insurance",6535,value purchase–member financial institution,,,,,5,3,,30,30
+"financial institutions & services, securities, and insurance",6536,moneysend intracountry,,,,,5,2,,1,1
+"financial institutions & services, securities, and insurance",6537,moneysend intercountry,,,,,5,2,,3,3
+"financial institutions & services, securities, and insurance",6538,moneysend funding,,,,,5,2,,1,1
+"financial institutions & services, securities, and insurance",6539,funding transaction (excluding moneysend),,,,,5,2,,5,5
+"financial institutions & services, securities, and insurance",6540,poi (point of interaction) funding transactions (excluding moneysend),this mcc must be used by merchants whose primary business is the sale of and/or any subsequent reloads of stored value cards/accounts (including visa prepaid cards) occurring at non-financial institutions. this mcc is not applicable for use with staged digital wallet operators (sdwo).,"account funding – (non-
+ financial institutions)
+stored value card/load
+ (non-financial institutions)
+stored value wallet/load
+ (non-financial institutions)",prohibited,prohibited,5,3,"additional questionnaires/forms, licenses, and/or certification documentation required, if not prohibited (check prohibited business model list)",15,15
+"financial institutions & services, securities, and insurance",6611,overpayments,,,,,5,2,,5,5
+"financial institutions & services, securities, and insurance",6760,savings bonds,,,,,5,2,,5,5
+business & professional services,7011,"lodging–hotels, motels, resorts–not elsewhere classified","merchants classified with this mcc are lodging establishments or central reservation services that do not have their own specific mcc. mcc 7011 may include, bed and breakfast establishments, resorts, cabins, cottages, hostels, short-term property rentals less than 30 days in length, and local inns.","bed & breakfast
+ establishments
+central reservation
+ services
+hotels (not listed in
+ t&e section)
+inns (not listed in
+ t&e section)
+lodging establishments
+ (not listed in t&e
+ section)
+motels (not listed in
+ t&e section)
+resorts (not listed in
+ t&e section)
+services – central
+ reservation, lodging",,restricted/high risk,4,5,,90,1
+business & professional services,7012,timeshares,"merchants classified with this mcc sell, lease, and rent timeshares and arrange timeshare condominium exchanges.",,prohibited,prohibited,6,6,,90,2
+entertainment services,7032,sporting and recreational camps,"merchants classified with this mcc operate children’s camps, recreational camps, and sporting camps.","boys’ camps
+camps – boys’, girls’
+camps – sporting,
+ recreational
+children’s camps
+girls’ camps
+recreational, sporting
+ camps
+nudist camps
+dude ranches",restricted/high risk,restricted/high risk,3,5,,90,2
+business & professional services,7033,campgrounds and trailer parks,"merchants classified with this mcc provide overnight or short-term camp sites for recreational vehicles, trailers, campers, or tents.",,,,3,4,,15,2
+miscellaneous stores & services,7210,"cleaning, garment and laundry services",merchants classified with this mcc operate steam or other types of laundries or laundry services.,"diaper services
+garment services
+services – laundry,
+ cleaning, garment
+ services",,,1,1,,5,1
+miscellaneous stores & services,7211,laundry services–family and commercial,merchants classified with this mcc provide coinoperated or similar self-service washers and dryers for general consumer use and may also offer laundry services.,laundromats,prohibited,,1,1,,5,1
+miscellaneous stores & services,7216,dry cleaners,merchants classified with this mcc perform dry cleaning services for individuals or businesses and may offer limited alteration services.,services – dry cleaning,,,1,1,,5,1
+miscellaneous stores & services,7217,carpet and upholstery cleaning,"merchants classified with this mcc clean carpets, drapes, and upholstery.",drapery cleaning,prohibited,,1,2,,8,1
+miscellaneous stores & services,7221,photographic studios,merchants classified with this mcc perform still or video portrait photography for the general public.,"photographers – wedding
+ portrait studios
+wedding photographers",,,1,3,,15,1
+business & professional services,7230,barber and beauty shops,"merchants classified with this mcc provide personal hair care services such as hair cutting, styling, and coloring, and may also perform manicures and pedicures and sell a limited selection of hair care products.","beauty salons
+fingernail salons
+hair cutting
+hair salon
+hair styling
+hairdressers
+make-up studios
+manicurists
+nail salons
+salons – hair, beauty
+salons – nail",,,1,2,,15,1
+miscellaneous stores & services,7251,"hat cleaning shops, shoe repair shops, shoe shine parlors",merchants classified with this mcc repair footwear and provide shoe and hat cleaning and maintenance services.,"hat cleaning shops
+shoe shine shops, stands
+repairs – shoe repair shops",prohibited,,3,2,,30,10
+business & professional services,7261,funeral service and crematories,"merchants classified with this mcc are mortuaries, crematories, and funeral homes that provide burial preparation services, conduct funerals, and provide cremation services.","mortuaries
+morticians
+undertakers",,,3,2,,10,2
+business & professional services,7273,dating services,"merchants classified with this mcc provide dating and escort services, including online services.","escort services
+services – dating, escort
+ online dating services",prohibited,prohibited,6,6,,15,1
+business & professional services,7276,tax preparation service,"merchants classified with this mcc provide income tax return preparation services but do not provide auditing, accounting, or bookkeeping services.",services – tax preparation,,,3,3,,7,2
+business & professional services,7277,"debt, marriage, personal–counseling services","merchants classified with this mcc provide a variety of personal counseling services, such as debt and financial counseling, marriage counseling, family counseling, and alcohol and drug abuse counseling.","alcohol, drug abuse
+ counseling
+credit counseling
+debt counseling
+drug, alcohol abuse
+ counseling
+family counseling
+financial counseling
+ service
+marriage counseling
+personal counseling
+services – counseling –
+ debt, marriage, personal
+services – financial
+ counseling",prohibited,,3,3,contractors license required in some cases,14,1
+"charitable & social clubs, membership organizations",7278,"buying/shopping clubs, services",merchants classified with this mcc act as an intermediary to facilitate buying and shopping for individuals or businesses on a fee basis.,"personal shopper
+ services –
+ buying/shopping
+ services, clubs
+shopping services",prohibited,prohibited,3,4,,30,2
+"doctors, dentists, hospitals & related services",7280,hospital patient-personal funds withdrawal,,,,,5,2,,1,1
+"schools, colleges, & child care services",7295,babysitting services,,,,,3,2,,15,2
+clothing and accessories stores,7296,"clothing rental–costumes, uniforms and formal wear","merchants classified with this mcc rent costumes, uniforms, formal wear, and other types of apparel and related accessories.","apparel – clothing rental
+ – costumes, formal
+wear, uniforms
+costume rental
+formal wear rental
+rentals – clothing –
+ costumes, formal wear,
+ uniforms
+rentals – costume
+rentals – tuxedo, formal
+ wear
+rentals – uniforms
+tuxedo, formal wear
+ rentals
+uniforms rental",prohibited,,3,2,,7,1
+business & professional services,7297,massage parlors,"merchants classified with this mcc specialize in providing therapeutic massage services, and may also provide other personal services such as spa treatments and rent saunas or hot tubs for customer use.",,prohibited,prohibited,3,4,"additional questionnaires/forms, licenses, and/or certification documentation required, if not prohibited (check prohibited business model list)",10,1
+business & professional services,7298,health and beauty spas,"merchants classified with this mcc provide a variety of personal or therapeutic services such as facials, massages, mud baths, herbal wraps, tanning treatments, whirlpools, steam baths, and hair and makeup styling, and instructional classes.",tanning salons,restricted/high risk,restricted/high risk,3,3,,10,2
+business & professional services,7299,other services–not elsewhere classified,merchants classified with this mcc provide personal services that are not classified with a more specific mcc.,"animal boarding services
+animal breeders
+animal grooming services
+animal training
+apartment rental services
+boarding services – animal
+body piercing, tattoo
+ parlors
+breeders – animals
+dog grooming services
+dog training
+horse boarding services
+housing – rental services
+kennels – animal
+pet grooming services
+services – animal boarding
+services – miscellaneous
+ other services –
+miscellaneous
+ personal services – pet
+ grooming
+services – water filtration,
+ purification,
+ softening treatments
+stables – animal
+tattoo, body piercing
+ parlors
+taxidermists
+wedding chapels /
+ planning",prohibited,restricted/high risk,3,3,,10,2
+business & professional services,7311,advertising services,"merchants classified with this mcc prepare advertising (writing copy, artwork, graphics, and other creative work) and place such advertising and/or samples in periodicals, newspapers, radio and television, on the internet, in the sky, or other advertising media for clients on a contract or fee basis.","ad agencies
+agencies – advertising
+classified ads –
+ newspaper
+services – advertising",restricted/high risk,restricted/high risk,3,2,,8,2
+business & professional services,7321,consumer credit reporting agencies,"merchants classified with this mcc provide consumer credit reporting services such as credit investigation, credit clearinghouses, and other related services.",,prohibited,prohibited,5,3,,15,1
+business & professional services,7332,blueprinting and photocopying services,,,,restricted/high risk,1,1,,7,1
+business & professional services,7333,"commercial art, graphics, photography","merchants classified with this mcc provide commercial art or graphic design services for advertising agencies, publishers, and other businesses.","commercial artists
+film production
+graphics – commercial
+silk screening",restricted/high risk,restricted/high risk,1,2,,10,2
+business & professional services,7338,"quick copy, reproduction and blueprinting services","merchants classified with this mcc reproduce and bind text, drawings, plans, maps, or other copy, by blueprinting, photocopying, or other methods of duplication.","photocopying services
+reproduction services
+services – quick copy,
+ reproduction",prohibited,restricted/high risk,1,2,,3,2
+business & professional services,7339,stenographic and secretarial support services,"merchants classified with this mcc provide a range of stenographic and secretarial services such as word processing, typing, editing, letter writing, proofreading, resume writing, and court reporting services.","services – word
+ processing
+word processing services",prohibited,restricted/high risk,1,1,,10,4
+business & professional services,7342,exterminating and disinfecting services,"merchants classified with this mcc provide pest control, extermination, fumigation, and disinfection services.","exterminators
+pest control",prohibited,,1,2,,8,2
+business & professional services,7349,"cleaning and maintenance, janitorial services",merchants classified with this mcc provide cleaning and maintenance services.,"house cleaning services
+housekeeping services
+maintenance services
+services – housekeeping",,,1,2,,15,2
+business & professional services,7361,employment agencies and temporary help services,merchants classified with this mcc provide employment services for those seeing employees or employment.,"temporary employment
+ agencies",restricted/high risk,prohibited,3,2,,15,2
+"digital goods, computer & technology services & sales",7372,"computer programming, data processing and integrated system design services","merchants classified with this mcc provide computer programming services, systems design, website design, data entry, and data processing services.","computer software design
+systems design –
+ computer",restricted/high risk,restricted/high risk,3,3,,14,2
+"digital goods, computer & technology services & sales",7375,information retrieval services,merchants classified with this mcc are business-tobusiness or wholesale provisioners of online or database information retrieval services.,,prohibited,restricted/high risk,3,1,,7,1
+"digital goods, computer & technology services & sales",7379,"computer maintenance, repair and services–not elsewhere classified","merchants classified with this mcc provide computerrelated services such as computer consulting, database development, computer maintenance and repair, conversion services, and computer requirements analysis.",,restricted/high risk,restricted/high risk,3,4,,15,1
+business & professional services,7392,"consulting, management and public relations services","merchants classified with this mcc perform a variety of activities for private, nonprofit, and public organizations, such as strategic and organizational planning, financial planning and budgeting, developing marketing objectives, information systems planning, development of human resource policies, and public relations services. ","consultants – management
+consultants – marketing
+consultants – public
+ relations
+consulting, management
+ services
+management consultants
+marketing consultants
+public relations services
+services – management,
+ consulting, public
+relations",prohibited,restricted/high risk,4,5,credit stability documentation and 3 months of pps + bank statements required,15,2
+business & professional services,7393,"detective agencies, protective agencies, security services including armored cars, guard dogs","merchants classified with this mcc provide security devices/systems and services such as security guard, protective, and armored car services and investigative services.","alarm systems, services
+armored cars
+burglar alarm companies
+ – home/business
+ security
+fire alarm companies –
+ home/business security
+ guard dogs
+home security systems
+private investigators
+protective services
+security services,
+protective services,
+detective agencies
+security systems
+services – armored car
+services – detective
+ agencies
+services – guard dog
+services – protective
+services – security
+surveillance systems,
+ services",restricted/high risk,restricted/high risk,3,3,,15,2
+business & professional services,7394,"equipment rental and leasing services, furniture rental, tool rental","merchants classified with this mcc rent and lease equipment, tools, furniture, appliances, and office equipment, excluding typewriters.","appliance rental
+furniture rental
+leasing services –
+ equipment
+rentals – appliance
+rentals – equipment
+rentals – furniture
+rentals – tools
+services – equipment
+ rental, leasing",restricted/high risk,restricted/high risk,1,3,,15,2
+business & professional services,7395,"photo developing, photofinishing laboratories","merchants classified with this mcc develop film, make photographic prints and enlargements, and provide custom services, and may also sell a limited selection of photographic supplies and accessories.",film developing,prohibited,,1,2,,7,1
+business & professional services,7399,business services not elsewhere classified,merchants classified with this mcc provide business services that are not typically considered to be “professions” and are not classified with a more specific mcc.,"answering services –
+ telephone
+conference management
+ services
+convention bureaus
+keys – locksmith
+language, translation
+ services
+locksmith
+mail, packing stores,
+ services
+meeting planning services
+message, paging services
+packing, mailing services
+paging, message service
+ centers
+postal services – non-
+ government
+publishing companies
+seminar planning services
+services – telephone
+ answering
+services – trade show
+ arrangement
+services – translation,
+ language
+telephone answering
+ services
+tourist information bureaus
+trade show arrangement
+ services
+translation services
+video-conferencing
+ services",restricted/high risk,restricted/high risk,3,2,,7,2
+"mobile home, vehicle, boat, aircraft dealers, rentals, and shops",7512,automobile rental agency–not elsewhere classified,"merchants classified with this mcc are car rental
+agencies that do not have designated unique mccs. this also includes car-sharing schemes (known as “car-clubs” in the uk)",car rentals,prohibited,,3,3,,10,2
+"mobile home, vehicle, boat, aircraft dealers, rentals, and shops",7513,truck rental,"merchants classified with this mcc provide short-term rental or long-term leasing of trucks, vans, or utility trailers.","leasing services – trucks,
+ utility trailers",prohibited,,3,3,,15,2
+"mobile home, vehicle, boat, aircraft dealers, rentals, and shops",7519,motor home and recreational vehicle rental,"merchants classified with this mcc rent motor homes, rvs, campers, tent trailers, and other recreational vehicles on daily, short-term, or extended-term basis.",,prohibited,,3,4,,15,2
+"mobile home, vehicle, boat, aircraft dealers, rentals, and shops",7523,automobile parking lots and garages,"merchants classified with this mcc provide temporary parking services for automobiles, usually on an hourly, daily, or monthly contract or fee basis.",parking garages,prohibited,,1,2,,15,2
+"mobile home, vehicle, boat, aircraft dealers, rentals, and shops",7524,express payment service merchants–parking lots and garages,,,,,4,2,,15,2
+"mobile home, vehicle, boat, aircraft dealers, rentals, and shops",7531,automotive body repair shops,merchants classified with this mcc perform automotive body repair work and may paint automobiles in conjunction with body repair work.,car body repair shops auto body shops,restricted/high risk,,3,3,,7,7
+"mobile home, vehicle, boat, aircraft dealers, rentals, and shops",7534,tire retreading and repair shops,"merchants classified with this mcc sell, install, repair, or retread old tires.","car tires – retreads
+repairs – tire retreading,
+ repair shops",restricted/high risk,,3,2,,7,7
+"mobile home, vehicle, boat, aircraft dealers, rentals, and shops",7535,automotive paint shops,"merchants classified with this mcc paint, refinish, and restore automobiles.",car paint shops,prohibited,,3,2,,7,7
+"mobile home, vehicle, boat, aircraft dealers, rentals, and shops",7538,automotive service shops,merchants classified with this mcc conduct automotive repairs and general or specific services.,"automotive glass repair/
+ replacement
+car service shops
+lube stations – quick stop
+muffler shops
+oil changers – lube
+ stations
+repairs – automotive
+ service shops
+tune-up shops –
+ automotive
+wheel alignment,
+balancing, repair service
+ – automotive",restricted/high risk,,3,2,,7,7
+"mobile home, vehicle, boat, aircraft dealers, rentals, and shops",7542,car washes,"merchants classified with this mcc wash, wax, and polish automobiles or provide self-service facilities.","auto detailing
+automotive cleaning,
+ waxing
+cleaning, polishing –
+ automotive",,,4,2,,15,1
+"mobile home, vehicle, boat, aircraft dealers, rentals, and shops",7549,towing services,merchants classified with this mcc provide vehicle towing services.,,restricted/high risk,restricted/high risk,5,2,,3,1
+"appliances, electronics, furniture, flooring, & home furnishings",7622,electronic repair shops,"merchants classified with this mcc repair electronics (excluding appliances) such as radios, televisions, stereo equipment, and computers.","radio, television, stereo,
+ electronics repair shops
+repairs – radio,
+television, stereo,
+ electronics
+services – television,
+ radio, stereo, electronics
+stereo repair shops
+television repair shops",prohibited,,1,2,,15,2
+"appliances, electronics, furniture, flooring, & home furnishings",7623,air conditioning and refrigeration repair shops,merchants classified with this mcc service and repair household and commercial air conditioning and refrigeration systems.,"refrigeration repair shops
+repairs – air conditioning,
+ refrigeration repair
+ shops",restricted/high risk,,3,1,"additional questionnaires/forms, licenses, and/or certification documentation required, if not prohibited (check prohibited business model list)",3,2
+"appliances, electronics, furniture, flooring, & home furnishings",7629,"appliance repair shops, electrical and small","merchants classified with this mcc service and repair household and commercial electrical components, small appliances (such as microwaves, toaster ovens, and toasters), and electrical office machines, excluding typewriters.",repairs – office machines,restricted/high risk,restricted/high risk,1,2,,15,2
+business & professional services,7631,"clock, jewelry and watch repair shops","merchants classified with this mcc clean and repair all types of watches, clocks, and fine jewelry.",,prohibited,,1,2,,15,2
+"appliances, electronics, furniture, flooring, & home furnishings",7641,"furniture–reupholstery, repair and refinishing","merchants classified with this mcc reupholster, repair, refinish, and restore furniture.","furniture repair,
+ reupholstery
+refinishing – furniture
+ repair, reupholstery
+repairs – reupholstery,
+ furniture repair,
+ furniture refinishing
+services – reupholstery,
+ furniture repair,
+ furniture refinishing",prohibited,restricted/high risk,1,5,,60,30
+business & professional services,7692,welding repair,merchants classified with this mcc perform welding services and repair.,services – welding repair,prohibited,restricted/high risk,3,2,,15,2
+business & professional services,7699,miscellaneous repair shops and related services,merchants classified with this mcc provide service and repair work and are not classified with a more specific mcc.,"chimney cleaning service
+furnace cleaning service
+machine shops
+services – chimney
+ cleaning
+services – furnace
+ cleaning
+services – large appliance
+ repair
+services – bicycle repair
+services – orthopedic
+ device repair",,,3,3,,15,2
+government & gambling services,7800,government owned lottery,merchants classified with this mcc are governmentowned lotteries in the us region that are registered with visa to sell lottery tickets.,,prohibited,prohibited,5,4,,1,1
+government & gambling services,7801,government-licensed casinos (online or internet gambling),merchants classified with this mcc are licensed by a us government entity (and/or sanctioned and regulated by applicable legislation) and registered with visa to sell virtual gambling chips or offer online gambling.,,prohibited,prohibited,5,4,,1,1
+government & gambling services,7802,government-licensed horse/dog racing,merchants classified with this mcc are licensed by a us government entity (and/or sanctioned and regulated by applicable legislation) and registered with visa to sell on- or off-track wagers at horse- or dog-racing facilities.,,prohibited,prohibited,5,4,,1,1
+entertainment services,7829,motion picture and video tape production and distribution,merchants classified with this mcc are business-tobusiness or wholesale producers and distributors of educational and industrial films and videos for exhibition and sale.,"distributor – motion
+ picture, video tape
+ production, distribution
+educational, training film
+ production
+film production,
+ distribution
+motion picture, video tape
+ production, distribution
+tv commercial production
+training, educational film
+ production
+video tape, motion picture
+ production, distribution",prohibited,restricted/high risk,3,2,,10,2
+entertainment services,7832,motion picture theaters,"merchants classified with this mcc operate movie theaters and sell tickets and refreshments, or sell movie tickets online.","cinemas
+entertainment – movie
+ theaters
+films – movie theaters
+movie theaters",prohibited,restricted/high risk,1,1,,2,1
+entertainment services,7841,dvd/video tape rental stores,merchants classified with this mcc rent dvds/video tapes for personal use and may sell a limited selection of used videos/dvds and refreshments.,"rentals – dvd/video
+ tape stores",prohibited,restricted/high risk,3,2,,15,2
+entertainment services,7911,"dance halls, schools and studios","merchants classified with this mcc operate dance studios, schools, and public dance halls or ballrooms.","ballet schools
+ballroom dance instruction
+dance schools
+schools – ballroom dance
+ instruction
+studios – dance",prohibited,,1,1,,15,2
+entertainment services,7922,"theatrical producers (except motion pictures), ticket agencies","merchants classified with this mcc operate live theatrical productions (such as road companies and summer theater groups) and services associated with theatrical productions and concerts (such as casting agencies, booking agencies, scenery, lighting, and other equipment services, and theatrical ticket agencies).","agencies – ticket,
+theatrical producers
+performing arts
+ companies – theatrical
+producers – theatrical
+production agencies –
+ theatrical
+ticket agencies ",restricted/high risk,restricted/high risk,3,5,,90,2
+entertainment services,7929,"bands, orchestras and miscellaneous entertainers– not elsewhere classified","merchants classified with this mcc provide entertainment other than theatrical productions (such as musicians, bands, orchestras, and other types of entertainers such as comedians and magicians).","djs
+dance bands
+magicians
+music bands
+musicians",prohibited,,3,4,,90,2
+entertainment services,7932,pool and billiard establishments,merchants classified with this mcc operate establishments that rent the use of pool or billiard tables and other games for entertainment.,"billiard parlors
+snooker parlors",prohibited,restricted/high risk,3,2,,15,2
+entertainment services,7933,bowling alleys,merchants classified with this mcc operate bowling alleys for entertainment.,,prohibited,restricted/high risk,3,1,,5,1
+entertainment services,7941,"athletic fields, commercial sports, professional sports clubs, sports promoters","merchants classified with this mcc operate and promote semiprofessional and professional athletic clubs (such as baseball, basketball, football, hockey, soccer), promote amateur and professional athletic events, manage individual athletes, and manage sports areas and stadiums.","arenas – sports
+athletic fields
+automotive race tracks
+ – non-participatory
+clubs – professional sports
+professional sports clubs
+promoters – sporting
+ events
+race tracks – entrance
+ fee, non-betting
+ transactions
+sports promoters
+stadiums",restricted/high risk,restricted/high risk,3,4,,15,1
+entertainment services,7991,tourist attractions and exhibits,"merchants classified with this mcc operate a variety of tourist attractions and exhibits for entertainment, such as botanical gardens, craft shows, museums, and wineries.","arboretums
+art museums
+botanical gardens
+exhibits
+expositions
+gardens – botanical
+museums
+wineries",prohibited,restricted/high risk,3,2,,8,2
+entertainment services,7992,"golf courses, public",merchants classified with this mcc operate public golf courses.,,prohibited,restricted/high risk,3,1,,8,2
+entertainment services,7993,video amusement game supplies,"merchants classified with this mcc sell coin-operated amusement machines such as video game machines, jukeboxes, pinball machines, slot machines, mechanical games, instant photograph booths, and similar types of amusement equipment and game supplies. merchants that operate video and game arcades for public use must be classified with mcc 7994 – video game arcades/establishments.",,prohibited,,3,1,,5,1
+entertainment services,7994,video game arcades and establishments,"merchants classified with this mcc operate arcades, amusement machines (such as video game machines, jukeboxes, pinball machines, mechanical games, instant photograph booths, and similar types of amusement equipment).","social casinos not offering
+ any prizes of monetary
+ value",restricted/high risk,restricted/high risk,3,1,,2,1
+government & gambling services,7995,"gambling transactions betting (sportsbook, fantasy, social gaming; when regulated and not covered by other mccs) (d)","merchants classified with this mcc operate games of chance to win prizes of monetary value or betting establishments. merchants that are unable to distinguish a betting transaction from other transactions, must identify all transactions with mcc 7995","betting – casino gaming
+ chips
+betting – lottery tickets
+betting – off-track
+betting – wagers
+bingo parlors
+raffle tickets
+unlicensed foreign
+exchange trading or binary
+ options
+sweepstakes",prohibited,prohibited,6,6,,1,1
+entertainment services,7996,"amusement parks, carnivals, circuses, carnivals, fortune tellers","merchants classified with this mcc operate circuses, carnivals, and amusement and theme parks that offer mechanical rides, snacks and food stands, games, animal exhibits, and entertainment, as well as fortunetelling, astrology, mystic, and tarot card-reading services.","county fairs
+fairs
+mystics
+tarot readings
+state fairs",prohibited,restricted/high risk,3,1,,1,1
+"charitable & social clubs, membership organizations",7997,"clubs–country clubs, membership (athletic, recreation, sports), private golf courses","merchants classified with this mcc operate sports and recreation facilities that require membership such as exercise, athletic and health clubs, country clubs, private golf courses, boating and yacht clubs, swimming clubs, tennis clubs, bowling leagues, riding clubs, shooting and gun clubs, and racquetball clubs, and may also provide spa services","athletic clubs – physical
+ fitness
+boating clubs
+clubs – boating
+clubs – gun
+clubs – racquetball
+clubs – sailing
+clubs – sports
+clubs – tennis
+clubs – yacht
+country clubs
+exercise clubs
+fitness clubs
+golf courses – private
+gun clubs
+health clubs
+private golf courses
+racquetball clubs
+sailing clubs
+sports clubs
+tennis clubs
+yacht clubs",restricted/high risk,restricted/high risk,3,3,,15,2
+entertainment services,7998,"aquariums, dolphinariums, zoos and seaquariums",merchants classified with this mcc operate zoos or sea life parks for entertainment and education for the general public.,sea life parks,prohibited,restricted/high risk,3,1,,3,1
+entertainment services,7999,recreation services–not elsewhere classified,merchants classified with this mcc provide a wide variety of recreation and entertainment services that require active physical participation and that are not classified with a more specific mcc. ,"aircraft rentals
+ballooning
+batting cages
+bicycle rentals including
+ electric scooters
+fishing/hunting licenses
+games instruction
+golf – driving ranges
+horseback riding
+instruction – games
+miniature golf
+motorcycle rentals
+parachuting
+pools – public swimming
+public swimming pools
+recreational services –
+ aircraft rentals
+recreational services –
+ driving ranges
+recreational services –
+ miniature golf
+recreational services –
+public swimming pools
+recreational services –
+ ski slopes
+recreational services –
+ sport, games instruction
+rentals – aircraft
+resorts – ski
+roller skating rinks
+services – recreation
+shooting ranges
+ski slopes
+sky diving
+sports instruction
+swimming pools – public",restricted/high risk,restricted/high risk,3,2,,3,2
+"doctors, dentists, hospitals & related services",8011,doctors–not elsewhere classified,merchants classified with this mcc are licensed physicians engaged in a practice of general or specialized medicine and surgery that is not classified with a more specific mcc.,"cosmetic surgeons
+dermatologists
+gynecologists
+medical professionals –
+ doctors
+neurologists
+obstetricians
+orthopedists
+pediatricians
+physicians
+plastic surgeons
+psychiatrists
+radiologists
+surgeons",restricted/high risk,restricted/high risk,3,2,,2,2
+"doctors, dentists, hospitals & related services",8021,dentists and orthodontists,merchants classified with this mcc are licensed physicians that practice general or specialized dentistry such as dental surgery.,,restricted/high risk,restricted/high risk,3,2,,2,2
+"doctors, dentists, hospitals & related services",8031,osteopathic physicians,merchants classified with this mcc provide therapy involving the non-surgical manipulation and adjustment of bone structures.,osteopaths,restricted/high risk,restricted/high risk,3,1,,2,2
+"doctors, dentists, hospitals & related services",8041,chiropractors,merchants classified with this mcc provide therapy in which the spinal column and limbs are manipulated or adjusted.,,restricted/high risk,restricted/high risk,3,1,,2,2
+"doctors, dentists, hospitals & related services",8042,optometrists and ophthalmologists,"merchants classified with this mcc are licensed physicians that examine and treat eye defects with corrective eyeglasses or contacts or surgical techniques, treat eye diseases, and may fill contact or eyeglass prescriptions and sell eyeglass frames.",eye doctors,restricted/high risk,restricted/high risk,3,1,,2,2
+"doctors, dentists, hospitals & related services",8043,"opticians, optical goods and eyeglasses","merchants classified with this mcc perform eye examinations, write prescriptions, make and sell eyeglasses, and sell other optical goods.",,restricted/high risk,restricted/high risk,3,2,,20,8
+"doctors, dentists, hospitals & related services",8044,optical goods and eyeglasses,,eyeglass stores ,prohibited,,3,4,,20,8
+"doctors, dentists, hospitals & related services",8049,"chiropodists, podiatrists",merchants classified with this mcc are licensed physicians specializing in diagnosing and treating foot ailments.,"doctors – chiropodists,
+ podiatrists
+foot doctors
+medical professionals –
+ podiatrists
+podiatrists",restricted/high risk,restricted/high risk,3,1,,15,2
+"doctors, dentists, hospitals & related services",8050,nursing and personal care facilities,"merchants classified with this mcc provide inpatient nursing and health-related personal care services and operate convalescent/nursing homes, hospice facilities, and other long-term care facilities that generally do not offer surgery.","convalescent homes
+elder housing
+hospice facilities
+nursing homes
+rest homes
+elder care",restricted/high risk,restricted/high risk,3,3,,15,2
+"doctors, dentists, hospitals & related services",8062,hospitals,"merchants classified with this mcc are hospitals that provide diagnostic services, extensive medical treatment, surgery, continuous nursing services, mental and psychiatric care, and other hospital services.",,restricted/high risk,restricted/high risk,3,3,,2,1
+"doctors, dentists, hospitals & related services",8071,dental and medical laboratories,merchants classified with this mcc provide medical and dental laboratory services.,,restricted/high risk,restricted/high risk,3,1,,2,2
+"doctors, dentists, hospitals & related services",8099,"health practitioners, medical services–not elsewhere classified",merchants classified with this mcc are medical professionals that are not classified with a more specific mcc.,"blood banks
+chemical dependency
+ treatment centers
+fertility clinics
+hair replacements –
+ surgical
+health practitioners,
+ medical services
+hearing testing services
+massage – therapeutic
+medical professionals –
+ medical services, health
+ practitioners
+mental health
+ practitioners
+physical therapists
+psychiatrists
+psychologists
+services – medical
+ services, health
+ practitioners
+sports medicine clinics
+therapists",restricted/high risk,restricted/high risk,3,3,,2,2
+business & professional services,8111,"attorneys, legal services",merchants classified with this mcc are headed by members of the bar and provide legal advice and services.,"attorneys
+law offices
+lawyers
+legal administrative services",restricted/high risk,restricted/high risk,4,4,,15,2
+"schools, colleges, & child care services",8211,"schools, elementary and secondary",merchants classified with this mcc are elementary and secondary schools that provide academic instruction.,"grade schools
+grammar schools
+high schools
+middle schools
+schools – kindergartens",restricted/high risk,restricted/high risk,1,1,,15,2
+"schools, colleges, & child care services",8220,"colleges, universities, professional schools and junior colleges","merchants classified with this mcc are community and junior colleges, universities, theological seminaries and professional schools (such as dental, law, engineering, medical) that provide academic courses and grant academic degrees.","community colleges
+graduate schools",restricted/high risk,restricted/high risk,1,4,,45,2
+"schools, colleges, & child care services",8241,"schools, correspondence",merchants classified with this mcc are correspondence schools that offer educational and instruction through the mail/internet by sending lessons and examinations to the student.,,,,3,4,,45,2
+"schools, colleges, & child care services",8244,"schools, business and secretarial","merchants classified with this mcc are business and secretarial schools that offer general business training such as, office procedures, word processing, stenographic, and other clerical skills.",computer training,restricted/high risk,,3,4,,45,2
+"schools, colleges, & child care services",8249,"schools, trade and vocational","merchants classified with this mcc offer training and instruction in specialized professions such as welding, mechanics, carpentry, real estate, and truck driving.",technical institutes,restricted/high risk,,3,4,,45,2
+"schools, colleges, & child care services",8299,schools and educational services–not elsewhere classified,merchants classified with this mcc offer educational courses and services that are not classified with a more specific mcc.,"art schools
+automobile driving
+ instruction
+aviation instruction
+cooking schools
+culinary instruction
+driver education class,
+ school
+flying instruction
+job training services
+karate schools
+modeling schools
+schools – art
+schools – automobile
+ driving instruction
+schools – cooking
+schools – flying instruction
+schools – karate
+schools – modeling
+services – job training
+services – schools,
+ educational services
+traffic school",restricted/high risk,restricted/high risk,1,4,,45,2
+"schools, colleges, & child care services",8351,child care services,merchants classified with this mcc provide care for infants or children.,"babysitting services
+children – day care
+ services
+day care services
+nannies
+nursery schools
+preschool centers
+day care services",,,1,2,,15,2
+"charitable & social clubs, membership organizations",8398,"organizations, charitable and social service","merchants classified with this mcc are non-political fund-raising organizations engaged in soliciting charitable donations/contributions on behalf of organizations engaged in social welfare services, or social service organizations engaged in social welfare services. this mcc also includes crowd funding merchants that accept donations on behalf of individuals raising money for various causes without receiving any perceived or actual financial benefit for doing so.","fund-raising organizations
+ – non-political
+organizations – non-
+ political
+public radio, television
+crowd funding merchants",restricted/high risk,restricted/high risk,5,3,,1,1
+"charitable & social clubs, membership organizations",8641,"associations–civic, social and fraternal","merchants classified with this mcc are associations engaged in civic, social, or fraternal activities.","alumni/alumnae
+associations
+associations – civic, social,
+ fraternal associations
+chambers of commerce
+fraternal associations
+fund-raising – political
+police athletic leagues
+ (pal)
+social associations, clubs
+veterans’ organizations",prohibited,restricted/high risk,3,1,,15,2
+"charitable & social clubs, membership organizations",8651,"organizations, political","merchants classified with this mcc are membership organizations that promote the interests of or raise funds for a national, state, or local political party or candidate.",political fundraising,prohibited,restricted/high risk,5,2,,5,1
+"charitable & social clubs, membership organizations",8661,"organizations, religious","merchants classified with this mcc are religious organizations that provide worship services, religious training or study, or religious activities.","chapels
+churches
+mosques
+synagogues
+temples",restricted/high risk,restricted/high risk,3,2,,5,1
+"charitable & social clubs, membership organizations",8675,automobile associations,merchants classified with this mcc are automobile associations and clubs that provide a variety of travelrelated services to its members.,automobile club,prohibited,restricted/high risk,3,2,,15,2
+"charitable & social clubs, membership organizations",8699,"organizations, membership–not elsewhere classified",merchants classified with this mcc are organizations or associations that are not classified with a more specific mcc.,"art clubs
+historical clubs
+labor unions
+organizations –
+ membership
+ organizations
+poetry clubs
+professional organizations
+ tenant associations
+condominium associations
+hoas
+unions – labor",restricted/high risk,,3,4,,15,2
+business & professional services,8734,testing laboratories (non-medical),"merchants classified with this mcc provide testing services (such as automobile testing, calibration and certification, food testing, forensic testing, product and pollution testing, and industrial x-ray inspection services).","food testing services
+forensic laboratories
+pollution testing
+product testing
+ laboratories
+veterinary testing
+ laboratories",prohibited,,3,1,,10,2
+business & professional services,8911,"architectural, engineering and surveying services","merchants classified with this mcc provide professional architectural, home and building design, boat design, and engineering, land, water, and aerial surveying services.",,restricted/high risk,,1,2,,10,2
+business & professional services,8931,"accounting, auditing and bookkeeping services","merchants classified with this mcc provide accounting, bookkeeping, billing and payroll services, and other related auditing services, and may also provide income tax preparation services.",,,,3,3,,10,2
+business & professional services,8999,professional services–not elsewhere classified,merchants classified with this mcc provide professional services that are not classified with a more specific mcc.,"appraisers
+auction houses
+brokers – mortgage, loan
+court stenographer
+financial planners
+graphic designers
+guest speakers, lecturers
+lecturers
+market research firms
+mortgage brokers
+property appraisers
+public speakers
+real estate appraisers
+research firms",restricted/high risk,restricted/high risk,4,3,,10,2
+government & gambling services,9034,i-purchasing pilot,,,,,3,1,,1,2
+government & gambling services,9211,court costs including alimony and child support,"merchants classified with this mcc are local, state, and federal courts of law that administer and process court fees, alimony, and child support payments.",,prohibited,,3,1,,1,2
+government & gambling services,9222,fines,"merchants classified with this mcc are government entities that administer and process local, state, and federal fines and penalties, motor vehicle violations, and community- or property-assessed fines.","community assessed
+ penalties
+motor vehicle violations",prohibited,,3,1,,1,1
+government & gambling services,9223,bail and bond payments,merchants classified with this mcc post bail to the court system as security for the appearance of the arraigned individual.,,prohibited,prohibited,3,1,,1,1
+government & gambling services,9311,tax payments,"merchants classified with this mcc are local, state, and federal entities that engage in financial administration and taxation including collection of taxes and penalties and custody and disbursement of funds.",customs bureaus,prohibited,,3,1,,1,1
+government & gambling services,9399,government services–not elsewhere classified,merchants classified with this mcc are government entities that provide general support services to government and communities are not classified with a more specific mcc.,"dmv
+department of motor
+ vehicles
+fire departments
+libraries
+parks and recreation
+police departments",prohibited,,3,2,,1,1
+government & gambling services,9402,postal services–government only,merchants classified with this mcc are government postal offices that provide a variety of services such as accepting and processing packages and mail for delivery and selling postage stamps.,,prohibited,,3,1,,1,1
+government & gambling services,9405,intra-government purchases–government only,merchants classified with this mcc process u.s. federal government transactions using an acquiring bin associated with the intra-government transfers (igots) program.,,prohibited,,3,1,,1,1
+government & gambling services,9700,automated referral service,,,prohibited,,5,3,,1,1
+government & gambling services,9701,visa credential server,,,prohibited,,5,3,,1,1
+government & gambling services,9702,gcas emergency services,this mcc is used only by visa to enable members and processors to identify emergency transactions from the global customer assistance services (gcas).,,prohibited,,3,1,,1,1
+government & gambling services,9754,"gambling-horse, dog racing, state lottery",,,prohibited,prohibited,6,6,,1,1
+government & gambling services,9950,intra-company purchases,merchants classified with this mcc process purchasing card transactions representing internal unit-to-unit transfers of goods and services.,,prohibited,,3,1,,1,1
