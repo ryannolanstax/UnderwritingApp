@@ -90,8 +90,8 @@ ACH_Reject_Rate = st.number_input('ACH Reject (%)',min_value=0.0, max_value=100.
 ACH_Reject_Days = st.number_input("ACH Reject Days (#)", key='ACH_Reject_Days', value=5)
 
 #Calculations Section Exposure
-Refund_Risk = (Annual_CNP_Volume/365) * Refund_Rate * Refund_Days
-Chargeback_Risk = (Annual_CNP_Volume/365) * Chargeback_Rate * Chargeback_Days
+Refund_Risk = (Annual_CNP_Volume/365) * Refund_Rate * Refund_Days /100
+Chargeback_Risk = (Annual_CNP_Volume/365) * Chargeback_Rate * Chargeback_Days / 100
 DD_Risk = (Annual_CNP_Volume/365) * Delayed_Delivery 
 
 ACH_Reject_Exposure = ((Annual_CP_ACH_Volume/365)*ACH_Delayed_Delivery_Days) + ((Annual_CP_ACH_Volume/365)*ACH_Reject_Rate*ACH_Reject_Days)
