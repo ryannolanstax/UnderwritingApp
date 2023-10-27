@@ -172,7 +172,8 @@ elif BusinessAge == '> 10 years' \
     final_score = 1
 
 st.header('Final Results')
-st.write('The Final Exposure of the Customer is: ', Total_Exposure)
+formatted_exposure = "${:,.0f}".format(Total_Exposure)
+st.write('The Final Exposure of the Customer is:', formatted_exposure)
 st.write('The Final Tier of the Customer is: ', final_score)
 
 
