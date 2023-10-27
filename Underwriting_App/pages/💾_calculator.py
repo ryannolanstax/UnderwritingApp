@@ -32,6 +32,11 @@ testing = delayed.loc[delayed['MCC'] == MCC, ['CNP Delayed Delivery']].iloc[0, 0
 CNP_DD = delayed.loc[delayed['MCC'] == MCC, ['CNP Delayed Delivery']].iloc[0, 0]
 CP_ACH_DD = delayed.loc[delayed['MCC'] == MCC, ['CP/ACH Delayed Delivery']].iloc[0, 0]
 
+AML_Risk_Rating = delayed.loc[delayed['MCC'] == MCC, ['AML Risk Rating']].iloc[0, 0]
+Loss_Risk_Rating = delayed.loc[delayed['MCC'] == MCC, ['Loss Risk Rating']].iloc[0, 0]
+
+mcc_risk = max(AML_Risk_Rating, Loss_Risk_Rating)
+
 Annual_CNP_Volume = st.number_input("Annual CNP Volume ($)", key="Annual_CNP_Volume")
 Annual_CP_ACH_Volume = st.number_input("Annual CP/ACH Volume ($)", key="Annual_CP_ACH_Volume")
 
@@ -109,19 +114,6 @@ BankHistory = st.selectbox(
         'Customer provided one (1) month of BOTH their most recent business banking and prior processing statements.',\
         'Customer provided three (3) months of EITHER most recent business banking statements or prior processing statements.']))
 
-#Fulfillment = st.radio('What is the expected fulfillment (from date of transaction to date of delivery) timeframe in days?', options=['1-5 days', '6-15 days', '16-30 days', '31-89 days', '90 days +'], 
-#            horizontal=True)
-
-#International = st.selectbox(
-#        'Does the business fulfill orders from an international supplier and/or require a port release?',
-#        (['Yes - international shipping and port release', 'Yes - international drop shipping',\
-#        'Yes - international supplier, but shipped domestically; however, not consistent on-hand inventory.',\
-#            'Yes - international supplier, but domestically received and shipped on-demand', 'no']))
-
-#Custom = st.selectbox(
-#        'Does the business take custom orders?',
-#        (['Yes - all custom', 'Yes - mostly custom orders', 'Yes - some, but majority appear to be on-demand shipping',\
-#        'Dont Know', 'No']))
 
 ReturnPolicy = st.selectbox(
         'What is the customers return policy?',
@@ -136,73 +128,54 @@ SignerCreditScore = st.radio('What is the signers credit score?', options=['<550
             horizontal=True)
 
 #Calculations Section Tier
-#NEED TO ADD FULLFILMENT BASED ON MAX DD
+
 
 if  BusinessAge == 'Less than 6 months' \
     or BankHistory == 'Customer refuses to provide any bank or processing statements OR has no recordkeeping information to provide.'\
     or SignerCreditScore == '<550' \
     or ReturnPolicy == 'No return policy or return policy not posted' \
     or AvgReview == '< 4.0 Stars'\
-    or Fulfillment >= 90:
+    or Fulfillment >= 90 \
+    or mcc_risk == 5:
     final_score = 5
-
 elif BusinessAge == '6 months to 1 year' \
     or BankHistory == 'Customer provided one (1) month of EITHER most recent business banking statements or prior processing statements.'\
     or SignerCreditScore == '551-579 or Unknown' \
     or ReturnPolicy == 'Refunds for returns, but only up to 7 days and/or the buyer must pay return shipping' \
     or AvgReview == '> 4.0 Stars – 4.3 Stars'\
-    or Fulfillment >= 31: 
+    or Fulfillment >= 31\
+    or mcc_risk == 4: 
     final_score = 4
-
 elif BusinessAge == '1 year to 5 years'\
     or BankHistory == 'Customer provided three (3) months of EITHER most recent business banking statements or prior processing statements. OR sub-merchant with approved exemption.'\
     or SignerCreditScore == '580-650' \
     or ReturnPolicy == 'Refunds for returns, but only up to 15 days' \
     or AvgReview == '> 4.3 Stars to 4.5 Stars OR less than 20 reviews across all review sites'\
-    or Fulfillment >= 16:
+    or Fulfillment >= 16\
+    or mcc_risk == 3:
     final_score = 3
-
 elif BusinessAge == '5 years to 10 years' \
     or BankHistory == 'Customer provided one (1) month of BOTH their most recent business banking and prior processing statements.'\
     or SignerCreditScore == '651-750' \
     or ReturnPolicy == 'Refunds for returns, but only up to 30 days' \
     or AvgReview == '> 4.5 Stars to 4.8 Stars' \
-    or Fulfillment >= 6:
+    or Fulfillment >= 6\
+    or mcc_risk == 2:
     final_score = 2
-
 elif BusinessAge == '> 10 years' \
     or BankHistory == 'Customer provided three (3) months of EITHER most recent business banking statements or prior processing statements.' \
     or SignerCreditScore == '751-850' \
     or ReturnPolicy == 'Refunds issued for returns even 60 days+ post-order' \
     or AvgReview == '> 4.8 Stars' \
-    or Fulfillment > 0:
+    or Fulfillment > 0 \
+    or mcc_risk == 1:
     final_score = 1
 
 st.header('Final Results')
 st.write('The Final Exposure of the Customer is: ', Total_Exposure)
 st.write('The Final Tier of the Customer is: ', final_score)
 
-#    if International == 'No':
-#        Aggregated_Score = Aggregated_Score + 1
-#    elif International == 'Yes - international supplier, but domestically received and shipped on-demand':
-#        Aggregated_Score = Aggregated_Score + 2
-#    elif International == 'Yes - international supplier, but shipped domestically; however, not consistent on-hand inventory.':
-#        Aggregated_Score = Aggregated_Score + 3
-#    elif International == 'Yes - international drop shipping':
-#        Aggregated_Score = Aggregated_Score + 4
-#    elif International == 'Yes - international shipping and port release':
-#        Aggregated_Score = Aggregated_Score + 5
 
-#    if Custom == 'No':
-#        Aggregated_Score = Aggregated_Score + 1
-#    elif Custom == 'Dont Know':
-#        Aggregated_Score = Aggregated_Score + 2
-#    elif Custom == 'Yes - some, but majority appear to be on-demand shipping':
-#        Aggregated_Score = Aggregated_Score + 3
-#    elif Custom == 'Yes - mostly custom orders':
-#        Aggregated_Score = Aggregated_Score + 4
-#    elif Custom == 'Yes - all custom':
-#        Aggregated_Score = Aggregated_Score + 5
 
 #dont need dataframes atm
 #Tiering = pd.DataFrame({'BusinessAge':[BusinessAge],
