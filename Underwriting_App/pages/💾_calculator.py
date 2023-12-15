@@ -187,10 +187,10 @@ elif BusinessAge == '> 10 years' \
 
 st.header('Final Results')
 
-#st.write('Refund_Risk:', Refund_Risk)
-#st.write('Chargeback_Risk:', Chargeback_Risk)
-#st.write('DD_Risk:', DD_Risk)
-#st.write('ACH_Reject_Exposure:', ACH_Reject_Exposure)
+st.write('Refund_Risk:', Refund_Risk)
+st.write('Chargeback_Risk:', Chargeback_Risk)
+st.write('DD_Risk:', DD_Risk)
+st.write('ACH_Reject_Exposure:', ACH_Reject_Exposure)
 
 formatted_exposure = "${:,.0f}".format(Total_Exposure)
 st.write('The Final Exposure of the Customer is:', formatted_exposure)
