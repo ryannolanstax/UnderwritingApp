@@ -58,7 +58,8 @@ Chargeback_Days = 180
 #st.write(f'MCC ACH_Delayed_Delivery_Days: {CP_ACH_DD}')
 ACH_Delayed_Delivery_Days = st.number_input("ACH_Delayed_Delivery_Days", key='ACH_Delayed_Delivery_Days', value=CP_ACH_DD)
 
-ACH_Reject_Rate = st.number_input('ACH Reject (%)',min_value=0.0, max_value=100.0, key='ACH_Reject_Rate')
+#ACH_Reject_Rate = st.number_input('ACH Reject (%)',min_value=0.0, max_value=100.0, key='ACH_Reject_Rate')
+ACH_Reject_Rate = 0.005
 ACH_Reject_Days = st.number_input("ACH Reject Days (#)", key='ACH_Reject_Days', value=5)
 
 my_expander = st.expander(label='Delayed Delivery Calcs')
