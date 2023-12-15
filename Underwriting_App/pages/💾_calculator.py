@@ -36,6 +36,7 @@ testing = delayed.loc[delayed['MCC'] == MCC, ['CNP Delayed Delivery']].iloc[0, 0
 
 CNP_DD = delayed.loc[delayed['MCC'] == MCC, ['CNP Delayed Delivery']].iloc[0, 0]
 CP_ACH_DD = delayed.loc[delayed['MCC'] == MCC, ['CP/ACH Delayed Delivery']].iloc[0, 0]
+max_cnp_cp_dd = max(CNP_DD, CP_ACH_DD)
 
 AML_Risk_Rating = delayed.loc[delayed['MCC'] == MCC, ['AML Risk Rating']].iloc[0, 0]
 Loss_Risk_Rating = delayed.loc[delayed['MCC'] == MCC, ['Loss Risk Rating']].iloc[0, 0]
@@ -56,7 +57,8 @@ Chargeback_Rate = 0.005
 Chargeback_Days = 180
 
 #st.write(f'MCC ACH_Delayed_Delivery_Days: {CP_ACH_DD}')
-ACH_Delayed_Delivery_Days = st.number_input("ACH_Delayed_Delivery_Days", key='ACH_Delayed_Delivery_Days', value=CP_ACH_DD)
+#ACH_Delayed_Delivery_Days = st.number_input("ACH_Delayed_Delivery_Days", key='ACH_Delayed_Delivery_Days', value=CP_ACH_DD)
+
 
 #ACH_Reject_Rate = st.number_input('ACH Reject (%)',min_value=0.0, max_value=100.0, key='ACH_Reject_Rate')
 ACH_Reject_Rate = 0.005
@@ -75,11 +77,9 @@ data = {
 df_original = pd.DataFrame(data)
 edited_df = st.data_editor(df_original)
 
-
-
 #CP_ACH_DD
 
-max_dd = CNP_DD  # Default value for max_dd
+max_dd = max_cnp_cp_dd  # Default value for max_dd
 
 def calculate_results(df):
     weighted_avg_DD = (df['DD'] * df['Vol']).sum() / df['Vol'].sum()
@@ -88,7 +88,7 @@ def calculate_results(df):
     if weighted_avg_DD:
         weighted_avg_DD = float(weighted_avg_DD)
     
-    max_dd = max(weighted_avg_DD, CNP_DD, CP_ACH_DD, ACH_Delayed_Delivery_Days)
+    max_dd = max(weighted_avg_DD, max_cnp_cp_dd)
     
     return weighted_avg_DD, volume, max_dd
 
@@ -102,7 +102,6 @@ if st.button("Calculate"):
 
 # Now max_dd is defined outside the "Calculate" block and can be used as a default value in st.number_input
 Delayed_Delivery = st.number_input("Delayed Delivery (DD)", key='Delayed_Delivery', value=max_dd)
-
 
 #Calculations Section Exposure
 Refund_Risk = (Annual_CNP_Volume/365) * Refund_Rate * Refund_Days /100
