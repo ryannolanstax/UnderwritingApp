@@ -11,6 +11,11 @@ from datetime import date, timedelta
 import io
 import matplotlib.pyplot as plt  
 
+
+#set default max dd
+#5% default refund rate
+#0.5% default chargeback rate
+
 st.set_page_config(page_title="Underwriting Calculator", page_icon="💾", layout="wide")
 
 st.title("Underwriting Calculator")
@@ -40,10 +45,14 @@ mcc_risk = max(AML_Risk_Rating, Loss_Risk_Rating)
 Annual_CNP_Volume = st.number_input("Annual CNP Volume ($)", key="Annual_CNP_Volume")
 Annual_CP_ACH_Volume = st.number_input("Annual CP/ACH Volume ($)", key="Annual_CP_ACH_Volume")
 
-Refund_Rate = st.number_input("Refund Rate (%)", value=3.0, key="Refund_Rate", step=0.1, format="%0.1f")
+#old refund rate field
+#Refund_Rate = st.number_input("Refund Rate (%)", value=3.0, key="Refund_Rate", step=0.1, format="%0.1f")
+Refund_Rate = 0.05
 Refund_Days = st.number_input("Refund Days (#) #Default 30 ie. If official 90 day return policy for online sales, Use 90", value=30, key="Refund_Days")
 
-Chargeback_Rate = st.number_input("'Chargeback Rate (%)", value=0.5, key="Chargeback_Rate", step=0.1, format="%0.1f")
+#old chargeback rate field
+#Chargeback_Rate = st.number_input("'Chargeback Rate (%)", value=0.5, key="Chargeback_Rate", step=0.1, format="%0.1f")
+Refund_Rate = 0.005
 Chargeback_Days = 180
 
 my_expander = st.expander(label='Delayed Delivery Calcs')
@@ -58,6 +67,8 @@ data = {
 
 df_original = pd.DataFrame(data)
 edited_df = st.data_editor(df_original)
+
+#CP_ACH_DD
 
 max_dd = CNP_DD  # Default value for max_dd
 
@@ -91,7 +102,7 @@ ACH_Reject_Days = st.number_input("ACH Reject Days (#)", key='ACH_Reject_Days', 
 
 #Calculations Section Exposure
 Refund_Risk = (Annual_CNP_Volume/365) * Refund_Rate * Refund_Days /100
-Chargeback_Risk = (Annual_CNP_Volume/365) * Chargeback_Rate * Chargeback_Days / 100
+Chargeback_Risk = (Annual_CNP_Volume/365) * Chargeback_Rate * Chargeback_Days /100
 DD_Risk = (Annual_CNP_Volume/365) * Delayed_Delivery 
 
 ACH_Reject_Exposure = ((Annual_CP_ACH_Volume/365)*ACH_Delayed_Delivery_Days) + ((Annual_CP_ACH_Volume/365)*ACH_Reject_Rate*ACH_Reject_Days)
@@ -172,6 +183,12 @@ elif BusinessAge == '> 10 years' \
     final_score = 1
 
 st.header('Final Results')
+
+#st.write('Refund_Risk:', Refund_Risk)
+#st.write('Chargeback_Risk:', Chargeback_Risk)
+#st.write('DD_Risk:', DD_Risk)
+#st.write('ACH_Reject_Exposure:', ACH_Reject_Exposure)
+
 formatted_exposure = "${:,.0f}".format(Total_Exposure)
 st.write('The Final Exposure of the Customer is:', formatted_exposure)
 st.write('The Final Tier of the Customer is: ', final_score)
