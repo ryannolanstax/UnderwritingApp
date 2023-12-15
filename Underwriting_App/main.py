@@ -30,7 +30,7 @@ st.markdown(
 
 
     ### Want to learn more?
-    - Check out [SOP: Underwriting](https://docs.google.com/document/d/14lSfkcIyaf7uZmkqRcoLKfCopqSWRzcnSh3I_gM4K2Q/edit)
+    - Check out [SOP: Underwriting (NEED LINK)](#)
 
 """
 )
