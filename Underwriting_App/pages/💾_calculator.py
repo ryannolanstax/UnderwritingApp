@@ -104,8 +104,8 @@ if st.button("Calculate"):
 Delayed_Delivery = st.number_input("Delayed Delivery (DD)", key='Delayed_Delivery', value=max_dd)
 
 #Calculations Section Exposure
-Refund_Risk = (Annual_CNP_Volume/365) * Refund_Rate * Refund_Days /100
-Chargeback_Risk = (Annual_CNP_Volume/365) * Chargeback_Rate * Chargeback_Days /100
+Refund_Risk = (Annual_CNP_Volume/365) * Refund_Rate * Refund_Days 
+Chargeback_Risk = (Annual_CNP_Volume/365) * Chargeback_Rate * Chargeback_Days 
 DD_Risk = (Annual_CNP_Volume/365) * Delayed_Delivery 
 
 ACH_Reject_Exposure = ((Annual_CP_ACH_Volume/365)*Delayed_Delivery) + ((Annual_CP_ACH_Volume/365)*ACH_Reject_Rate*ACH_Reject_Days)
