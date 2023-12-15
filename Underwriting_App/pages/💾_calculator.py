@@ -55,6 +55,12 @@ Refund_Days = st.number_input("Refund Days (#) #Default 30 ie. If official 90 da
 Chargeback_Rate = 0.005
 Chargeback_Days = 180
 
+#st.write(f'MCC ACH_Delayed_Delivery_Days: {CP_ACH_DD}')
+ACH_Delayed_Delivery_Days = st.number_input("ACH_Delayed_Delivery_Days", key='ACH_Delayed_Delivery_Days', value=CP_ACH_DD)
+
+ACH_Reject_Rate = st.number_input('ACH Reject (%)',min_value=0.0, max_value=100.0, key='ACH_Reject_Rate')
+ACH_Reject_Days = st.number_input("ACH Reject Days (#)", key='ACH_Reject_Days', value=5)
+
 my_expander = st.expander(label='Delayed Delivery Calcs')
 
 st.write('Delayed Delivery Calcs')
@@ -68,6 +74,8 @@ data = {
 df_original = pd.DataFrame(data)
 edited_df = st.data_editor(df_original)
 
+
+
 #CP_ACH_DD
 
 max_dd = CNP_DD  # Default value for max_dd
@@ -79,7 +87,7 @@ def calculate_results(df):
     if weighted_avg_DD:
         weighted_avg_DD = float(weighted_avg_DD)
     
-    max_dd = max(weighted_avg_DD, CNP_DD)
+    max_dd = max(weighted_avg_DD, CNP_DD, CP_ACH_DD, ACH_Delayed_Delivery_Days)
     
     return weighted_avg_DD, volume, max_dd
 
@@ -94,24 +102,19 @@ if st.button("Calculate"):
 # Now max_dd is defined outside the "Calculate" block and can be used as a default value in st.number_input
 Delayed_Delivery = st.number_input("Delayed Delivery (DD)", key='Delayed_Delivery', value=max_dd)
 
-#st.write(f'MCC ACH_Delayed_Delivery_Days: {CP_ACH_DD}')
-ACH_Delayed_Delivery_Days = st.number_input("ACH_Delayed_Delivery_Days", key='ACH_Delayed_Delivery_Days', value=CP_ACH_DD)
-
-ACH_Reject_Rate = st.number_input('ACH Reject (%)',min_value=0.0, max_value=100.0, key='ACH_Reject_Rate')
-ACH_Reject_Days = st.number_input("ACH Reject Days (#)", key='ACH_Reject_Days', value=5)
 
 #Calculations Section Exposure
 Refund_Risk = (Annual_CNP_Volume/365) * Refund_Rate * Refund_Days /100
 Chargeback_Risk = (Annual_CNP_Volume/365) * Chargeback_Rate * Chargeback_Days /100
 DD_Risk = (Annual_CNP_Volume/365) * Delayed_Delivery 
 
-ACH_Reject_Exposure = ((Annual_CP_ACH_Volume/365)*ACH_Delayed_Delivery_Days) + ((Annual_CP_ACH_Volume/365)*ACH_Reject_Rate*ACH_Reject_Days)
+ACH_Reject_Exposure = ((Annual_CP_ACH_Volume/365)*Delayed_Delivery) + ((Annual_CP_ACH_Volume/365)*ACH_Reject_Rate*ACH_Reject_Days)
 Total_Volume = Annual_CNP_Volume + Annual_CP_ACH_Volume
 Total_Exposure = Refund_Risk + Chargeback_Risk + DD_Risk + ACH_Reject_Exposure
 
 st.header('Tiering Fields')
 
-Fulfillment = max(Delayed_Delivery, ACH_Delayed_Delivery_Days)
+Fulfillment = Delayed_Delivery
 
 #Tiering Calc Fields
 BusinessAge = st.radio('How old is the business?', options=['Less than 6 months', '6 months to 1 year', '1 year to 5 years', '5 years to 10 years', '>10 years'], 
