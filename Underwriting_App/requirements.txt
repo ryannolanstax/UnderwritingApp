@@ -4,3 +4,4 @@ streamlit==1.26.0
 XlsxWriter==3.1.2
 seaborn
 datetime==5.2
+redshift_connector
