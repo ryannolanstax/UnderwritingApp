@@ -20,13 +20,9 @@ import matplotlib.pyplot as plt
 
 st.set_page_config(page_title="Underwriting Calculator", page_icon="💾", layout="wide")
 
-st.title("Underwriting Calculator")
+st.title("Underwriting and Risk Calculator")
 st.markdown("This New Calculator Combines the older Tiering + Exposure Calculators")
-
-#No Downloading for now
-#filename = st.text_input("Filename (must include merchant name + deal id)", key="filename")
-
-#buffer = io.BytesIO()
+st.markdown("Having Issues or Ideas to improve the APP? Reach out to Ryan Nolan")
 
 st.header('Exposure Fields')
 
@@ -34,11 +30,13 @@ delayed = pd.read_csv('Underwriting_App/MCC & Business Models - MCC Ratings_Sale
 
 MCC = st.number_input("MCC", key='MCC', value=1711)
 
-testing = delayed.loc[delayed['MCC'] == MCC, ['CNP Delayed Delivery']].iloc[0, 0]
-
 CNP_DD = delayed.loc[delayed['MCC'] == MCC, ['CNP Delayed Delivery']].iloc[0, 0]
-CP_ACH_DD = delayed.loc[delayed['MCC'] == MCC, ['CP/ACH Delayed Delivery']].iloc[0, 0]
-max_cnp_cp_dd = max(CNP_DD, CP_ACH_DD)
+CP_DD = delayed.loc[delayed['MCC'] == MCC, ['CP/ACH Delayed Delivery']].iloc[0, 0]
+ACH_DD = delayed.loc[delayed['MCC'] == MCC, ['CP/ACH Delayed Delivery']].iloc[0, 0]
+
+
+
+#max_cnp_cp_dd = max(CNP_DD, CP_ACH_DD) TEMP PAUSE
 
 AML_Risk_Rating = delayed.loc[delayed['MCC'] == MCC, ['AML Risk Rating']].iloc[0, 0]
 Loss_Risk_Rating = delayed.loc[delayed['MCC'] == MCC, ['Loss Risk Rating']].iloc[0, 0]
@@ -46,7 +44,10 @@ Loss_Risk_Rating = delayed.loc[delayed['MCC'] == MCC, ['Loss Risk Rating']].iloc
 mcc_risk = max(AML_Risk_Rating, Loss_Risk_Rating)
 
 Annual_CNP_Volume = st.number_input("Annual CNP Volume ($)", key="Annual_CNP_Volume")
-Annual_CP_ACH_Volume = st.number_input("Annual CP/ACH Volume ($)", key="Annual_CP_ACH_Volume")
+#Annual_CP_ACH_Volume = st.number_input("Annual CP/ACH Volume ($)", key="Annual_CP_ACH_Volume") OLD
+Annual_CP_Volume = st.number_input("Annual CP Volume ($)", key="Annual_CP_Volume")
+Annual_ACH_Volume = st.number_input("Annual ACH Volume ($)", key="Annual_ACH_Volume")
+
 
 #old refund rate field
 #Refund_Rate = st.number_input("Refund Rate (%)", value=3.0, key="Refund_Rate", step=0.1, format="%0.1f")
@@ -58,13 +59,9 @@ Refund_Days = st.number_input("Refund Days (#) #Default 30 ie. If official 90 da
 Chargeback_Rate = 0.005
 Chargeback_Days = 180
 
-#st.write(f'MCC ACH_Delayed_Delivery_Days: {CP_ACH_DD}')
-#ACH_Delayed_Delivery_Days = st.number_input("ACH_Delayed_Delivery_Days", key='ACH_Delayed_Delivery_Days', value=CP_ACH_DD)
-
-
 #ACH_Reject_Rate = st.number_input('ACH Reject (%)',min_value=0.0, max_value=100.0, key='ACH_Reject_Rate')
 ACH_Reject_Rate = 0.005
-ACH_Reject_Days = st.number_input("ACH Reject Days (#)", key='ACH_Reject_Days', value=5)
+#ACH_Reject_Days = st.number_input("ACH Reject Days (#)", key='ACH_Reject_Days', value=5)
 
 my_expander = st.expander(label='Delayed Delivery Calcs')
 
@@ -81,38 +78,53 @@ edited_df = st.data_editor(df_original)
 
 #CP_ACH_DD
 
-max_dd = max_cnp_cp_dd  # Default value for max_dd
+#TEMP REMOVE CALCULATOR
+#max_dd = max_cnp_cp_dd  # Default value for max_dd
 
-def calculate_results(df):
-    weighted_avg_DD = (df['DD'] * df['Vol']).sum() / df['Vol'].sum()
-    volume = df['Vol'].sum()
+#def calculate_results(df):
+#    weighted_avg_DD = (df['DD'] * df['Vol']).sum() / df['Vol'].sum()
+#    volume = df['Vol'].sum()
     
-    if weighted_avg_DD:
-        weighted_avg_DD = float(weighted_avg_DD)
+#    if weighted_avg_DD:
+#        weighted_avg_DD = float(weighted_avg_DD)
     
-    max_dd = max(weighted_avg_DD, max_cnp_cp_dd)
+#    max_dd = max(weighted_avg_DD, max_cnp_cp_dd)
     
-    return weighted_avg_DD, volume, max_dd
+#    return weighted_avg_DD, volume, max_dd
 
-if st.button("Calculate"):
-    weighted_avg_DD, volume, max_dd = calculate_results(edited_df)
+#if st.button("Calculate"):
+#    weighted_avg_DD, volume, max_dd = calculate_results(edited_df)
     
-    st.write('Calculated Results:')
-    st.write(f'Weighted Average DD: {weighted_avg_DD}')
-    st.write(f'Total Volume: {volume}')
-    st.write(f'Max DD: {max_dd}')
+#    st.write('Calculated Results:')
+#    st.write(f'Weighted Average DD: {weighted_avg_DD}')
+#    st.write(f'Total Volume: {volume}')
+#    st.write(f'Max DD: {max_dd}')
 
 # Now max_dd is defined outside the "Calculate" block and can be used as a default value in st.number_input
-Delayed_Delivery = st.number_input("Delayed Delivery (DD)", key='Delayed_Delivery', value=max_dd)
+#Delayed_Delivery = st.number_input("Delayed Delivery (DD)", key='Delayed_Delivery', value=max_dd)
+
+#temp fix
+CNP_Delayed_Delivey = st.number_input("CNP Delayed Delivery (DD)", key='CNP_Delayed_Delivery', value=CNP_DD)
+CP_Delayed_delivery = st.number_input("CP Delayed Delivery (DD)", key='CP_Delayed_Delivery', value=CP_DD)
+ACH_Delayed_Delivery = st.number_input("ACH Delayed Delivery (DD)", key='ACH_Delayed_Delivery', value=ACH_DD)
+
 
 #Calculations Section Exposure
 Refund_Risk = (Annual_CNP_Volume/365) * Refund_Rate * Refund_Days 
 Chargeback_Risk = (Annual_CNP_Volume/365) * Chargeback_Rate * Chargeback_Days 
-DD_Risk = (Annual_CNP_Volume/365) * Delayed_Delivery 
+CNP_DD_Risk = (Annual_CNP_Volume/365) * CNP_Delayed_Delivey 
 
-ACH_Reject_Exposure = ((Annual_CP_ACH_Volume/365)*Delayed_Delivery) + ((Annual_CP_ACH_Volume/365)*ACH_Reject_Rate*ACH_Reject_Days)
-Total_Volume = Annual_CNP_Volume + Annual_CP_ACH_Volume
-Total_Exposure = Refund_Risk + Chargeback_Risk + DD_Risk + ACH_Reject_Exposure
+CP_Reject_Exposure = (Annual_CP_Volume/365)*CP_Delayed_delivery
+#ACH_New_Reject_Exposure = (Annual_ACH_Volume/365)*ACH_Reject_Rate*ACH_Reject_Days
+ACH_New_Reject_Exposure = (Annual_ACH_Volume/365)*ACH_Reject_Rate*ACH_Delayed_Delivery
+
+
+
+#ACH_Reject_Exposure = ((Annual_CP_ACH_Volume/365)*Delayed_Delivery) + ((Annual_CP_ACH_Volume/365)*ACH_Reject_Rate*ACH_Reject_Days)
+
+
+Total_Volume = Annual_CNP_Volume + Annual_ACH_Volume + Annual_CP_Volume
+Total_Exposure = Refund_Risk + Chargeback_Risk + CNP_DD_Risk + CP_Reject_Exposure + ACH_New_Reject_Exposure
 
 formatted_exposure = "${:,.0f}".format(Total_Exposure)
 st.write('The Final Exposure of the Customer is:', formatted_exposure)
@@ -123,11 +135,9 @@ formatted_exposure60 = "${:,.0f}".format(Total_Exposure *  0.6)
 st.write('60% of The Final Exposure of the Customer is:', formatted_exposure60)
 st.write('50% of The Final Exposure of the Customer is:', formatted_exposure50)
 
-
-
 st.header('Tiering Fields')
 
-Fulfillment = Delayed_Delivery
+Fulfillment = max(CNP_Delayed_Delivey, CP_Delayed_delivery, ACH_Delayed_Delivery)
 
 
 exposure_mapping = {
@@ -214,16 +224,16 @@ AvgReview_integer = AvgReview_mapping[AvgReview]
 
 
 
-if  max_cnp_cp_dd >= 24:
+if  Fulfillment >= 24:
     fullfillment_int = 5
 
-elif max_cnp_cp_dd >= 31:
+elif Fulfillment >= 31:
     fullfillment_int = 4
 
-elif max_cnp_cp_dd >= 16:
+elif Fulfillment >= 16:
     fullfillment_int = 3
 
-elif max_cnp_cp_dd >= 6:
+elif Fulfillment >= 6:
     fullfillment_int = 2
 
 else: fullfillment_int = 1
@@ -265,9 +275,9 @@ st.subheader("Exposure Calculations")
 
 st.write('Refund_Risk:', Refund_Risk)
 st.write('Chargeback_Risk:', Chargeback_Risk)
-st.write('DD_Risk:', DD_Risk)
-st.write('ACH_Reject_Exposure:', ACH_Reject_Exposure)
-
+st.write('CNP_DD_Risk:', CNP_DD_Risk)
+st.write('ACH_Reject_Exposure:', ACH_New_Reject_Exposure)
+st.write('CP_Reject_Exposure:', CP_Reject_Exposure)
 
 st.subheader("Risk Tier Calculations")
 
