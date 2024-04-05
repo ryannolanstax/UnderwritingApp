@@ -33,6 +33,7 @@ MCC = st.number_input("MCC", key='MCC', value=1711)
 CNP_DD = delayed.loc[delayed['MCC'] == MCC, ['CNP Delayed Delivery']].iloc[0, 0]
 CP_DD = delayed.loc[delayed['MCC'] == MCC, ['CP/ACH Delayed Delivery']].iloc[0, 0]
 ACH_DD = delayed.loc[delayed['MCC'] == MCC, ['CP/ACH Delayed Delivery']].iloc[0, 0]
+ACH_DD = min(ACH_DD, 60)
 
 
 
@@ -106,7 +107,8 @@ edited_df = st.data_editor(df_original)
 #temp fix
 CNP_Delayed_Delivey = st.number_input("CNP Delayed Delivery (DD)", key='CNP_Delayed_Delivery', value=CNP_DD)
 CP_Delayed_delivery = st.number_input("CP Delayed Delivery (DD)", key='CP_Delayed_Delivery', value=CP_DD)
-ACH_Delayed_Delivery = st.number_input("ACH Delayed Delivery (DD)", key='ACH_Delayed_Delivery', value=ACH_DD)
+st.write("The MAX ACH DD is 60 Days. This is due to (WRITE MORE INFO HERE)")
+ACH_Delayed_Delivery = st.number_input("ACH Delayed Delivery (DD)", key='ACH_Delayed_Delivery', value=ACH_DD, max_value=60)
 
 
 #Calculations Section Exposure
