@@ -137,8 +137,6 @@ st.write('50% of The Final Exposure of the Customer is:', formatted_exposure50)
 
 st.header('Tiering Fields')
 
-Fulfillment = max(CNP_Delayed_Delivey, CP_Delayed_delivery, ACH_Delayed_Delivery)
-
 exposure_mapping = {
     'Merchant refuses to provide current bank statements OR merchant’s current bank statements show negative balances and recent NSFs': 5,
     'Merchant provided current bank statements that show no negative balances or NSFs; however, the average balances would not cover the high ticket and/or volumes would not support 50% or more of the exposure amount': 4,
@@ -219,44 +217,26 @@ AvgReview = st.radio('What is the business average review score across all revie
 AvgReview_integer = AvgReview_mapping[AvgReview]
 
 
-#####
-
-#Next group discussion on fullfillment DD and tier
-
-if  Fulfillment >= 60:
-    fullfillment_int = 5
-
-elif Fulfillment >= 31:
-    fullfillment_int = 4
-
-elif Fulfillment >= 16:
-    fullfillment_int = 3
-
-elif Fulfillment >= 6:
-    fullfillment_int = 2
-
-else: fullfillment_int = 1
-
 #Calculations Section Tier
-total_score = business_age_integer + ExposureCoverage_integer + chargeback_refund_integer + AvgReview_integer + SignerCreditScore_integer + fullfillment_int
+total_score = business_age_integer + ExposureCoverage_integer + chargeback_refund_integer + AvgReview_integer + SignerCreditScore_integer 
 
-if  total_score >= 26 \
+if  total_score >= 21 \
     or chargeback_refund_integer == 5 \
     or SignerCreditScore_integer == 5 \
     or exposure_mapping == 5:
     final_score = 5
 
-elif total_score >= 20 \
+elif total_score >= 16 \
     or chargeback_refund_integer == 4 \
     or SignerCreditScore_integer == 4 \
     or exposure_mapping == 4 \
     or mcc_risk == 5:
     final_score = 4
 
-elif total_score >= 13:
+elif total_score >= 8:
     final_score = 3
 
-elif total_score >= 10:
+elif total_score >= 6:
     final_score = 2
 
 else:
@@ -287,7 +267,7 @@ st.write("Based on the form fields above and MCC DD the total amount of points t
 
 data = {
     'Risk_Tier': [5,4,3,2,1],
-    'Reason for Tier': ['total_score >= 26 OR Chargeback Refund Risk = 5 OR Credit Score Risk = 5 OR Exposure Risk = 5', 'total_score >= 20 OR Chargeback Refund Risk = 4 OR Credit Score Risk = 4 OR Exposure Risk = 4 or MCC Risk Tier = 5', 'total_score >= 13', 'total_score >= 10', 'total_score > 0'],
+    'Reason for Tier': ['total_score >= 21 OR Chargeback Refund Risk = 5 OR Credit Score Risk = 5 OR Exposure Risk = 5', 'total_score >= 16 OR Chargeback Refund Risk = 4 OR Credit Score Risk = 4 OR Exposure Risk = 4 or MCC Risk Tier = 5', 'total_score >= 8', 'total_score >= 6', 'total_score > 0'],
 }
 
 # Create DataFrame
@@ -301,5 +281,5 @@ st.write(df)
 
 st.write('The Total Score of the Customer is: ', total_score)
 
-st.write('Business Age:', business_age_integer, 'Exposure:', ExposureCoverage_integer, 'Chargeback Refund:', chargeback_refund_integer, 'Avg Review:', AvgReview_integer, 'Credit Score:', SignerCreditScore_integer, 'Fullfillment:', fullfillment_int, 'MCC Risk:', mcc_risk)
+st.write('Business Age:', business_age_integer, 'Exposure:', ExposureCoverage_integer, 'Chargeback Refund:', chargeback_refund_integer, 'Avg Review:', AvgReview_integer, 'Credit Score:', SignerCreditScore_integer, 'MCC Risk:', mcc_risk)
 
