@@ -44,6 +44,7 @@ Loss_Risk_Rating = delayed.loc[delayed['MCC'] == MCC, ['Loss Risk Rating']].iloc
 
 mcc_risk = max(AML_Risk_Rating, Loss_Risk_Rating)
 
+st.write('**Underwriters** Stax Connect has possible data issues with CNP and CP not being accurate from partners. Use data for on the partner sheet for the processing percentage')
 Annual_CNP_Volume = st.number_input("Annual CNP Volume ($)", key="Annual_CNP_Volume")
 #Annual_CP_ACH_Volume = st.number_input("Annual CP/ACH Volume ($)", key="Annual_CP_ACH_Volume") OLD
 Annual_CP_Volume = st.number_input("Annual CP Volume ($)", key="Annual_CP_Volume")
@@ -120,10 +121,7 @@ CP_Reject_Exposure = (Annual_CP_Volume/365)*CP_Delayed_delivery
 #ACH_New_Reject_Exposure = (Annual_ACH_Volume/365)*ACH_Reject_Rate*ACH_Reject_Days
 ACH_New_Reject_Exposure = (Annual_ACH_Volume/365)*ACH_Reject_Rate*ACH_Delayed_Delivery
 
-
-
 #ACH_Reject_Exposure = ((Annual_CP_ACH_Volume/365)*Delayed_Delivery) + ((Annual_CP_ACH_Volume/365)*ACH_Reject_Rate*ACH_Reject_Days)
-
 
 Total_Volume = Annual_CNP_Volume + Annual_ACH_Volume + Annual_CP_Volume
 Total_Exposure = Refund_Risk + Chargeback_Risk + CNP_DD_Risk + CP_Reject_Exposure + ACH_New_Reject_Exposure
@@ -141,7 +139,6 @@ st.header('Tiering Fields')
 
 Fulfillment = max(CNP_Delayed_Delivey, CP_Delayed_delivery, ACH_Delayed_Delivery)
 
-
 exposure_mapping = {
     'Merchant refuses to provide current bank statements OR merchant’s current bank statements show negative balances and recent NSFs': 5,
     'Merchant provided current bank statements that show no negative balances or NSFs; however, the average balances would not cover the high ticket and/or volumes would not support 50% or more of the exposure amount': 4,
@@ -156,7 +153,7 @@ ExposureCoverage_integer = exposure_mapping[ExposureCoverage]
 
 
 SignerCreditScore_mapping = {
-            '<550': 5,
+            'Under 550': 5,
             '551-579 or Unknown': 4,
             '580-650': 3,
             '651-750': 2,
@@ -173,7 +170,7 @@ age_mapping = {
     '6 months to 1 year': 4,
     '1 year to 3 years': 3,
     '3 years to 5 years': 2,
-    '>5 years': 1
+    '5+ years': 1
 }
 
 # Display radio button and get user input
@@ -198,8 +195,8 @@ chargeback_refund_mapping = {
     'CB Rate **>= 2%** OR Refund Rate **>= 10%** OR ACH Reversal Rate **>= 0.5%** for Unauth Return Codes OR **>=10% and <15%** for All Return Codes.': 5,
     'CB Rate **>= 1%** AND < 2%** OR Refund Rate **>= 7.5% AND < 10%** OR ACH Reversal Rate **>= 0.4%** for Unauth Return Codes OR **>= 10% AND < 15%** for All Return Codes.': 4,
     'CB Rate **>= 0.75% AND < 1%** OR Refund Rate **>= 5% AND < 7.5%** OR ACH Reversal Rate **>= 0.3%** for Unauth Return Codes OR  **>= 7.5% AND < 10%** for All Return Codes.': 3,
-    'CB Rate **>= 0.05% AND < 0.75%** OR Refund Rate **>= 3% AND < 5%** OR ACH Reversal Rate **>= 0.2%** for Unauth Return Codes OR  **>= 5% AND < 7.5%** for All Return Codes.': 2,
-    'Not Needed OR CB Rate **< 0.05%** OR Refund Rate **< 3%** OR ACH Reversal Rate **< 0.2%** for Unauth Return Codes OR **< 5%** for All Return Codes.': 1,
+    'CB Rate **>= 0.5% AND < 0.75%** OR Refund Rate **>= 3% AND < 5%** OR ACH Reversal Rate **>= 0.2%** for Unauth Return Codes OR  **>= 5% AND < 7.5%** for All Return Codes.': 2,
+    'Not Needed OR CB Rate **< 0.5%** OR Refund Rate **< 3%** OR ACH Reversal Rate **< 0.2%** for Unauth Return Codes OR **< 5%** for All Return Codes.': 1,
 }
 
 chargeback_refund = st.radio('What is the customers business processing and banking history?', options=list(chargeback_refund_mapping.keys()), horizontal=True)
@@ -211,10 +208,10 @@ chargeback_refund_integer = chargeback_refund_mapping[chargeback_refund]
 
 
 AvgReview_mapping = {
-            '>3.8': 4,
+            'Under 3.8': 4,
             '3.8 - 4.2 or Under 10 Reviews': 3,
             '4.2 - 4.5': 2,
-            '4.5<': 1,
+            'Over 4.5': 1,
 }
 
 AvgReview = st.radio('What is the business average review score across all review platforms?', options=list(AvgReview_mapping.keys()), horizontal=True)
@@ -224,9 +221,9 @@ AvgReview_integer = AvgReview_mapping[AvgReview]
 
 #####
 
+#Next group discussion on fullfillment DD and tier
 
-
-if  Fulfillment >= 24:
+if  Fulfillment >= 60:
     fullfillment_int = 5
 
 elif Fulfillment >= 31:
@@ -243,21 +240,23 @@ else: fullfillment_int = 1
 #Calculations Section Tier
 total_score = business_age_integer + ExposureCoverage_integer + chargeback_refund_integer + AvgReview_integer + SignerCreditScore_integer + fullfillment_int
 
-
-if  total_score > 24 \
+if  total_score >= 26 \
     or chargeback_refund_integer == 5 \
-    or SignerCreditScore_integer == 5:
+    or SignerCreditScore_integer == 5 \
+    or exposure_mapping == 5:
     final_score = 5
 
-elif total_score > 20 \
+elif total_score >= 20 \
     or chargeback_refund_integer == 4 \
-    or SignerCreditScore_integer == 4:
+    or SignerCreditScore_integer == 4 \
+    or exposure_mapping == 4 \
+    or mcc_risk == 5:
     final_score = 4
 
-elif total_score > 15:
+elif total_score >= 13:
     final_score = 3
 
-elif total_score > 10:
+elif total_score >= 10:
     final_score = 2
 
 else:
@@ -288,7 +287,7 @@ st.write("Based on the form fields above and MCC DD the total amount of points t
 
 data = {
     'Risk_Tier': [5,4,3,2,1],
-    'Reason for Tier': ['total_score> 24 OR Chargeback Refund Risk = 5 OR Credit Score Risk = 5', 'total_score > 20 OR Chargeback Refund Risk = 4 OR Credit Score Risk = 4', 'total_score > 15', 'total_score > 10', 'total_score > 0'],
+    'Reason for Tier': ['total_score >= 26 OR Chargeback Refund Risk = 5 OR Credit Score Risk = 5 OR Exposure Risk = 5', 'total_score >= 20 OR Chargeback Refund Risk = 4 OR Credit Score Risk = 4 OR Exposure Risk = 4 or MCC Risk Tier = 5', 'total_score >= 13', 'total_score >= 10', 'total_score > 0'],
 }
 
 # Create DataFrame
@@ -302,5 +301,5 @@ st.write(df)
 
 st.write('The Total Score of the Customer is: ', total_score)
 
-st.write('Business Age:', business_age_integer, 'Exposure:', ExposureCoverage_integer, 'Chargeback Refund:', chargeback_refund_integer, 'Avg Review:', AvgReview_integer, 'Credit Score:', SignerCreditScore_integer, 'Fullfillment:', fullfillment_int)
+st.write('Business Age:', business_age_integer, 'Exposure:', ExposureCoverage_integer, 'Chargeback Refund:', chargeback_refund_integer, 'Avg Review:', AvgReview_integer, 'Credit Score:', SignerCreditScore_integer, 'Fullfillment:', fullfillment_int, 'MCC Risk:', mcc_risk)
 
