@@ -1,3 +1,5 @@
+# python3 -m streamlit run Underwriting_App/pages/calc_in_prod_3_25.py 
+
 import altair as alt
 import pandas as pd
 import seaborn as sns
@@ -18,33 +20,41 @@ import matplotlib.pyplot as plt
 
 st.set_page_config(page_title="Underwriting Calculator", page_icon="💾", layout="wide")
 
-st.title("Underwriting Calculator")
+st.title("Underwriting and Risk Calculator 4/12 Updates")
 st.markdown("This New Calculator Combines the older Tiering + Exposure Calculators")
-
-#No Downloading for now
-#filename = st.text_input("Filename (must include merchant name + deal id)", key="filename")
-
-#buffer = io.BytesIO()
+st.markdown("Having Issues or Ideas to improve the APP? Reach out to Ryan Nolan")
 
 st.header('Exposure Fields')
 
 delayed = pd.read_csv('Underwriting_App/MCC & Business Models - MCC Ratings_Sales.csv')
 
+banned = [5111, 5122, 5832, 5912, 5921, 5994, 5995, 7011, 7012, 7832, 7841, 7996]
+
 MCC = st.number_input("MCC", key='MCC', value=1711)
 
-testing = delayed.loc[delayed['MCC'] == MCC, ['CNP Delayed Delivery']].iloc[0, 0]
+if MCC  in banned:
+    st.error("MCC code not allowed. Please enter a valid MCC code. Talk to Manager if this is incorrect")
 
 CNP_DD = delayed.loc[delayed['MCC'] == MCC, ['CNP Delayed Delivery']].iloc[0, 0]
-CP_ACH_DD = delayed.loc[delayed['MCC'] == MCC, ['CP/ACH Delayed Delivery']].iloc[0, 0]
-max_cnp_cp_dd = max(CNP_DD, CP_ACH_DD)
+CP_DD = delayed.loc[delayed['MCC'] == MCC, ['CP/ACH Delayed Delivery']].iloc[0, 0]
+ACH_DD = delayed.loc[delayed['MCC'] == MCC, ['CP/ACH Delayed Delivery']].iloc[0, 0]
+ACH_DD = min(ACH_DD, 60)
+
+
+
+#max_cnp_cp_dd = max(CNP_DD, CP_ACH_DD) TEMP PAUSE
 
 AML_Risk_Rating = delayed.loc[delayed['MCC'] == MCC, ['AML Risk Rating']].iloc[0, 0]
 Loss_Risk_Rating = delayed.loc[delayed['MCC'] == MCC, ['Loss Risk Rating']].iloc[0, 0]
 
 mcc_risk = max(AML_Risk_Rating, Loss_Risk_Rating)
 
+st.write('**Underwriters** Stax Connect has possible data issues with CNP and CP not being accurate from partners. Use data for on the partner sheet for the processing percentage')
 Annual_CNP_Volume = st.number_input("Annual CNP Volume ($)", key="Annual_CNP_Volume")
-Annual_CP_ACH_Volume = st.number_input("Annual CP/ACH Volume ($)", key="Annual_CP_ACH_Volume")
+#Annual_CP_ACH_Volume = st.number_input("Annual CP/ACH Volume ($)", key="Annual_CP_ACH_Volume") OLD
+Annual_CP_Volume = st.number_input("Annual CP Volume ($)", key="Annual_CP_Volume")
+Annual_ACH_Volume = st.number_input("Annual ACH Volume ($)", key="Annual_ACH_Volume")
+
 
 #old refund rate field
 #Refund_Rate = st.number_input("Refund Rate (%)", value=3.0, key="Refund_Rate", step=0.1, format="%0.1f")
@@ -56,13 +66,9 @@ Refund_Days = st.number_input("Refund Days (#) #Default 30 ie. If official 90 da
 Chargeback_Rate = 0.005
 Chargeback_Days = 180
 
-#st.write(f'MCC ACH_Delayed_Delivery_Days: {CP_ACH_DD}')
-#ACH_Delayed_Delivery_Days = st.number_input("ACH_Delayed_Delivery_Days", key='ACH_Delayed_Delivery_Days', value=CP_ACH_DD)
-
-
 #ACH_Reject_Rate = st.number_input('ACH Reject (%)',min_value=0.0, max_value=100.0, key='ACH_Reject_Rate')
 ACH_Reject_Rate = 0.005
-ACH_Reject_Days = st.number_input("ACH Reject Days (#)", key='ACH_Reject_Days', value=5)
+#ACH_Reject_Days = st.number_input("ACH Reject Days (#)", key='ACH_Reject_Days', value=5)
 
 my_expander = st.expander(label='Delayed Delivery Calcs')
 
@@ -77,10 +83,6 @@ data = {
 df_original = pd.DataFrame(data)
 edited_df = st.data_editor(df_original)
 
-#CP_ACH_DD
-
-max_dd = max_cnp_cp_dd  # Default value for max_dd
-
 def calculate_results(df):
     weighted_avg_DD = (df['DD'] * df['Vol']).sum() / df['Vol'].sum()
     volume = df['Vol'].sum()
@@ -88,162 +90,202 @@ def calculate_results(df):
     if weighted_avg_DD:
         weighted_avg_DD = float(weighted_avg_DD)
     
-    max_dd = max(weighted_avg_DD, max_cnp_cp_dd)
-    
-    return weighted_avg_DD, volume, max_dd
+    return weighted_avg_DD, volume
 
 if st.button("Calculate"):
-    weighted_avg_DD, volume, max_dd = calculate_results(edited_df)
-    
+    weighted_avg_DD, volume = calculate_results(edited_df) 
     st.write('Calculated Results:')
     st.write(f'Weighted Average DD: {weighted_avg_DD}')
     st.write(f'Total Volume: {volume}')
-    st.write(f'Max DD: {max_dd}')
+
 
 # Now max_dd is defined outside the "Calculate" block and can be used as a default value in st.number_input
-Delayed_Delivery = st.number_input("Delayed Delivery (DD)", key='Delayed_Delivery', value=max_dd)
+#Delayed_Delivery = st.number_input("Delayed Delivery (DD)", key='Delayed_Delivery', value=max_dd)
+
+#temp fix
+CNP_Delayed_Delivey = st.number_input("CNP Delayed Delivery (DD)", key='CNP_Delayed_Delivery', value=CNP_DD)
+CP_Delayed_delivery = st.number_input("CP Delayed Delivery (DD)", key='CP_Delayed_Delivery', value=CP_DD)
+st.write("The MAX ACH DD is 60 Days. This is due to (WRITE MORE INFO HERE)")
+ACH_Delayed_Delivery = st.number_input("ACH Delayed Delivery (DD)", key='ACH_Delayed_Delivery', value=ACH_DD, max_value=60)
+
 
 #Calculations Section Exposure
 Refund_Risk = (Annual_CNP_Volume/365) * Refund_Rate * Refund_Days 
 Chargeback_Risk = (Annual_CNP_Volume/365) * Chargeback_Rate * Chargeback_Days 
-DD_Risk = (Annual_CNP_Volume/365) * Delayed_Delivery 
+CNP_DD_Risk = (Annual_CNP_Volume/365) * CNP_Delayed_Delivey 
 
-ACH_Reject_Exposure = ((Annual_CP_ACH_Volume/365)*Delayed_Delivery) + ((Annual_CP_ACH_Volume/365)*ACH_Reject_Rate*ACH_Reject_Days)
-Total_Volume = Annual_CNP_Volume + Annual_CP_ACH_Volume
-Total_Exposure = Refund_Risk + Chargeback_Risk + DD_Risk + ACH_Reject_Exposure
+CP_Reject_Exposure = (Annual_CP_Volume/365)*CP_Delayed_delivery
+#ACH_New_Reject_Exposure = (Annual_ACH_Volume/365)*ACH_Reject_Rate*ACH_Reject_Days
+ACH_New_Reject_Exposure = (Annual_ACH_Volume/365)*ACH_Reject_Rate*ACH_Delayed_Delivery
+
+#ACH_Reject_Exposure = ((Annual_CP_ACH_Volume/365)*Delayed_Delivery) + ((Annual_CP_ACH_Volume/365)*ACH_Reject_Rate*ACH_Reject_Days)
+
+Total_Volume = Annual_CNP_Volume + Annual_ACH_Volume + Annual_CP_Volume
+Total_Exposure = Refund_Risk + Chargeback_Risk + CNP_DD_Risk + CP_Reject_Exposure + ACH_New_Reject_Exposure
+
+formatted_exposure = "${:,.0f}".format(Total_Exposure)
+st.write('The Final Exposure of the Customer is:', formatted_exposure)
+
+formatted_exposure50 = "${:,.0f}".format(Total_Exposure * 0.5)
+formatted_exposure60 = "${:,.0f}".format(Total_Exposure *  0.6)
+
+st.write('60% of The Final Exposure of the Customer is:', formatted_exposure60)
+st.write('50% of The Final Exposure of the Customer is:', formatted_exposure50)
 
 st.header('Tiering Fields')
 
-Fulfillment = Delayed_Delivery
+exposure_mapping = {
+    'Merchant refuses to provide current bank statements OR merchant’s current bank statements show negative balances and recent NSFs': 5,
+    'Merchant provided current bank statements that show no negative balances or NSFs; however, the average balances would not cover the high ticket and/or volumes would not support 50% or more of the exposure amount': 4,
+    'Waiver OR Merchant provided current bank statements that cover approved high ticket and at least 50% of exposure amount': 3,
+    'Merchant provided current bank statements that cover 2x approved high ticket and at least 60% of exposure amount': 2,
+    'Low Risk Not Required OR Merchant provided current bank statements that cover at least 3x approved high ticket and entirety of exposure amount': 1
+}
 
-#Tiering Calc Fields
-BusinessAge = st.radio('How old is the business?', options=['Less than 6 months', '6 months to 1 year', '1 year to 5 years', '5 years to 10 years', '>10 years'], 
-            horizontal=True)
+ExposureCoverage = st.radio('Can the Business Cover Exposure?', options=list(exposure_mapping.keys()), horizontal=True)
 
-BankHistory = st.selectbox(
-        'What is the customers business processing and banking history?',
-        (['Customer refuses to provide any bank or processing statements OR has no recordkeeping information to provide.',\
-        'Customer provided one (1) month of EITHER most recent business banking statements or prior processing statements.',\
-        'Customer provided three (3) months of EITHER most recent business banking statements or prior processing statements. OR sub-merchant with approved exemption.',\
-        'Customer provided one (1) month of BOTH their most recent business banking and prior processing statements.',\
-        'Customer provided three (3) months of EITHER most recent business banking statements or prior processing statements.']))
+ExposureCoverage_integer = exposure_mapping[ExposureCoverage]
 
 
-ReturnPolicy = st.selectbox(
-        'What is the customers return policy?',
-        (['No return policy or return policy not posted', 'Refunds for returns, but only up to 7 days and/or the buyer must pay return shipping', \
-        'Refunds for returns, but only up to 15 days', 'Refunds for returns, but only up to 30 days', 'Refunds issued for returns even 60 days+ post-order']))
+SignerCreditScore_mapping = {
+            'Under 550': 5,
+            '551-579 or Unknown': 4,
+            '580-650': 3,
+            '651-750': 2,
+            '751-850': 1,
+}
 
-AvgReview = st.radio('What is the business average review score across all review platforms?', options=['< 4.0 Stars', '> 4.0 Stars – 4.3 Stars', '> 4.3 Stars to 4.5 Stars OR less than 20 reviews across all review sites.', \
-        '> 4.5 Stars to 4.8 Stars', '> 4.8 Stars'], 
-            horizontal=True)
+SignerCreditScore = st.radio('What is the signers credit score?', options=list(SignerCreditScore_mapping.keys()), horizontal=True)
 
-SignerCreditScore = st.radio('What is the signers credit score?', options=['<550','551-579 or Unknown', '580-650', '651-750', '751-850'], \
-            horizontal=True)
+SignerCreditScore_integer = SignerCreditScore_mapping[SignerCreditScore]
+
+
+age_mapping = {
+    'Less than 6 months': 5,
+    '6 months to 1 year': 4,
+    '1 year to 3 years': 3,
+    '3 years to 5 years': 2,
+    '5+ years': 1
+}
+
+# Display radio button and get user input
+business_age = st.radio('How old is the business?', options=list(age_mapping.keys()), horizontal=True)
+
+# Convert selected value to integer using the mapping
+business_age_integer = age_mapping[business_age]
+
+
+
+st.write('**CB Rate:** Merchants chargeback rate over the last 180 days')
+st.write('**Refund Rate:** Merchants chargeback rate over the last 90 days')
+st.write('**ACH Reversal Rate:** ACH reversal rate in the last 30 days')
+st.write('**Unauth Return Codes:** R05, R07, R08, R10, R29, R51')
+
+link = "https://www.vericheck.com/ach-return-codes/#:~:text=R08,be%20a%20revocation%20of%20authorization"
+text = "All Return Codes with Detail Info"
+st.markdown(f"[{text}]({link})")
+
+###Simplified
+chargeback_refund_mapping = {
+    'CB Rate **>= 2%** OR Refund Rate **>= 10%** OR ACH Reversal Rate **>= 0.5%** for Unauth Return Codes OR **>=10% and <15%** for All Return Codes.': 5,
+    'CB Rate **>= 1%** AND < 2%** OR Refund Rate **>= 7.5% AND < 10%** OR ACH Reversal Rate **>= 0.4%** for Unauth Return Codes OR **>= 10% AND < 15%** for All Return Codes.': 4,
+    'CB Rate **>= 0.75% AND < 1%** OR Refund Rate **>= 5% AND < 7.5%** OR ACH Reversal Rate **>= 0.3%** for Unauth Return Codes OR  **>= 7.5% AND < 10%** for All Return Codes.': 3,
+    'CB Rate **>= 0.5% AND < 0.75%** OR Refund Rate **>= 3% AND < 5%** OR ACH Reversal Rate **>= 0.2%** for Unauth Return Codes OR  **>= 5% AND < 7.5%** for All Return Codes.': 2,
+    'Not Needed OR CB Rate **< 0.5%** OR Refund Rate **< 3%** OR ACH Reversal Rate **< 0.2%** for Unauth Return Codes OR **< 5%** for All Return Codes.': 1,
+}
+
+chargeback_refund = st.radio('What is the customers business processing and banking history?', options=list(chargeback_refund_mapping.keys()), horizontal=True)
+
+chargeback_refund_integer = chargeback_refund_mapping[chargeback_refund]
+
+
+
+
+
+AvgReview_mapping = {
+            'Under 3.8': 4,
+            '3.8 - 4.2 or Under 10 Reviews': 3,
+            '4.2 - 4.5': 2,
+            'Over 4.5': 1,
+}
+
+AvgReview = st.radio('What is the business average review score across all review platforms?', options=list(AvgReview_mapping.keys()), horizontal=True)
+
+AvgReview_integer = AvgReview_mapping[AvgReview]
+
 
 #Calculations Section Tier
+total_score = business_age_integer + ExposureCoverage_integer + chargeback_refund_integer + AvgReview_integer + SignerCreditScore_integer 
 
-
-if  BusinessAge == 'Less than 6 months' \
-    or BankHistory == 'Customer refuses to provide any bank or processing statements OR has no recordkeeping information to provide.'\
-    or SignerCreditScore == '<550' \
-    or ReturnPolicy == 'No return policy or return policy not posted' \
-    or AvgReview == '< 4.0 Stars'\
-    or Fulfillment >= 90 \
-    or mcc_risk == 5:
+if  total_score >= 21 \
+    or chargeback_refund_integer == 5 \
+    or SignerCreditScore_integer == 5 \
+    or exposure_mapping == 5:
     final_score = 5
-elif BusinessAge == '6 months to 1 year' \
-    or BankHistory == 'Customer provided one (1) month of EITHER most recent business banking statements or prior processing statements.'\
-    or SignerCreditScore == '551-579 or Unknown' \
-    or ReturnPolicy == 'Refunds for returns, but only up to 7 days and/or the buyer must pay return shipping' \
-    or AvgReview == '> 4.0 Stars – 4.3 Stars'\
-    or Fulfillment >= 31\
-    or mcc_risk == 4: 
+
+elif total_score >= 16 \
+    or chargeback_refund_integer == 4 \
+    or SignerCreditScore_integer == 4 \
+    or exposure_mapping == 4 \
+    or mcc_risk == 5 \
+    or business_age_integer > 3:
     final_score = 4
-elif BusinessAge == '1 year to 5 years'\
-    or BankHistory == 'Customer provided three (3) months of EITHER most recent business banking statements or prior processing statements. OR sub-merchant with approved exemption.'\
-    or SignerCreditScore == '580-650' \
-    or ReturnPolicy == 'Refunds for returns, but only up to 15 days' \
-    or AvgReview == '> 4.3 Stars to 4.5 Stars OR less than 20 reviews across all review sites'\
-    or Fulfillment >= 16\
-    or mcc_risk == 3:
+
+elif total_score >= 8:
     final_score = 3
-elif BusinessAge == '5 years to 10 years' \
-    or BankHistory == 'Customer provided one (1) month of BOTH their most recent business banking and prior processing statements.'\
-    or SignerCreditScore == '651-750' \
-    or ReturnPolicy == 'Refunds for returns, but only up to 30 days' \
-    or AvgReview == '> 4.5 Stars to 4.8 Stars' \
-    or Fulfillment >= 6\
-    or mcc_risk == 2:
+
+elif total_score >= 6:
     final_score = 2
-elif BusinessAge == '> 10 years' \
-    or BankHistory == 'Customer provided three (3) months of EITHER most recent business banking statements or prior processing statements.' \
-    or SignerCreditScore == '751-850' \
-    or ReturnPolicy == 'Refunds issued for returns even 60 days+ post-order' \
-    or AvgReview == '> 4.8 Stars' \
-    or Fulfillment > 0 \
-    or mcc_risk == 1:
+
+else:
     final_score = 1
 
 st.header('Final Results')
 
-#st.write('Refund_Risk:', Refund_Risk)
-#st.write('Chargeback_Risk:', Chargeback_Risk)
-#st.write('DD_Risk:', DD_Risk)
-#st.write('ACH_Reject_Exposure:', ACH_Reject_Exposure)
+#Business age 4/5 and Reviews is 3/4
+#4/3 -> Risk Tier 4
+#4/4
+#5/3
+#5/4
 
-formatted_exposure = "${:,.0f}".format(Total_Exposure)
+#two 2s - >2
+#two 3s -> 3
+#two 4s -> 4
+#twp 5s ->5
+
+#business under a year 
+
 st.write('The Final Exposure of the Customer is:', formatted_exposure)
+
 st.write('The Final Tier of the Customer is: ', final_score)
 
+st.subheader("Exposure Calculations")
+
+st.write('Refund_Risk:', Refund_Risk)
+st.write('Chargeback_Risk:', Chargeback_Risk)
+st.write('CNP_DD_Risk:', CNP_DD_Risk)
+st.write('ACH_Reject_Exposure:', ACH_New_Reject_Exposure)
+st.write('CP_Reject_Exposure:', CP_Reject_Exposure)
+
+st.subheader("Risk Tier Calculations")
 
 
-#dont need dataframes atm
-#Tiering = pd.DataFrame({'BusinessAge':[BusinessAge],
-#                                'BankHistory':[BankHistory],
-#                                'Fulfillment':[Fulfillment], 
-#                                'International':[International],
-#                                'Custom':[Custom],
-#                                'ReturnPolicy':[ReturnPolicy],                      
-#                                'AvgReview':[AvgReview],
-#                                'SignerCreditScore':[SignerCreditScore],
-#                                'FinalTier':[final_score],
-#                                })
+st.write("Based on the form fields above and MCC DD the total amount of points the merchant had was: ", total_score)
 
- 
-#Exposure = pd.DataFrame({'Annual_CNP_Volume':[Annual_CNP_Volume],
-#                            'Annual_CP_ACH_Volume':[Annual_CP_ACH_Volume],
-#                            'Refund_Rate':[Refund_Rate],
-#                            'Refund_Days':[Refund_Days],
-#                            'Chargeback_Rate':[Chargeback_Rate],
-#                            'Chargeback_Days':[Chargeback_Days],
-#                            'Delayed_Delivery':[Delayed_Delivery], 
-#                            'ACH_Delayed_Delivery_Days':[ACH_Delayed_Delivery_Days],
-#                            'ACH_Reject_Rate':[ACH_Reject_Rate],
-#                            'ACH_Reject_Days':[ACH_Reject_Days],     
-#                            'MCC':[MCC],
-#                            'CNP_DD':[CNP_DD],
-#                            'CP_ACH_DD':[CP_ACH_DD],
-#                            'Refund_Risk':[Refund_Risk],
-#                            'Chargeback_Risk':[Chargeback_Risk],
-#                            'DD_Risk':[DD_Risk],
-#                            'ACH_Reject_Exposure':[ACH_Reject_Exposure],
-#                            'Total_Exposure':[Total_Exposure],
-#                            'Total_Volume':[Total_Volume],
-#                                })
+data = {
+    'Risk_Tier': [5,4,3,2,1],
+    'Reason for Tier': ['total_score >= 21 OR Chargeback Refund Risk = 5 OR Credit Score Risk = 5 OR Exposure Risk = 5', 'total_score >= 16 OR Chargeback Refund Risk = 4 OR Credit Score Risk = 4 OR Exposure Risk = 4 or Business Age = 4/5 or MCC Risk Tier = 5', 'total_score >= 8', 'total_score >= 6', 'total_score > 0'],
+}
 
-# Download To Be Worked on in the future
+# Create DataFrame
+df = pd.DataFrame(data)
 
-#    with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
-#        Tiering.to_excel(writer, sheet_name='Tier_Data')
-#        Exposure.to_excel(writer, sheet_name='Exposure_Data')
+# Ensure index is dropped
+df = df.reset_index(drop=True)
 
-        # Close the Pandas Excel writer and output the Excel file to the buffer
-#        writer.close()
+# Display table using Streamlit
+st.write(df)
 
-#        st.download_button(
-#            label="Download Excel worksheets",
-#            data=buffer,
-#            file_name=f"{st.session_state.filename}.xlsx",
-#            mime="application/vnd.ms-excel"
-#        )
+st.write('The Total Score of the Customer is: ', total_score)
+
+st.write('Business Age:', business_age_integer, 'Exposure:', ExposureCoverage_integer, 'Chargeback Refund:', chargeback_refund_integer, 'Avg Review:', AvgReview_integer, 'Credit Score:', SignerCreditScore_integer, 'MCC Risk:', mcc_risk)
