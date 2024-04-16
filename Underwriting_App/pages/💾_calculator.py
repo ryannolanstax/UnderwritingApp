@@ -68,7 +68,7 @@ Chargeback_Days = 180
 
 #ACH_Reject_Rate = st.number_input('ACH Reject (%)',min_value=0.0, max_value=100.0, key='ACH_Reject_Rate')
 ACH_Reject_Rate = 0.005
-#ACH_Reject_Days = st.number_input("ACH Reject Days (#)", key='ACH_Reject_Days', value=5)
+ACH_Reject_Days = 5
 
 my_expander = st.expander(label='Delayed Delivery Calcs')
 
@@ -113,15 +113,15 @@ ACH_Delayed_Delivery = st.number_input("ACH Delayed Delivery (DD)", key='ACH_Del
 Refund_Risk = (Annual_CNP_Volume/365) * Refund_Rate * Refund_Days 
 Chargeback_Risk = (Annual_CNP_Volume/365) * Chargeback_Rate * Chargeback_Days 
 CNP_DD_Risk = (Annual_CNP_Volume/365) * CNP_Delayed_Delivey 
+CP_DD_Risk = (Annual_CP_Volume/365)*CP_Delayed_delivery
+ACH_New_Reject_Exposure = (Annual_ACH_Volume/365) * ACH_Reject_Rate * ACH_Reject_Days
+ACH_DD_Risk = (Annual_ACH_Volume/365)*ACH_Delayed_Delivery
 
-CP_Reject_Exposure = (Annual_CP_Volume/365)*CP_Delayed_delivery
-#ACH_New_Reject_Exposure = (Annual_ACH_Volume/365)*ACH_Reject_Rate*ACH_Reject_Days
-ACH_New_Reject_Exposure = (Annual_ACH_Volume/365)*ACH_Reject_Rate*ACH_Delayed_Delivery
 
 #ACH_Reject_Exposure = ((Annual_CP_ACH_Volume/365)*Delayed_Delivery) + ((Annual_CP_ACH_Volume/365)*ACH_Reject_Rate*ACH_Reject_Days)
 
 Total_Volume = Annual_CNP_Volume + Annual_ACH_Volume + Annual_CP_Volume
-Total_Exposure = Refund_Risk + Chargeback_Risk + CNP_DD_Risk + CP_Reject_Exposure + ACH_New_Reject_Exposure
+Total_Exposure = Refund_Risk + Chargeback_Risk + CNP_DD_Risk + CP_DD_Risk + ACH_New_Reject_Exposure + ACH_DD_Risk
 
 formatted_exposure = "${:,.0f}".format(Total_Exposure)
 st.write('The Final Exposure of the Customer is:', formatted_exposure)
@@ -263,18 +263,24 @@ st.subheader("Exposure Calculations")
 
 st.write('Refund_Risk:', Refund_Risk)
 st.write('Chargeback_Risk:', Chargeback_Risk)
+st.write('ACH_Reject_Risk:', ACH_New_Reject_Exposure)
 st.write('CNP_DD_Risk:', CNP_DD_Risk)
-st.write('ACH_Reject_Exposure:', ACH_New_Reject_Exposure)
-st.write('CP_Reject_Exposure:', CP_Reject_Exposure)
+st.write('CP_DD_Risk:', CP_DD_Risk)
+st.write('ACH_DD_Risk:', ACH_DD_Risk)
 
 st.subheader("Risk Tier Calculations")
-
 
 st.write("Based on the form fields above and MCC DD the total amount of points the merchant had was: ", total_score)
 
 data = {
     'Risk_Tier': [5,4,3,2,1],
-    'Reason for Tier': ['total_score >= 21 OR Chargeback Refund Risk = 5 OR Credit Score Risk = 5 OR Exposure Risk = 5', 'total_score >= 16 OR Chargeback Refund Risk = 4 OR Credit Score Risk = 4 OR Exposure Risk = 4 or Business Age = 4/5 or MCC Risk Tier = 5', 'total_score >= 8', 'total_score >= 6', 'total_score > 0'],
+    'Reason for Tier': [
+        'total_score >= 21 OR Chargeback Refund Risk = 5 OR Credit Score Risk = 5 OR Exposure Risk = 5',
+        'total_score >= 16 OR Chargeback Refund Risk = 4 OR Credit Score Risk = 4 OR Exposure Risk = 4 or Business Age = 4/5 or MCC Risk Tier = 5',
+        'total_score >= 8',
+        'total_score >= 6',
+        'total_score > 0'
+    ],
 }
 
 # Create DataFrame
