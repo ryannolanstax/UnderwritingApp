@@ -59,12 +59,18 @@ Annual_ACH_Volume = st.number_input("Annual ACH Volume ($)", key="Annual_ACH_Vol
 
 #old refund rate field
 #Refund_Rate = st.number_input("Refund Rate (%)", value=3.0, key="Refund_Rate", step=0.1, format="%0.1f")
-Refund_Rate = 0.05
+#Refund_Rate = 0.05
+Refund_Rate = st.number_input("Refund Rate", key="Refund_Rate", value=0.05)
+
+
 Refund_Days = st.number_input("Refund Days (#) #Default 30 ie. If official 90 day return policy for online sales, Use 90", value=30, key="Refund_Days")
 
 #old chargeback rate field
 #Chargeback_Rate = st.number_input("'Chargeback Rate (%)", value=0.5, key="Chargeback_Rate", step=0.1, format="%0.1f")
-Chargeback_Rate = 0.005
+#Chargeback_Rate = 0.005
+Chargeback_Rate = st.number_input("Chargeback Rate", key="Chargeback_Rate", value=0.005)
+
+
 Chargeback_Days = 180
 
 #ACH_Reject_Rate = st.number_input('ACH Reject (%)',min_value=0.0, max_value=100.0, key='ACH_Reject_Rate')
