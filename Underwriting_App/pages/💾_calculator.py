@@ -1,4 +1,5 @@
 # python3 -m streamlit run Underwriting_App/pages/calc_in_prod_3_25.py 
+#last Updated End of April
 
 import altair as alt
 import pandas as pd
@@ -149,8 +150,8 @@ ExposureCoverage_integer = exposure_mapping[ExposureCoverage]
 
 SignerCreditScore_mapping = {
             'Under 550': 5,
-            '551-579 or Unknown': 4,
-            '580-650': 3,
+            '551-579': 4,
+            '580-650 or Unknown': 3,
             '651-750': 2,
             '751-850': 1,
 }
@@ -234,7 +235,8 @@ elif total_score >= 16 \
 elif total_score >= 8:
     final_score = 3
 
-elif total_score >= 6:
+elif total_score >= 6 \
+    or mcc_risk == 4: 
     final_score = 2
 
 else:
