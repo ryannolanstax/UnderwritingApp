@@ -67,8 +67,8 @@ Refund_Days = st.number_input("Refund Days (#) #Default 30 ie. If official 90 da
 
 #old chargeback rate field
 #Chargeback_Rate = st.number_input("'Chargeback Rate (%)", value=0.5, key="Chargeback_Rate", step=0.1, format="%0.1f")
-#Chargeback_Rate = 0.005
-Chargeback_Rate = st.number_input("Chargeback Rate", key="Chargeback_Rate", value=0.005, step=1e-6)
+Chargeback_Rate = 0.005
+#Chargeback_Rate = st.number_input("Chargeback Rate", key="Chargeback_Rate", value=0.005, step=1e-6)
 
 
 Chargeback_Days = 180
