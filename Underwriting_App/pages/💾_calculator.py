@@ -29,12 +29,13 @@ st.header('Exposure Fields')
 
 delayed = pd.read_csv('Underwriting_App/MCC & Business Models - MCC Ratings_Sales.csv')
 
-banned = [5111, 5122, 5832, 5912, 5921, 5994, 5995, 7011, 7012, 7832, 7841, 7996]
+banned = [4411, 4511, 4722, 4723, 4816, 4829, 5960, 5961, 5962, 5963, 5964, 5965, 5966, 5967, 5968, 5969, 6010, 6011, 6012, 6051, 6211, 6300, 6540, 7012, 7273, 7297, 7321, 7392, 7800, 7801, 7802, 7995, 9754]
+
 
 MCC = st.number_input("MCC", key='MCC', value=1711)
 
 if MCC  in banned:
-    st.error("MCC code not allowed. Please enter a valid MCC code. Talk to Manager if this is incorrect")
+    st.error("MCC code not allowed by APPS. Please enter a valid MCC code. Talk to Manager if this is incorrect")
 
 CNP_DD = delayed.loc[delayed['MCC'] == MCC, ['CNP Delayed Delivery']].iloc[0, 0]
 CP_DD = delayed.loc[delayed['MCC'] == MCC, ['CP/ACH Delayed Delivery']].iloc[0, 0]
