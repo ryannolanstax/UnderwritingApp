@@ -1,4 +1,6 @@
 # python3 -m streamlit run Underwriting_App/pages/calc_in_prod_3_25.py 
+#last Updated End of April
+#this should be testing
 
 import altair as alt
 import pandas as pd
@@ -28,12 +30,13 @@ st.header('Exposure Fields')
 
 delayed = pd.read_csv('Underwriting_App/MCC & Business Models - MCC Ratings_Sales.csv')
 
-banned = [5111, 5122, 5832, 5912, 5921, 5994, 5995, 7011, 7012, 7832, 7841, 7996]
+banned = [4411, 4511, 4722, 4723, 4816, 4829, 5960, 5961, 5962, 5963, 5964, 5965, 5966, 5967, 5968, 5969, 6010, 6011, 6012, 6051, 6211, 6300, 6540, 7012, 7273, 7297, 7321, 7392, 7800, 7801, 7802, 7995, 9754]
+
 
 MCC = st.number_input("MCC", key='MCC', value=1711)
 
 if MCC  in banned:
-    st.error("MCC code not allowed. Please enter a valid MCC code. Talk to Manager if this is incorrect")
+    st.error("MCC code not allowed by APPS. Please enter a valid MCC code. Talk to Manager if this is incorrect")
 
 CNP_DD = delayed.loc[delayed['MCC'] == MCC, ['CNP Delayed Delivery']].iloc[0, 0]
 CP_DD = delayed.loc[delayed['MCC'] == MCC, ['CP/ACH Delayed Delivery']].iloc[0, 0]
@@ -50,20 +53,28 @@ Loss_Risk_Rating = delayed.loc[delayed['MCC'] == MCC, ['Loss Risk Rating']].iloc
 mcc_risk = max(AML_Risk_Rating, Loss_Risk_Rating)
 
 st.write('**Underwriters** Stax Connect has possible data issues with CNP and CP not being accurate from partners. Use data for on the partner sheet for the processing percentage')
-Annual_CNP_Volume = st.number_input("Annual CNP Volume ($)", key="Annual_CNP_Volume")
+Annual_CNP_Volume = st.number_input("Annual CNP Volume ($)", key="Annual_CNP_Volume", step=1)
 #Annual_CP_ACH_Volume = st.number_input("Annual CP/ACH Volume ($)", key="Annual_CP_ACH_Volume") OLD
-Annual_CP_Volume = st.number_input("Annual CP Volume ($)", key="Annual_CP_Volume")
-Annual_ACH_Volume = st.number_input("Annual ACH Volume ($)", key="Annual_ACH_Volume")
+Annual_CP_Volume = st.number_input("Annual CP Volume ($)", key="Annual_CP_Volume", step=1)
+Annual_ACH_Volume = st.number_input("Annual ACH Volume ($)", key="Annual_ACH_Volume", step=1)
 
 
 #old refund rate field
 #Refund_Rate = st.number_input("Refund Rate (%)", value=3.0, key="Refund_Rate", step=0.1, format="%0.1f")
-Refund_Rate = 0.05
+#Refund_Rate = 0.05
+Refund_Rate = st.number_input("Refund Rate", key="Refund_Rate", value=0.05)
+
+
 Refund_Days = st.number_input("Refund Days (#) #Default 30 ie. If official 90 day return policy for online sales, Use 90", value=30, key="Refund_Days")
 
 #old chargeback rate field
 #Chargeback_Rate = st.number_input("'Chargeback Rate (%)", value=0.5, key="Chargeback_Rate", step=0.1, format="%0.1f")
-Chargeback_Rate = 0.005
+#Chargeback_Rate = 0.005
+step_size = 0.001
+
+Chargeback_Rate = st.number_input("Chargeback Rate", key="Chargeback_Rate", value=0.005, step=step_size, format="%f")
+
+
 Chargeback_Days = 180
 
 #ACH_Reject_Rate = st.number_input('ACH Reject (%)',min_value=0.0, max_value=100.0, key='ACH_Reject_Rate')
@@ -149,8 +160,8 @@ ExposureCoverage_integer = exposure_mapping[ExposureCoverage]
 
 SignerCreditScore_mapping = {
             'Under 550': 5,
-            '551-579 or Unknown': 4,
-            '580-650': 3,
+            '551-579': 4,
+            '580-650 or Unknown': 3,
             '651-750': 2,
             '751-850': 1,
 }
@@ -190,8 +201,8 @@ chargeback_refund_mapping = {
     'CB Rate **>= 2%** OR Refund Rate **>= 10%** OR ACH Reversal Rate **>= 0.5%** for Unauth Return Codes OR **>=10% and <15%** for All Return Codes.': 5,
     'CB Rate **>= 1%** AND < 2%** OR Refund Rate **>= 7.5% AND < 10%** OR ACH Reversal Rate **>= 0.4%** for Unauth Return Codes OR **>= 10% AND < 15%** for All Return Codes.': 4,
     'CB Rate **>= 0.75% AND < 1%** OR Refund Rate **>= 5% AND < 7.5%** OR ACH Reversal Rate **>= 0.3%** for Unauth Return Codes OR  **>= 7.5% AND < 10%** for All Return Codes.': 3,
-    'CB Rate **>= 0.5% AND < 0.75%** OR Refund Rate **>= 3% AND < 5%** OR ACH Reversal Rate **>= 0.2%** for Unauth Return Codes OR  **>= 5% AND < 7.5%** for All Return Codes.': 2,
-    'Not Needed OR CB Rate **< 0.5%** OR Refund Rate **< 3%** OR ACH Reversal Rate **< 0.2%** for Unauth Return Codes OR **< 5%** for All Return Codes.': 1,
+    'CB Rate **>= 0.05% AND < 0.75%** OR Refund Rate **>= 3% AND < 5%** OR ACH Reversal Rate **>= 0.2%** for Unauth Return Codes OR  **>= 5% AND < 7.5%** for All Return Codes.': 2,
+    'Not Needed OR CB Rate **< 0.05%** OR Refund Rate **< 3%** OR ACH Reversal Rate **< 0.2%** for Unauth Return Codes OR **< 5%** for All Return Codes.': 1,
 }
 
 chargeback_refund = st.radio('What is the customers business processing and banking history?', options=list(chargeback_refund_mapping.keys()), horizontal=True)
@@ -234,7 +245,8 @@ elif total_score >= 16 \
 elif total_score >= 8:
     final_score = 3
 
-elif total_score >= 6:
+elif total_score >= 6 \
+    or mcc_risk == 4: 
     final_score = 2
 
 else:
@@ -272,26 +284,40 @@ st.subheader("Risk Tier Calculations")
 
 st.write("Based on the form fields above and MCC DD the total amount of points the merchant had was: ", total_score)
 
+st.caption('Tier 5: total_score >= 21 OR Chargeback Refund Risk = 5 OR Credit Score Risk = 5 OR Exposure Risk = 5')
+st.caption('Tier 4: total_score >= 16 OR Chargeback Refund Risk = 4 OR Credit Score Risk = 4 OR Exposure Risk = 4 or Business Age = 4/5 or MCC Risk Tier = 5')
+st.caption('Tier 3: total_score >= 8')
+st.caption('Tier 2: total_score >= 6 OR MCC Risk Tier = 4')
+st.caption('Tier 1: total_score >= 0')
+
+
+st.write('The Total Score of the Customer is: ', total_score)
+
+st.write('Business Age:', business_age_integer, 'Exposure:', ExposureCoverage_integer, 'Chargeback Refund:', chargeback_refund_integer, 'Avg Review:', AvgReview_integer, 'Credit Score:', SignerCreditScore_integer, 'MCC Risk:', mcc_risk)
+
 data = {
-    'Risk_Tier': [5,4,3,2,1],
-    'Reason for Tier': [
-        'total_score >= 21 OR Chargeback Refund Risk = 5 OR Credit Score Risk = 5 OR Exposure Risk = 5',
-        'total_score >= 16 OR Chargeback Refund Risk = 4 OR Credit Score Risk = 4 OR Exposure Risk = 4 or Business Age = 4/5 or MCC Risk Tier = 5',
-        'total_score >= 8',
-        'total_score >= 6',
-        'total_score > 0'
-    ],
+    'MCC': MCC,
+    'Total Exposure': formatted_exposure,
+    'Annual_CNP_Volume': Annual_CNP_Volume,
+    'Annual_CP_Volume':Annual_CP_Volume,
+    'Annual_CP_Volume':Annual_CP_Volume,
+    'Total Volume': Annual_CNP_Volume+ Annual_CP_Volume + Annual_CP_Volume,
+    'CNP_DD': CNP_DD,
+    'CP_DD': CP_DD,
+    'ACH_DD': ACH_DD,
+    'Refund rate':Refund_Rate,
+    'Refund days':Refund_Days,
+    'Chargeback rate':Chargeback_Rate,
+    'Refund_Risk': Refund_Risk,
+    'Chargeback_Risk': Chargeback_Risk,
+    'ACH_Reject_Risk': ACH_New_Reject_Exposure,
+    'CNP_DD_Risk': CNP_DD_Risk,
+    'CP_DD_Risk': CP_DD_Risk,
+    'ACH_DD_Risk': ACH_DD_Risk
 }
 
 # Create DataFrame
 df = pd.DataFrame(data)
 
-# Ensure index is dropped
-df = df.reset_index(drop=True)
 
-# Display table using Streamlit
-st.write(df)
 
-st.write('The Total Score of the Customer is: ', total_score)
-
-st.write('Business Age:', business_age_integer, 'Exposure:', ExposureCoverage_integer, 'Chargeback Refund:', chargeback_refund_integer, 'Avg Review:', AvgReview_integer, 'Credit Score:', SignerCreditScore_integer, 'MCC Risk:', mcc_risk)
