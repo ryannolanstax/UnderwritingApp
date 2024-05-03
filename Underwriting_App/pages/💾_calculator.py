@@ -283,11 +283,11 @@ st.subheader("Risk Tier Calculations")
 
 st.write("Based on the form fields above and MCC DD the total amount of points the merchant had was: ", total_score)
 
-st.markdown('Tier 5: total_score >= 21 OR Chargeback Refund Risk = 5 OR Credit Score Risk = 5 OR Exposure Risk = 5')
-st.markdown('Tier 4: total_score >= 16 OR Chargeback Refund Risk = 4 OR Credit Score Risk = 4 OR Exposure Risk = 4 or Business Age = 4/5 or MCC Risk Tier = 5')
-st.markdown('Tier 3: total_score >= 8')
-st.markdown('Tier 2: total_score >= 6 OR MCC Risk Tier = 4')
-st.markdown('Tier 1: total_score >= 0')
+st.caption('Tier 5: total_score >= 21 OR Chargeback Refund Risk = 5 OR Credit Score Risk = 5 OR Exposure Risk = 5')
+st.caption('Tier 4: total_score >= 16 OR Chargeback Refund Risk = 4 OR Credit Score Risk = 4 OR Exposure Risk = 4 or Business Age = 4/5 or MCC Risk Tier = 5')
+st.caption('Tier 3: total_score >= 8')
+st.caption('Tier 2: total_score >= 6 OR MCC Risk Tier = 4')
+st.caption('Tier 1: total_score >= 0')
 
 
 st.write('The Total Score of the Customer is: ', total_score)
