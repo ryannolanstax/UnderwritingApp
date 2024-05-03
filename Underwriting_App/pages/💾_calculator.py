@@ -51,10 +51,10 @@ Loss_Risk_Rating = delayed.loc[delayed['MCC'] == MCC, ['Loss Risk Rating']].iloc
 mcc_risk = max(AML_Risk_Rating, Loss_Risk_Rating)
 
 st.write('**Underwriters** Stax Connect has possible data issues with CNP and CP not being accurate from partners. Use data for on the partner sheet for the processing percentage')
-Annual_CNP_Volume = st.number_input("Annual CNP Volume ($)", key="Annual_CNP_Volume")
+Annual_CNP_Volume = st.number_input("Annual CNP Volume ($)", key="Annual_CNP_Volume", step=1)
 #Annual_CP_ACH_Volume = st.number_input("Annual CP/ACH Volume ($)", key="Annual_CP_ACH_Volume") OLD
-Annual_CP_Volume = st.number_input("Annual CP Volume ($)", key="Annual_CP_Volume")
-Annual_ACH_Volume = st.number_input("Annual ACH Volume ($)", key="Annual_ACH_Volume")
+Annual_CP_Volume = st.number_input("Annual CP Volume ($)", key="Annual_CP_Volume", step=1)
+Annual_ACH_Volume = st.number_input("Annual ACH Volume ($)", key="Annual_ACH_Volume", step=1)
 
 
 #old refund rate field
@@ -68,7 +68,7 @@ Refund_Days = st.number_input("Refund Days (#) #Default 30 ie. If official 90 da
 #old chargeback rate field
 #Chargeback_Rate = st.number_input("'Chargeback Rate (%)", value=0.5, key="Chargeback_Rate", step=0.1, format="%0.1f")
 #Chargeback_Rate = 0.005
-Chargeback_Rate = st.number_input("Chargeback Rate", key="Chargeback_Rate", value=0.005)
+Chargeback_Rate = st.number_input("Chargeback Rate", key="Chargeback_Rate", value=0.005, step=1e-6)
 
 
 Chargeback_Days = 180
