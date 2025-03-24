@@ -1,4 +1,4 @@
-# python3 -m streamlit run Underwriting_App/pages/calc_in_prod_3_25.py 
+# python3 -m streamlit run Underwriting_App/pages/calc_2025.py 
 #last Updated End of April
 
 import altair as alt
@@ -55,7 +55,16 @@ st.write('**Underwriters** Stax Connect has possible data issues with CNP and CP
 Annual_CNP_Volume = st.number_input("Annual CNP Volume ($)", key="Annual_CNP_Volume", step=1)
 #Annual_CP_ACH_Volume = st.number_input("Annual CP/ACH Volume ($)", key="Annual_CP_ACH_Volume") OLD
 Annual_CP_Volume = st.number_input("Annual CP Volume ($)", key="Annual_CP_Volume", step=1)
+
+if (Annual_CNP_Volume + Annual_CP_Volume > 20000000):
+    st.warning('SYNOVUS Underwriting Needed based on Volume!!! Use the Synovus Exposure Calculator Also!!!', icon="⚠️")
+
+
 Annual_ACH_Volume = st.number_input("Annual ACH Volume ($)", key="Annual_ACH_Volume", step=1)
+
+
+
+
 
 
 #old refund rate field
@@ -135,6 +144,11 @@ Total_Exposure = Refund_Risk + Chargeback_Risk + CNP_DD_Risk + CP_DD_Risk + ACH_
 
 formatted_exposure = "${:,.0f}".format(Total_Exposure)
 st.write('The Final Exposure of the Customer is:', formatted_exposure)
+
+
+if (Refund_Risk + Chargeback_Risk + CNP_DD_Risk + CP_DD_Risk > 2000000):
+    st.warning('SYNOVUS Underwriting Potentially Needed Based on Card Exposure!!! Use the Synovus Exposure Calculator Also!!!', icon="⚠️")
+
 
 formatted_exposure50 = "${:,.0f}".format(Total_Exposure * 0.5)
 formatted_exposure60 = "${:,.0f}".format(Total_Exposure *  0.6)
