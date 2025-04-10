@@ -32,15 +32,15 @@ CP_DD = delayed.loc[delayed['MCC'] == MCC, ['CP/ACH Delayed Delivery']].iloc[0, 
 
 NDX = (CNP_DD + CP_DD) / 2
 
-Annual_Volume = st.number_input("Annual Volume ($)", key="Annual_Volume", step=1)
+Annual_Volume = st.number_input("Annual Volume Card Only ($)", key="Annual_Volume", step=1)
 
 daily_vol = Annual_Volume / 365
 monthly_vol = Annual_Volume / 12
 
 step_size = 0.001
 
-Refund_Rate = st.number_input("Refund Rate Last 90 Days", key="Refund_Rate", value=0.05)
-Chargeback_Rate = st.number_input("Chargeback Rate Last 90 Days", key="Chargeback_Rate", value=0.005, step=step_size, format="%f")
+Refund_Rate = st.number_input("Refund Rate (Volume) Last 90 Days", key="Refund_Rate", value=0.05)
+Chargeback_Rate = st.number_input("Chargeback Rate (Volume) Last 90 Days", key="Chargeback_Rate", value=0.005, step=step_size, format="%f")
 
 Total_Exposure = ((daily_vol * NDX) + (monthly_vol * Refund_Rate) + (monthly_vol * Chargeback_Rate))
 
