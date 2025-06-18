@@ -14,16 +14,17 @@ from datetime import date, timedelta
 import io
 import matplotlib.pyplot as plt  
 
-
 #set default max dd
 #5% default refund rate
 #0.5% default chargeback rate
 
 st.set_page_config(page_title="Underwriting Calculator", page_icon="💾", layout="wide")
 
-st.title("Underwriting and Risk Calculator 4/12 Updates")
-st.markdown("This New Calculator Combines the older Tiering + Exposure Calculators")
+st.title("Underwriting and Risk Calculator 6/18/25 Updates")
+st.markdown("This New Calculator Combines the older Tiering + Exposure Calculators + Amex/Synovus Guidelines")
 st.markdown("Having Issues or Ideas to improve the APP? Reach out to Ryan Nolan")
+st.markdown("New Stax MCC List COMING SOON")
+
 
 st.header('Exposure Fields')
 
@@ -59,6 +60,64 @@ amex_banned = [
 
 
 
+no_amex_threshold  = [
+    # Charity
+    8398,
+    8661,
+
+    # Education
+    7032,
+    7911,
+    8211,
+    8220,
+    8241,
+    8244,
+    8249,
+    8299,
+    8351,
+
+    # Government
+    9211,
+    9222,
+    9311,
+    9399,
+
+    # Healthcare
+    742,
+    4119,
+    8011,
+    8021,
+    8031,
+    8041,
+    8042,
+    8043,
+    8049,
+    8050,
+    8062,
+    8071,
+    8099,
+
+    # Insurance
+    6300,
+
+    # Online Gambling
+    7801,
+
+    # Residential Rent
+    6513,
+
+    # Utilities
+    4900
+]
+
+
+
+
+
+
+
+
+
 
 MCC = st.number_input("MCC", key='MCC', value=1711)
 
@@ -67,6 +126,10 @@ if MCC  in banned:
 
 if MCC  in amex_banned:
     st.error("MCC code not allowed by AMEX")
+
+if MCC  in no_amex_threshold:
+    st.error("No Amex Threshold")
+
 
 
 CNP_DD = delayed.loc[delayed['MCC'] == MCC, ['CNP Delayed Delivery']].iloc[0, 0]
