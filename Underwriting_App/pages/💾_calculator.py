@@ -1,5 +1,5 @@
 # python3 -m streamlit run Underwriting_App/pages/calc_2025.py 
-#last Updated End of April
+#last Updated Beginning of July
 
 import altair as alt
 import pandas as pd
@@ -14,23 +14,39 @@ from datetime import date, timedelta
 import io
 import matplotlib.pyplot as plt  
 
+
 #set default max dd
 #5% default refund rate
 #0.5% default chargeback rate
 
 st.set_page_config(page_title="Underwriting Calculator", page_icon="💾", layout="wide")
 
-st.title("Underwriting and Risk Calculator 6/18/25 Updates")
-st.markdown("This New Calculator Combines the older Tiering + Exposure Calculators + Amex/Synovus Guidelines")
+st.title("Underwriting and Risk Calculator 4/12 Updates")
+st.markdown("This New Calculator Combines the older Tiering + Exposure Calculators")
 st.markdown("Having Issues or Ideas to improve the APP? Reach out to Ryan Nolan")
-st.markdown("New Stax MCC List COMING SOON")
-
 
 st.header('Exposure Fields')
 
 delayed = pd.read_csv('Underwriting_App/MCC & Business Models - MCC Ratings_Sales.csv')
 
-banned = [4411, 4511, 4722, 4723, 4816, 4829, 5960, 5961, 5962, 5963, 5964, 5965, 5966, 5967, 5968, 5969, 6010, 6011, 6012, 6051, 6211, 6300, 6540, 7012, 7273, 7297, 7321, 7392, 7800, 7801, 7802, 7995, 9754]
+
+#Prohibited Business Models
+prohibited_business_models = [
+    *range(3351, 3441), 4411, 4511, 4814, 4829, 4899, 5051, 5099, 5499, 5692,
+    5698, 5941, 5947, 5963, 5964, 5966, 5967, 5968, 5993, 5995, 5999, 6012,
+    6051, 6211, 6300, 6538, 6540, 7012, 7277, 7299, 7311, 7322, 7379, 7399,
+    7800, 7801, 7802, 7994, 7995, 8099, 8211, 8398, 8651, 8999, 9399, 9754
+]
+
+
+
+#Restricted Business Models
+restricted_business_models = [
+1799, 4111, 4121, 4214, 4722, 4900, 5051, 5122, 5262, 5499, 5816, 5912, 5921,
+5933, 5935, 5937, 5968, 5972, 5993, 5999, 6010, 6012, 6051, 6211, 6300, 7273,
+7321, 7394, 7399, 7922, 7999, 8011, 8071, 8099, 8398, 8641, 9111
+]
+
 
 
 amex_banned = [
@@ -111,25 +127,19 @@ no_amex_threshold  = [
 ]
 
 
-
-
-
-
-
-
-
-
 MCC = st.number_input("MCC", key='MCC', value=1711)
 
-if MCC  in banned:
-    st.error("MCC code not allowed by APPS. Please enter a valid MCC code. Talk to Manager if this is incorrect")
+if MCC in prohibited_business_models:
+    st.error("MCC is in Prohibited Business Models Talk to Manager if this is incorrect")
+
+if MCC  in restricted_business_models:
+    st.error("MCC is in Restricted Business Models Talk to Manager if this is incorrect")
 
 if MCC  in amex_banned:
     st.error("MCC code not allowed by AMEX")
 
 if MCC  in no_amex_threshold:
     st.error("No Amex Threshold")
-
 
 
 CNP_DD = delayed.loc[delayed['MCC'] == MCC, ['CNP Delayed Delivery']].iloc[0, 0]
@@ -397,7 +407,6 @@ st.caption('Tier 4: total_score >= 16 OR Chargeback Refund Risk = 4 OR Credit Sc
 st.caption('Tier 3: total_score >= 8')
 st.caption('Tier 2: total_score >= 6 OR MCC Risk Tier = 4')
 st.caption('Tier 1: total_score >= 0')
-
 
 st.write('The Total Score of the Customer is: ', total_score)
 
