@@ -129,6 +129,11 @@ no_amex_threshold  = [
 
 MCC = st.number_input("MCC", key='MCC', value=1711)
 
+if MCC == 8099:
+    st.error("Prohibited: If 8099,  Home-based massage business without valid license OR Human Growth Hormone OR Male / female sexual enhancements not FDA approved OR Synthetic drugs / substances designed to mimic illegal drugs" \
+    "Cannabis-related or adjacent merchant (cannabis related business/marijuana related business crb/mrb) such as Doctors approving prescriptions OR Ketamine including retreats, therapy, treatment etc. OR Hormone Replacement Therapy OR IV Therapy OR Medical Weight Loss / Semaglutides"
+     )
+
 if MCC in prohibited_business_models:
     st.error("MCC is in Prohibited Business Models Talk to Manager if this is incorrect")
 
