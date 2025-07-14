@@ -134,6 +134,10 @@ if MCC == 8099:
     "\n RESTRICTED Cannabis-related or adjacent merchant (cannabis related business/marijuana related business crb/mrb) such as Doctors approving prescriptions OR Ketamine including retreats, therapy, treatment etc. OR Hormone Replacement Therapy OR IV Therapy OR Medical Weight Loss / Semaglutides"
      )
 
+if MCC == 8011:
+    st.error("RESTRICTED:  Telehealth / Telemedicine ( if the user can receive a prescription)")
+
+
 if MCC in prohibited_business_models:
     st.error("MCC is in Prohibited Business Models Talk to Manager if this is incorrect")
 
