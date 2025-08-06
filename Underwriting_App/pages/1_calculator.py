@@ -447,7 +447,6 @@ accepted_risk = 0
 
 max_tier = max(total_score, mcc_risk)
 
-
 if  max_tier == 5:
     accepted_risk = 10000
 elif  max_tier == 4:
@@ -465,36 +464,33 @@ st.write('Accepted Risk Default Based on Calc: ', accepted_risk)
 
 final_accepted_risk = st.number_input("Override Accepted Risk If Needed", value=accepted_risk, key="accepted_risk")
 
-
-import streamlit as st
-
-st.title("Merchant Coverage Calculation Guidelines")
+st.subheader("Merchant Coverage Calculation Guidelines")
 
 st.markdown("""
 **Merchant coverage** is calculated based on a review of financial information, as follows:
 """)
 
-st.subheader("1. Bank Statements")
+st.write("1. Bank Statements")
 st.markdown("""
 - A minimum of **three months** of bank statements is required.
 - Coverage will equal the **average daily balance** available in the bank account on file.
 - **Note**: The bank account must accept **debit instructions from Stax**.
 """)
 
-st.subheader("2. Financial Statement Review")
+st.write("2. Financial Statement Review")
 st.markdown("""
 - **Two years** of **audited financial statements** are required.
 - Coverage is based on the **cash on hand** value from the **most recent financial statement**.
 """)
 
-st.subheader("3. Combined Review")
+st.write("3. Combined Review")
 st.markdown("""
 - If **both bank statements and financial statements** are reviewed,  
   the **higher amount** between the daily bank balance and cash on hand will be used  
   for the **reserves calculation**.
 """)
 
-st.subheader("4. Additional Collateral: Letter of Credit")
+st.write("4. Additional Collateral: Letter of Credit")
 st.markdown("""
 Merchants may provide a **letter of credit**, which must include:
 
@@ -516,16 +512,16 @@ coverage_amount = st.number_input('Coverage Input Goes Here', key="coverage_amou
 
 Reserve_amount = Total_Exposure - coverage_amount - final_accepted_risk
 
+
 if Reserve_amount < 0:
     final_reserve_amount = 0
 else:
     final_reserve_amount = Reserve_amount
 
 
+st.write(f'Total_Exposure: {Total_Exposure} -  coverage_amount: {coverage_amount} -  accepted_risk: {final_accepted_risk}', )
 
 
 st.write('Final Reserve Amount: ', final_reserve_amount)
 
-
-#Reserve Amount = Exposure ($) - (Coverage $ + Accepted Risk $)
 
