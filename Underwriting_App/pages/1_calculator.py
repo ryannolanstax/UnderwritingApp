@@ -445,8 +445,9 @@ coverage_amount = 0
 
 accepted_risk = 0
 
-max_tier = max(total_score, mcc_risk)
-st.write('max_tier', max_tier)
+max_tier = max(final_score, mcc_risk)
+
+#st.write('max_tier', max_tier)
 
 
 if  max_tier == 5:
