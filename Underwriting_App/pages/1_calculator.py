@@ -434,7 +434,7 @@ st.write('The Total Score of the Customer is: ', total_score)
 st.write('Business Age:', business_age_integer, 'Exposure:', ExposureCoverage_integer, 'Chargeback Refund:', chargeback_refund_integer, 'Avg Review:', AvgReview_integer, 'Credit Score:', SignerCreditScore_integer, 'MCC Risk:', mcc_risk)
 
 
-st.header("Reserve Calculations")
+st.header("WIP DO NOT USE !!!!!!!! Reserve Calculations")
 
 
 st.write('High Risk Partner (Iron Rock) = accounts onboarded to a high risk partner may result in a $0 accepted risk amount. Risk also reserves the right to adjust the accepted risk amount depending on risk factors identified in the evaluation.')
@@ -446,6 +446,8 @@ coverage_amount = 0
 accepted_risk = 0
 
 max_tier = max(total_score, mcc_risk)
+st.write('max_tier', max_tier)
+
 
 if  max_tier == 5:
     accepted_risk = 10000
