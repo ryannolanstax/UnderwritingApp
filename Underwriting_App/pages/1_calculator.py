@@ -21,7 +21,7 @@ import matplotlib.pyplot as plt
 
 st.set_page_config(page_title="Underwriting Calculator", page_icon="💾", layout="wide")
 
-st.title("Underwriting and Risk Calculator 7/11/25 Updates")
+st.title("Underwriting and Risk Calculator 8/6/25 Updates")
 st.markdown("This New Calculator Combines the older Tiering + Exposure Calculators")
 st.markdown("Having Issues or Ideas to improve the APP? Reach out to Ryan Nolan")
 
@@ -432,3 +432,100 @@ st.caption('Tier 1: total_score >= 0')
 st.write('The Total Score of the Customer is: ', total_score)
 
 st.write('Business Age:', business_age_integer, 'Exposure:', ExposureCoverage_integer, 'Chargeback Refund:', chargeback_refund_integer, 'Avg Review:', AvgReview_integer, 'Credit Score:', SignerCreditScore_integer, 'MCC Risk:', mcc_risk)
+
+
+st.header("Reserve Calculations")
+
+
+st.write('High Risk Partner (Iron Rock) = accounts onboarded to a high risk partner may result in a $0 accepted risk amount. Risk also reserves the right to adjust the accepted risk amount depending on risk factors identified in the evaluation.')
+
+st.write('Poor Credit/Financial History Applicants = applicants that present a poor credit score, poor financial history, history of delinquency, etc. may be required to have a reserve with $0 accepted risk amount.')
+
+coverage_amount = 0
+
+accepted_risk = 0
+
+max_tier = max(total_score, mcc_risk)
+
+
+if  max_tier == 5:
+    accepted_risk = 10000
+elif  max_tier == 4:
+    accepted_risk = 25000
+elif  max_tier == 3:
+    accepted_risk = 25000
+elif  max_tier == 2:
+    accepted_risk = 30000
+elif  max_tier == 1:
+    accepted_risk = 30000
+else: 
+    accepted_risk = 0
+
+st.write('Accepted Risk Default Based on Calc: ', accepted_risk)
+
+final_accepted_risk = st.number_input("Override Accepted Risk If Needed", value=accepted_risk, key="accepted_risk")
+
+
+import streamlit as st
+
+st.title("Merchant Coverage Calculation Guidelines")
+
+st.markdown("""
+**Merchant coverage** is calculated based on a review of financial information, as follows:
+""")
+
+st.subheader("1. Bank Statements")
+st.markdown("""
+- A minimum of **three months** of bank statements is required.
+- Coverage will equal the **average daily balance** available in the bank account on file.
+- **Note**: The bank account must accept **debit instructions from Stax**.
+""")
+
+st.subheader("2. Financial Statement Review")
+st.markdown("""
+- **Two years** of **audited financial statements** are required.
+- Coverage is based on the **cash on hand** value from the **most recent financial statement**.
+""")
+
+st.subheader("3. Combined Review")
+st.markdown("""
+- If **both bank statements and financial statements** are reviewed,  
+  the **higher amount** between the daily bank balance and cash on hand will be used  
+  for the **reserves calculation**.
+""")
+
+st.subheader("4. Additional Collateral: Letter of Credit")
+st.markdown("""
+Merchants may provide a **letter of credit**, which must include:
+
+- Name and information of the **banking institution** (must be verifiable)
+- **Amount provided** as credit
+- **Amount utilized** from the line of credit
+- **Amount still available** for the line of credit
+- **Expiration date** of the line of credit
+
+The **available balance** on the letter of credit can be used as an **additional coverage factor**.
+""")
+
+
+st.write('Merchant coverage is calculated based on a review of financial information, as follows:')
+coverage_amount = st.number_input('Coverage Input Goes Here', key="coverage_amount")
+
+
+
+
+Reserve_amount = Total_Exposure - coverage_amount - final_accepted_risk
+
+if Reserve_amount < 0:
+    final_reserve_amount = 0
+else:
+    final_reserve_amount = Reserve_amount
+
+
+
+
+st.write('Final Reserve Amount: ', final_reserve_amount)
+
+
+#Reserve Amount = Exposure ($) - (Coverage $ + Accepted Risk $)
+
