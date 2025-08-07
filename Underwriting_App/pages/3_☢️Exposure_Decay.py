@@ -5,13 +5,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 
 
-st.set_page_config(page_title="Exposure Decay", page_icon="💾", layout="wide")
-
-
-
-
-
-
+st.set_page_config(page_title="Exposure Decay", page_icon="☢️", layout="wide")
 
 # Function to calculate row-wise half-life based on cb_rate and refund_rate
 def calculate_half_life(row):
@@ -52,11 +46,41 @@ st.markdown("Having Issues or Ideas to improve the APP? Reach out to Ryan Nolan"
 col1, col2 = st.columns(2)
 
 with col1:
-    st.header('Exposure Fields')
 
-    st.write("Merchants Query can be found here: https://app.mode.com/editor/fattmerchant/reports/51bead101fb5/queries/1e8a80ded27a")
+    cb_half_life = {
+        "≤ 5%": 30,
+        "6–11%": 40,
+        "12–19%": 50,
+        "≥ 20%": 60
+    }
 
-    merchants = st.file_uploader("Upload Merchant Spreadsheet", type=['csv', 'xlsx'])
+    refund_half_life = {
+        "≤ 3%": 30,
+        "4–6%": 40,
+        "7–10%": 50,
+        "≥ 11%": 60
+    }
+
+    # Convert to DataFrame
+    cb_df = pd.DataFrame({
+        "Rate Type": ["Chargeback Rate"] * 4,
+        "Rate Range": list(cb_half_life.keys()),
+        "Half Life (days)": list(cb_half_life.values())
+    })
+
+    refund_df = pd.DataFrame({
+        "Rate Type": ["Refund Rate"] * 4,
+        "Rate Range": list(refund_half_life.keys()),
+        "Half Life (days)": list(refund_half_life.values())
+    })
+
+    # Combine into one table
+    combined_df = pd.concat([cb_df, refund_df], ignore_index=True)
+
+    # Display in Streamlit
+    st.header("Half-Life Table Based on Refund or Chargeback Rate")
+    st.table(combined_df)
+
 
 
 with col2:
@@ -84,6 +108,14 @@ with col2:
     ax.grid(True)
 
     st.pyplot(fig)
+
+
+st.header('File Upload Section')
+
+
+st.write("Merchants Query can be found here: https://app.mode.com/editor/fattmerchant/reports/51bead101fb5/queries/1e8a80ded27a")
+
+merchants = st.file_uploader("Upload Merchant Spreadsheet", type=['csv', 'xlsx'])
 
 
 
