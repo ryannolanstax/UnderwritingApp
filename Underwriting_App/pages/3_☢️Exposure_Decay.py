@@ -131,20 +131,24 @@ if merchants is not None:
     merchants_df['lambda'] = np.log(2) / merchants_df['half_life']
 
     for t in decay_days:
-        merchants_df[f'decay_exposure_{t}d'] = merchants_df['true_exposure'] * np.exp(-merchants_df['lambda'] * t)
+        merchants_df[f'decay_exposure_{t}d'] = merchants_df['exposure_180'] * np.exp(-merchants_df['lambda'] * t)
 
-
-    #lambda_ = np.log(2) / half_life  # Convert half-life to decay rate
-
-    # Apply exponential decay for each time period
-    #for t in decay_days:
-    #    merchants_df[f'decay_exposure_{t}d'] = merchants_df['true_exposure'] * np.exp(-lambda_ * t)
 
     #merchants_df = merchants_df.drop(columns=['refund_rate', 'cb_rate'])
 
-    currency_cols = ['true_exposure'] + [f'decay_exposure_{t}d' for t in decay_days]
+    currency_cols = ['exposure_180'] + ['last_180_vol] + [f'decay_exposure_{t}d' for t in decay_days]
     merchants_df[currency_cols] = merchants_df[currency_cols].applymap(lambda x: f"${x:,.2f}")
 
     # Show the result
     st.dataframe(merchants_df, use_container_width=True)
+
+    csv = merchants_df.to_csv(index=False)
+    
+    # Create download button
+    st.download_button(
+        label="📥 Download as CSV",
+        data=csv,
+        file_name="merchants.csv",
+        mime="text/csv",
+    )
 
