@@ -136,7 +136,7 @@ if merchants is not None:
 
     #merchants_df = merchants_df.drop(columns=['refund_rate', 'cb_rate'])
 
-    currency_cols = ['exposure_180'] + ['last_180_vol] + [f'decay_exposure_{t}d' for t in decay_days]
+    currency_cols = ['exposure_180'] + ['last_180_vol'] + [f'decay_exposure_{t}d' for t in decay_days]
     merchants_df[currency_cols] = merchants_df[currency_cols].applymap(lambda x: f"${x:,.2f}")
 
     # Show the result
