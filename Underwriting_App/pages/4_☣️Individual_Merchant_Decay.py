@@ -8,6 +8,9 @@ import io
 
 st.header('Individual Exposure Decay')
 
+st.set_page_config(page_title="Individual Merchant Decay", page_icon="☣️", layout="wide")
+
+
 st.write("Merchants Query can be found here: https://app.mode.com/editor/fattmerchant/reports/51bead101fb5/queries/1e8a80ded27a")
 
 with st.expander("Half Life Rules 8/11"):
