@@ -10,7 +10,7 @@ st.set_page_config(page_title="Individual Merchant Decay", page_icon="☣️", l
 
 st.header('Individual Exposure Decay')
 
-st.write("Merchants Query can be found here: https://app.mode.com/editor/fattmerchant/reports/51bead101fb5/queries/1e8a80ded27a")
+st.write("Merchants Query can be found here: https://app.mode.com/editor/fattmerchant/reports/49e3c5343375/queries/3c59a638ce08")
 
 with st.expander("Half Life Rules 8/11"):
     st.write("CNP/CP/ACH DD Half Life = Default or Merchant DD Value in Database")
