@@ -6,10 +6,9 @@ import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
 import io
 
-st.header('Individual Exposure Decay')
-
 st.set_page_config(page_title="Individual Merchant Decay", page_icon="☣️", layout="wide")
 
+st.header('Individual Exposure Decay')
 
 st.write("Merchants Query can be found here: https://app.mode.com/editor/fattmerchant/reports/51bead101fb5/queries/1e8a80ded27a")
 
