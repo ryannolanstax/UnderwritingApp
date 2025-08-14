@@ -70,7 +70,7 @@ def calculate_chargeback_risk_value(cb):
         return 30
     elif cb <= 0.5:
         return 40
-    elif cb <= 0.1:
+    elif cb <= 1:
         return 50
     else:
         return 60
