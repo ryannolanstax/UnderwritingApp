@@ -13,24 +13,24 @@ def calculate_half_life(row):
     refund = row['refund_rate']
 
     # CB half-life
-    if cb <= 0.05:
+    if cb <= 0.1:
         cb_life = 30
-    elif cb <= 0.11:
+    elif cb <= 0.5:
         cb_life = 40
-    elif cb <= 0.19:
+    elif cb <= 1:
         cb_life = 50
     else:
         cb_life = 60
 
     # Refund half-life
-    if refund <= 3:
-        refund_life = 30
-    elif refund <= 6:
-        refund_life = 40
-    elif refund <= 10:
-        refund_life = 50
+    if refund <= 0.5:
+        refund_life = 5
+    elif refund <= 2.5:
+        refund_life = 10
+    elif refund <= 5:
+        refund_life = 15
     else:
-        refund_life = 60
+        refund_life = 20
 
     # Choose stricter (larger) half-life
     return max(cb_life, refund_life)
@@ -48,17 +48,17 @@ col1, col2 = st.columns(2)
 with col1:
 
     cb_half_life = {
-        "≤ 5%": 30,
-        "6–11%": 40,
-        "12–19%": 50,
-        "≥ 20%": 60
+        "≤ 0.1%": 30,
+        "0.1–0.5%": 40,
+        "0.5–1%": 50,
+        "≥ 1%": 60
     }
 
     refund_half_life = {
-        "≤ 3%": 30,
-        "4–6%": 40,
-        "7–10%": 50,
-        "≥ 11%": 60
+        "≤ 0.5%": 5,
+        "0.5–2.5%": 10,
+        "2.5–5%": 15,
+        "≥ 5%": 20
     }
 
     # Convert to DataFrame
@@ -151,4 +151,3 @@ if merchants is not None:
         file_name="merchants.csv",
         mime="text/csv",
     )
-
