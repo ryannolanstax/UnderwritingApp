@@ -1,153 +1,185 @@
 import pandas as pd
 import numpy as np
-import datetime
 import streamlit as st
 import matplotlib.pyplot as plt
 
+st.set_page_config(page_title="Exposure Decay Portfolio", page_icon="☢️", layout="wide")
 
-st.set_page_config(page_title="Exposure Decay", page_icon="☢️", layout="wide")
+# ------------------ CONFIG ------------------
+risk_cols = [
+    "refund_risk",
+    "chargeback_risk",
+    "cnp_dd_risk",
+    "cp_dd_risk",
+    "ach_new_reject_exposure",
+    "ach_dd_risk"
+]
 
-# Function to calculate row-wise half-life based on cb_rate and refund_rate
-def calculate_half_life(row):
-    cb = row['cb_rate']
-    refund = row['refund_rate']
-
-    # CB half-life
+# Half-life rules
+def calculate_chargeback_risk_value(cb):
     if cb <= 0.1:
-        cb_life = 30
+        return 30
     elif cb <= 0.5:
-        cb_life = 40
+        return 40
     elif cb <= 1:
-        cb_life = 50
+        return 50
     else:
-        cb_life = 60
+        return 60
 
-    # Refund half-life
+def calculate_refund_risk_value(refund):
     if refund <= 0.5:
-        refund_life = 5
+        return 5
     elif refund <= 2.5:
-        refund_life = 10
+        return 10
     elif refund <= 5:
-        refund_life = 15
+        return 15
     else:
-        refund_life = 20
+        return 20
 
-    # Choose stricter (larger) half-life
-    return max(cb_life, refund_life)
-
-
-
-
-st.title("Exposure Decay Calc Last Updated 8/6/25")
-st.markdown("This New Calculator Looks at Decaying Exposure for Merchants in a Partner")
-st.markdown("Having Issues or Ideas to improve the APP? Reach out to Ryan Nolan")
-
-
-col1, col2 = st.columns(2)
-
-with col1:
-
-    cb_half_life = {
-        "≤ 0.1%": 30,
-        "0.1–0.5%": 40,
-        "0.5–1%": 50,
-        "≥ 1%": 60
-    }
-
-    refund_half_life = {
-        "≤ 0.5%": 5,
-        "0.5–2.5%": 10,
-        "2.5–5%": 15,
-        "≥ 5%": 20
-    }
-
-    # Convert to DataFrame
-    cb_df = pd.DataFrame({
-        "Rate Type": ["Chargeback Rate"] * 4,
-        "Rate Range": list(cb_half_life.keys()),
-        "Half Life (days)": list(cb_half_life.values())
-    })
-
-    refund_df = pd.DataFrame({
-        "Rate Type": ["Refund Rate"] * 4,
-        "Rate Range": list(refund_half_life.keys()),
-        "Half Life (days)": list(refund_half_life.values())
-    })
-
-    # Combine into one table
-    combined_df = pd.concat([cb_df, refund_df], ignore_index=True)
-
-    # Display in Streamlit
-    st.header("Half-Life Table Based on Refund or Chargeback Rate")
-    st.table(combined_df)
+st.title("Portfolio-Level & Merchant-Level Exposure Decay")
+st.markdown("Automatically calculates decay for 6 components and totals them per merchant.")
 
 
 
-with col2:
-
-    st.header("Exposure Decay for Different Half-Lives")
-
-    # Initial exposure
-    initial_exposure = 10000
-    time_range = np.arange(0, 181, 5)  # 0 to 180 days, step of 5
-    half_lives = [30, 40, 50, 60]
-
-    # Create decay curves
-    fig, ax = plt.subplots(figsize=(5, 3))  # Width=5 inches, Height=3 inches
-
-    for hl in half_lives:
-        lambda_ = np.log(2) / hl
-        decay = initial_exposure * np.exp(-lambda_ * time_range)
-        ax.plot(time_range, decay, label=f'Half-Life {hl} days')
-
-    # Formatting
-    ax.set_title("Exponential Decay of $10,000 Exposure")
-    ax.set_xlabel("Days")
-    ax.set_ylabel("Exposure ($)")
-    ax.legend()
-    ax.grid(True)
-
-    st.pyplot(fig)
-
-
-st.header('File Upload Section')
-
-
-st.write("Merchants Query can be found here: https://app.mode.com/editor/fattmerchant/reports/51bead101fb5/queries/1e8a80ded27a")
-
+# ------------------ FILE UPLOAD ------------------
 merchants = st.file_uploader("Upload Merchant Spreadsheet", type=['csv', 'xlsx'])
-
-
 
 if merchants is not None:
     merchants_df = pd.read_csv(merchants)
 
-    # List of decay days
-    decay_days = [30, 60, 90, 120, 150, 180]
+    # Auto half-life per merchant
+    merchants_df["hl_chargeback"] = merchants_df["chargeback_risk"].apply(calculate_chargeback_risk_value)
+    merchants_df["hl_refund"] = merchants_df["refund_risk"].apply(calculate_refund_risk_value)
+    merchants_df["hl_ach_reject"] = 5
+    merchants_df["hl_cnp_dd"] = merchants_df["dd_cnp"]
+    merchants_df["hl_cp_dd"] = merchants_df["dd_cp"]
+    merchants_df["hl_ach_dd"] = merchants_df["dd_ach"]
 
-    # Define a half-life (or pick lambda directly)
-    #half_life = 30  # This is just an example, change it if needed
-    merchants_df['half_life'] = merchants_df.apply(calculate_half_life, axis=1)
-    merchants_df['lambda'] = np.log(2) / merchants_df['half_life']
+    # Map half-lives
+    hl_map = {
+        "refund_risk": "hl_refund",
+        "chargeback_risk": "hl_chargeback",
+        "ach_new_reject_exposure": "hl_ach_reject",
+        "cnp_dd_risk": "hl_cnp_dd",
+        "cp_dd_risk": "hl_cp_dd",
+        "ach_dd_risk": "hl_ach_dd"
+    }
 
-    for t in decay_days:
-        merchants_df[f'decay_exposure_{t}d'] = merchants_df['exposure_180'] * np.exp(-merchants_df['lambda'] * t)
+    # Calculate decay results per merchant
+    decay_days = np.arange(0, 181, 30)
+    all_results = []
+    for idx, row in merchants_df.iterrows():
+        merchant_result = {"stax_merchant_id": row["stax_merchant_id"]}
+        for col in risk_cols:
+            merchant_result[f"{col}_start"] = row[col]
+        for day in decay_days:
+            total_exposure_day = 0
+            for col in risk_cols:
+                base_val = row[col]
+                hl = row[hl_map[col]]
+                decayed_val = base_val * (0.5 ** (day / hl)) if hl > 0 else 0
+                total_exposure_day += decayed_val
+            merchant_result[f"exposure_day_{day}"] = total_exposure_day
+        all_results.append(merchant_result)
 
+    results_df = pd.DataFrame(all_results)
+    exposure_cols = [col for col in results_df.columns if col.startswith("exposure_day_")]
+    results_df[exposure_cols] = results_df[exposure_cols].applymap(lambda x: f"${x:,.2f}")
 
-    #merchants_df = merchants_df.drop(columns=['refund_rate', 'cb_rate'])
+    # ===== Portfolio-Level Curves =====
+    days = np.arange(0, 181)
+    portfolio_curves = {col: np.zeros_like(days, dtype=float) for col in risk_cols + ["Total Exposure"]}
+    for _, row in merchants_df.iterrows():
+        for col in risk_cols:
+            hl = row[hl_map[col]]
+            base_val = row[col]
+            decay_curve = base_val * (0.5 ** (days / hl)) if hl > 0 else np.zeros_like(days)
+            portfolio_curves[col] += decay_curve
+    portfolio_curves["Total Exposure"] = np.sum([portfolio_curves[col] for col in risk_cols], axis=0)
 
-    currency_cols = ['exposure_180'] + ['last_180_vol'] + [f'decay_exposure_{t}d' for t in decay_days]
-    merchants_df[currency_cols] = merchants_df[currency_cols].applymap(lambda x: f"${x:,.2f}")
+    # ===== Two-column layout =====
+    col_left, col_spacer, col_right = st.columns([1, 0.2, 1])
 
-    # Show the result
-    st.dataframe(merchants_df, use_container_width=True)
+    # ----- Left: Portfolio Graph -----
+    with col_left:
+        st.subheader("Portfolio Decay Graph")
+        st.write("")  # 1 line
+        st.write("")  # 2 lines if needed for alignment
+        st.write("")  # 2 lines if needed for alignment
+        st.write("")  # 2 lines if needed for alignment
+        st.write("")  # 2 lines if needed for alignment
+        all_components = list(portfolio_curves.keys())
+        selected_components_portfolio = []
+        cols_cb = st.columns(3)
+        for i, comp in enumerate(all_components):
+            with cols_cb[i % 3]:
+                default_state = True if comp == "Total Exposure" else False
+                if st.checkbox(f"Portfolio - {comp}", value=default_state):
+                    selected_components_portfolio.append(comp)
 
-    csv = merchants_df.to_csv(index=False)
-    
-    # Create download button
+        fig, ax = plt.subplots(figsize=(8, 5))
+        for comp in selected_components_portfolio:
+            ax.plot(days, portfolio_curves[comp], label=comp, linewidth=2)
+        ax.set_xlabel("Days")
+        ax.set_ylabel("Exposure ($)")
+        ax.set_title("Portfolio-Level Exposure Decay")
+        ax.grid(True)
+        ax.legend()
+        st.pyplot(fig)
+
+    # ----- Right: Merchant Graph -----
+    with col_right:
+        st.subheader("Merchant Decay Graph")
+        # Merchant ID input for right-hand graph
+        merchant_id_input = st.text_input("Enter stax_merchant_id for Merchant-Level Graph:")
+        if merchant_id_input and merchant_id_input in merchants_df["stax_merchant_id"].values:
+            merchant_row = merchants_df[merchants_df["stax_merchant_id"] == merchant_id_input].iloc[0]
+            merchant_curves = {}
+            for col in risk_cols:
+                hl = merchant_row[hl_map[col]]
+                base_val = merchant_row[col]
+                decay_curve = base_val * (0.5 ** (days / hl)) if hl > 0 else np.zeros_like(days)
+                merchant_curves[col] = decay_curve
+            merchant_curves["Total Exposure"] = np.sum([merchant_curves[col] for col in risk_cols], axis=0)
+
+            selected_components_merchant = []
+            cols_cb_m = st.columns(3)
+            for i, comp in enumerate(merchant_curves.keys()):
+                with cols_cb_m[i % 3]:
+                    default_state = True if comp == "Total Exposure" else False
+                    if st.checkbox(f"Merchant - {comp}", value=default_state):
+                        selected_components_merchant.append(comp)
+
+            fig2, ax2 = plt.subplots(figsize=(8, 5))
+            for comp in selected_components_merchant:
+                ax2.plot(days, merchant_curves[comp], label=comp, linewidth=2)
+            ax2.set_xlabel("Days")
+            ax2.set_ylabel("Exposure ($)")
+            ax2.set_title(f"Exposure Decay for {merchant_id_input}")
+            ax2.grid(True)
+            ax2.legend()
+            st.pyplot(fig2)
+        else:
+            st.info("Enter a valid stax_merchant_id to see merchant-level decay.")
+
+    # ===== Tables =====
+    interval_days = np.arange(0, 181, 30)
+    agg_table = pd.DataFrame({"Days Since Start": interval_days})
+    for comp in all_components:
+        agg_table[comp] = [portfolio_curves[comp][day] for day in interval_days]
+    for comp in all_components:
+        agg_table[comp] = agg_table[comp].apply(lambda x: f"${x:,.2f}")
+
+    st.subheader("Portfolio Aggregate Exposure at 30-Day Intervals")
+    st.dataframe(agg_table, use_container_width=True)
+
+    st.subheader("Portfolio-Level Exposure Decay by Merchant")
+    st.dataframe(results_df, use_container_width=True)
+
+    csv = results_df.to_csv(index=False)
     st.download_button(
-        label="📥 Download as CSV",
+        label="📥 Download Decay Table as CSV",
         data=csv,
-        file_name="merchants.csv",
-        mime="text/csv",
+        file_name="portfolio_exposure_decay.csv",
+        mime="text/csv"
     )
