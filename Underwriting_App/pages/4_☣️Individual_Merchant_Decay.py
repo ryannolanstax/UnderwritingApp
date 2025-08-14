@@ -12,22 +12,25 @@ st.header('Individual Exposure Decay')
 
 st.write("Merchants Query can be found here: https://app.mode.com/editor/fattmerchant/reports/49e3c5343375/queries/3c59a638ce08")
 
+st.warning('If Business is failing, there is fraud, super risky merchant, or if it is a live event, keep as much as possible!')
+
+
 with st.expander("Half Life Rules 8/11"):
     st.write("CNP/CP/ACH DD Half Life = Default or Merchant DD Value in Database")
     st.write("ACH Half Life = 5 Days")
 
     cb_half_life = {
-        "≤ 5%": 30,
-        "6–11%": 40,
-        "12–19%": 50,
-        "≥ 20%": 60
+        "≤ 0.1%": 30,
+        "0.1–0.5%": 40,
+        "0.5–1%": 50,
+        "≥ 1%": 60
     }
 
     refund_half_life = {
-        "≤ 3%": 30,
-        "4–6%": 40,
-        "7–10%": 50,
-        "≥ 11%": 60
+        "≤ 0.5%": 5,
+        "0.5–2.5%": 10,
+        "2.5–5%": 15,
+        "≥ 5%": 20
     }
 
     # Convert to DataFrame
