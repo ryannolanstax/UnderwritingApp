@@ -66,24 +66,24 @@ risk_cols = [
 ]
 
 def calculate_chargeback_risk_value(cb):
-    if cb <= 0.05:
+    if cb <= 0.1:
         return 30
-    elif cb <= 0.11:
+    elif cb <= 0.5:
         return 40
-    elif cb <= 0.19:
+    elif cb <= 0.1:
         return 50
     else:
         return 60
 
 def calculate_refund_risk_value(refund):
-    if refund <= 3:
-        return 30
-    elif refund <= 6:
-        return 40
-    elif refund <= 10:
-        return 50
+    if refund <= 0.5:
+        return 5
+    elif refund <= 2.5:
+        return 10
+    elif refund <= 5:
+        return 15
     else:
-        return 60
+        return 20
 
 transactions_merchant = st.file_uploader("Upload Merchant Spreadsheet", type=['csv', 'xlsx'])
 
@@ -109,9 +109,17 @@ if transactions_merchant is not None:
         half_life_days["chargeback_risk"] = st.slider(
             "chargeback_risk",
             min_value=0,
-            max_value=180,
+            max_value=365,
             value=int(transaction_df['chargeback_risk_value'].iloc[0])
         )
+
+        half_life_days["ach_new_reject_exposure"] = st.slider(
+            "ach_new_reject_exposure",
+            min_value=0,
+            max_value=60,
+            value=int(transaction_df['ach_risk_value'].iloc[0])
+        )
+
         half_life_days["cnp_dd_risk"] = st.slider(
             "cnp_dd_risk",
             min_value=0,
@@ -124,12 +132,7 @@ if transactions_merchant is not None:
             max_value=365,
             value=int(transaction_df['dd_cp'].iloc[0])
         )
-        half_life_days["ach_new_reject_exposure"] = st.slider(
-            "ach_new_reject_exposure",
-            min_value=0,
-            max_value=180,
-            value=int(transaction_df['ach_risk_value'].iloc[0])
-        )
+        
         half_life_days["ach_dd_risk"] = st.slider(
             "ach_dd_risk",
             min_value=0,
