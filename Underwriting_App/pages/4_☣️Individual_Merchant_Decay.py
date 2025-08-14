@@ -210,3 +210,15 @@ if transactions_merchant is not None:
     st.subheader("Exposure at 30-Day Intervals")
     st.write('Starting Date of Exposure is Day of Last Transaction')
     st.dataframe(exposure_table.drop(columns=['Total Exposure']), use_container_width=True)
+
+    csv = exposure_table.drop(columns=['Total Exposure']).to_csv(index=False)
+    
+    # Create download button
+    st.download_button(
+        label="📥 Download as CSV",
+        data=csv,
+        file_name="merchants.csv",
+        mime="text/csv",
+    )
+
+
