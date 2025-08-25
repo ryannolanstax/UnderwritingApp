@@ -21,7 +21,7 @@ import matplotlib.pyplot as plt
 
 st.set_page_config(page_title="Underwriting Calculator", page_icon="💾", layout="wide")
 
-st.title("Underwriting and Risk Calculator 8/6/25 Updates")
+st.title("Underwriting and Risk Calculator 8/25/25 Updates")
 st.markdown("This New Calculator Combines the older Tiering + Exposure Calculators")
 st.markdown("Having Issues or Ideas to improve the APP? Reach out to Ryan Nolan")
 
@@ -434,7 +434,7 @@ st.write('The Total Score of the Customer is: ', total_score)
 st.write('Business Age:', business_age_integer, 'Exposure:', ExposureCoverage_integer, 'Chargeback Refund:', chargeback_refund_integer, 'Avg Review:', AvgReview_integer, 'Credit Score:', SignerCreditScore_integer, 'MCC Risk:', mcc_risk)
 
 
-st.header("WIP DO NOT USE !!!!!!!! Reserve Calculations")
+st.header("Reserve Calculations")
 
 
 st.write('High Risk Partner (Iron Rock) = accounts onboarded to a high risk partner may result in a $0 accepted risk amount. Risk also reserves the right to adjust the accepted risk amount depending on risk factors identified in the evaluation.')
