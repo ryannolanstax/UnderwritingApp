@@ -10,6 +10,8 @@ st.set_page_config(
     page_icon="👋",
 )
 
+
+# ---- convert secrets to mutable dict ----
 credentials = st.secrets["credentials"].to_dict()
 cookie_cfg = st.secrets["cookie"].to_dict()
 
@@ -21,21 +23,17 @@ authenticator = stauth.Authenticate(
     int(cookie_cfg["expiry_days"])
 )
 
-# ---- login widget ----
-login_result = authenticator.login("Login", location="main")
+# ---- login widget (no location param) ----
+name, authentication_status, username = authenticator.login()
 
 # ---- check login ----
-if login_result is not None:
-    if login_result["authentication_status"]:
-        st.success(f"Welcome {login_result['name']}!")
-        authenticator.logout("Logout", "sidebar")
-    elif login_result["authentication_status"] is False:
-        st.error("Username/password is incorrect")
-    else:
-        st.info("Please enter your username and password")
-
-
-
+if authentication_status:
+    st.success(f"Welcome {name}!")
+    authenticator.logout("Logout", "sidebar")
+elif authentication_status is False:
+    st.error("Username/password is incorrect")
+else:
+    st.info("Please enter your username and password")
 
 
 #password_attempt = st.text_input('Please Enter The Password')
