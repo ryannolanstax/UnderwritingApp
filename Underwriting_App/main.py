@@ -9,12 +9,24 @@ st.set_page_config(
     page_icon="👋",
 )
 
+config = st.secrets
+
 authenticator = stauth.Authenticate(
     config['credentials'],
     config['cookie']['name'],
     config['cookie']['key'],
     config['cookie']['expiry_days']
 )
+
+name, authentication_status, username = authenticator.login('Login', 'main')
+
+if authentication_status:
+    st.success(f"Welcome {name}!")
+    authenticator.logout("Logout", "sidebar")
+elif authentication_status is False:
+    st.error("Username/password is incorrect")
+elif authentication_status is None:
+    st.warning("Please enter your username and password")
 
 
 #password_attempt = st.text_input('Please Enter The Password')
