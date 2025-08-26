@@ -11,29 +11,42 @@ st.set_page_config(
 )
 
 
-# ---- convert secrets to mutable dict ----
-credentials = st.secrets["credentials"].to_dict()
-cookie_cfg = st.secrets["cookie"].to_dict()
-
-# ---- create authenticator ----
-authenticator = stauth.Authenticate(
-    credentials,
-    cookie_cfg["name"],
-    cookie_cfg["key"],
-    int(cookie_cfg["expiry_days"])
-)
-
-login_result = authenticator.login()
-
-# ---- check login ----
-if login_result["authentication_status"]:
-    st.success(f"Welcome {login_result['name']}!")
-    authenticator.logout("Logout", "sidebar")
-elif login_result["authentication_status"] is False:
-    st.error("Username/password is incorrect")
-else:
-    st.info("Please enter your username and password")
-
+# ---- Updated login method (newer versions) ----
+try:
+    # For newer versions of streamlit-authenticator
+    name, authentication_status, username = authenticator.login()
+    
+    # ---- check login ----
+    if authentication_status:
+        st.success(f"Welcome {name}!")
+        authenticator.logout("Logout", "sidebar")
+        
+        # Your main app content goes here
+        st.write("You are now logged in and can access the app!")
+        
+    elif authentication_status is False:
+        st.error("Username/password is incorrect")
+    else:
+        st.info("Please enter your username and password")
+        
+except Exception as e:
+    # Fallback for older versions or different return format
+    st.error(f"Authentication error: {str(e)}")
+    
+    # Try the old method as fallback
+    try:
+        login_result = authenticator.login()
+        if isinstance(login_result, dict):
+            if login_result.get("authentication_status"):
+                st.success(f"Welcome {login_result.get('name')}!")
+                authenticator.logout("Logout", "sidebar")
+            elif login_result.get("authentication_status") is False:
+                st.error("Username/password is incorrect")
+            else:
+                st.info("Please enter your username and password")
+    except Exception as e2:
+        st.error(f"Login system error: {str(e2)}")
+        st.info("Please check your streamlit-authenticator version and configuration")
 
 #password_attempt = st.text_input('Please Enter The Password')
 #if password_attempt != 'StaxPeriodicReview':
