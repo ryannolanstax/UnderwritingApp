@@ -1,5 +1,6 @@
 import streamlit as st
 from PIL import Image
+import streamlit_authenticator as stauth
 #import streamlit-authenticator
 #https://blog.streamlit.io/streamlit-authenticator-part-1-adding-an-authentication-component-to-your-app/
 
@@ -7,6 +8,14 @@ st.set_page_config(
     page_title="Welcome",
     page_icon="👋",
 )
+
+authenticator = stauth.Authenticate(
+    config['credentials'],
+    config['cookie']['name'],
+    config['cookie']['key'],
+    config['cookie']['expiry_days']
+)
+
 
 #password_attempt = st.text_input('Please Enter The Password')
 #if password_attempt != 'StaxPeriodicReview':
