@@ -18,6 +18,18 @@ authenticator = stauth.Authenticate(
     st.secrets['preauthorized']
 )
 
+# Show login UI
+name, authentication_status, username = authenticator.login("Login", location="main")
+
+if authentication_status:
+    st.success(f"Welcome {name}!")
+    authenticator.logout("Logout", "sidebar")
+elif authentication_status is False:
+    st.error("Username/password is incorrect")
+else:
+    st.info("Please enter your username and password")
+
+
 
 
 #password_attempt = st.text_input('Please Enter The Password')
