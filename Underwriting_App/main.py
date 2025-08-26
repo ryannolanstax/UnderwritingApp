@@ -13,52 +13,81 @@ st.set_page_config(
 # ---- convert secrets to mutable dict ----
 credentials = st.secrets["credentials"].to_dict()
 cookie_cfg = st.secrets["cookie"].to_dict()
+preauthorized = st.secrets["preauthorized"].to_dict()
 
 # ---- create authenticator ----
 authenticator = stauth.Authenticate(
     credentials,
     cookie_cfg["name"],
     cookie_cfg["key"],
-    int(cookie_cfg["expiry_days"])
+    int(cookie_cfg["expiry_days"]),
+    preauthorized
 )
 
-# ---- Updated login method (newer versions) ----
-try:
-    # For newer versions of streamlit-authenticator
-    name, authentication_status, username = authenticator.login()
-    
-    # ---- check login ----
-    if authentication_status:
-        st.success(f"Welcome {name}!")
-        authenticator.logout("Logout", "sidebar")
-        
-        # Your main app content goes here
-        st.write("You are now logged in and can access the app!")
-        
-    elif authentication_status is False:
-        st.error("Username/password is incorrect")
-    else:
-        st.info("Please enter your username and password")
-        
-except Exception as e:
-    # Fallback for older versions or different return format
-    st.error(f"Authentication error: {str(e)}")
-    
-    # Try the old method as fallback
-    try:
-        login_result = authenticator.login()
-        if isinstance(login_result, dict):
-            if login_result.get("authentication_status"):
-                st.success(f"Welcome {login_result.get('name')}!")
-                authenticator.logout("Logout", "sidebar")
-            elif login_result.get("authentication_status") is False:
-                st.error("Username/password is incorrect")
-            else:
-                st.info("Please enter your username and password")
-    except Exception as e2:
-        st.error(f"Login system error: {str(e2)}")
-        st.info("Please check your streamlit-authenticator version and configuration")
+# ---- Handle authentication ----
+if "authentication_status" not in st.session_state:
+    st.session_state["authentication_status"] = None
+    st.session_state["name"] = None
+    st.session_state["username"] = None
 
+# ---- Login widget ----
+try:
+    # Check if this is the first run or if we need to show login
+    if st.session_state["authentication_status"] is None:
+        result = authenticator.login('Login', 'main')
+        
+        # Handle different return formats
+        if result is not None:
+            if isinstance(result, tuple) and len(result) == 3:
+                # New format: returns (name, auth_status, username)
+                name, authentication_status, username = result
+                st.session_state["authentication_status"] = authentication_status
+                st.session_state["name"] = name
+                st.session_state["username"] = username
+            elif isinstance(result, dict):
+                # Old format: returns dictionary
+                st.session_state["authentication_status"] = result.get("authentication_status")
+                st.session_state["name"] = result.get("name")
+                st.session_state["username"] = result.get("username")
+        
+        # If still None after login attempt, keep showing login form
+        if st.session_state["authentication_status"] is None:
+            st.rerun()
+
+except Exception as e:
+    st.error(f"Authentication error: {str(e)}")
+    st.info("Please check your streamlit-authenticator version and try refreshing the page")
+    st.stop()
+
+# ---- Check authentication status ----
+if st.session_state["authentication_status"]:
+    # User is authenticated
+    st.success(f"Welcome *{st.session_state['name']}*!")
+    
+    # Add logout button to sidebar
+    authenticator.logout('Logout', 'sidebar')
+    
+    # Your main app content goes here
+    st.write("🎉 You are successfully logged in!")
+    st.write("Add your main application content below this line.")
+    
+    # Example content
+    st.header("Main Application")
+    st.write("This is where your main app functionality would go.")
+    
+elif st.session_state["authentication_status"] is False:
+    st.error('Username/password is incorrect')
+    
+elif st.session_state["authentication_status"] is None:
+    st.warning('Please enter your username and password')
+
+# ---- Display current session info for debugging ----
+if st.sidebar.checkbox("Debug Info"):
+    st.sidebar.write("Session State:")
+    st.sidebar.write(f"Auth Status: {st.session_state.get('authentication_status')}")
+    st.sidebar.write(f"Name: {st.session_state.get('name')}")
+    st.sidebar.write(f"Username: {st.session_state.get('username')}")
+    
 #password_attempt = st.text_input('Please Enter The Password')
 #if password_attempt != 'StaxPeriodicReview':
 #    st.write('Incorrect Password!')
