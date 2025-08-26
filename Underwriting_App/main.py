@@ -10,48 +10,15 @@ st.set_page_config(
     page_icon="👋",
 )
 
-import copy
-credentials = copy.deepcopy(st.secrets["credentials"])
-cookie = copy.deepcopy(st.secrets["cookie"])
-
 authenticator = stauth.Authenticate(
-    credentials,
-    cookie["name"],
-    cookie["key"],
-    int(cookie["expiry_days"])
+    dict(st.secrets['credentials']),
+    st.secrets['cookie']['name'],
+    st.secrets['cookie']['key'],
+    st.secrets['cookie']['expiry_days'],
+    st.secrets['preauthorized']
 )
 
-name, authentication_status, username = authenticator.login("Login", "main")
 
-if authentication_status:
-    st.success(f"Welcome {name}!")
-    authenticator.logout("Logout", "sidebar")
-elif authentication_status is False:
-    st.error("Username/password is incorrect")
-elif authentication_status is None:
-    st.info("Please enter your username and password")
-
-# ---- create authenticator ----
-authenticator = stauth.Authenticate(
-    credentials,
-    cookie_name,
-    cookie_key,
-    cookie_expiry_days
-)
-
-# ---- login widget ----
-login_result = authenticator.login("Login", location="main")
-
-# Depending on your version, login_result may return a single object (dict)
-# Instead of unpacking 3 values, do this:
-if login_result is not None:
-    if login_result["authentication_status"]:
-        st.success(f"Welcome {login_result['name']}!")
-        authenticator.logout("Logout", "sidebar")
-    elif login_result["authentication_status"] is False:
-        st.error("Username/password is incorrect")
-    else:
-        st.info("Please enter your username and password")
 
 #password_attempt = st.text_input('Please Enter The Password')
 #if password_attempt != 'StaxPeriodicReview':
