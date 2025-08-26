@@ -34,16 +34,19 @@ authenticator = stauth.Authenticate(
     cookie_expiry_days
 )
 
-# ---- login UI ----
-name, authentication_status, username = authenticator.login("Login", location="main")  # <-- fix here
+# ---- login widget ----
+login_result = authenticator.login("Login", location="main")
 
-if authentication_status:
-    st.success(f"Welcome {name}!")
-    authenticator.logout("Logout", "sidebar")
-elif authentication_status is False:
-    st.error("Username/password is incorrect")
-else:
-    st.info("Please enter your username and password")
+# Depending on your version, login_result may return a single object (dict)
+# Instead of unpacking 3 values, do this:
+if login_result is not None:
+    if login_result["authentication_status"]:
+        st.success(f"Welcome {login_result['name']}!")
+        authenticator.logout("Logout", "sidebar")
+    elif login_result["authentication_status"] is False:
+        st.error("Username/password is incorrect")
+    else:
+        st.info("Please enter your username and password")
 
 #password_attempt = st.text_input('Please Enter The Password')
 #if password_attempt != 'StaxPeriodicReview':
