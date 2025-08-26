@@ -10,23 +10,28 @@ st.set_page_config(
     page_icon="👋",
 )
 
+secrets = st.secrets
 
-# ---- convert secrets to mutable dict ----
-credentials = {k: dict(v) for k, v in st.secrets["credentials"].items()}
-cookie_cfg = dict(st.secrets["cookie"])
+credentials = {
+    "usernames": {
+        secrets["credentials"]["username"]: {
+            "name": secrets["credentials"]["name"],
+            "password": stauth.Hasher([secrets["credentials"]["password"]]).generate()[0]
+        }
+    }
+}
 
-# ---- hash plaintext password in memory ----
-for uname, urec in credentials["usernames"].items():
-    pwd = urec.get("password", "")
-    if pwd and not pwd.startswith("$2"):  # simple check for hashed
-        urec["password"] = stauth.Hasher([pwd]).generate()[0]
+cookie_cfg = secrets["cookie"]
+cookie_name = cookie_cfg["name"]
+cookie_key = cookie_cfg["key"]
+cookie_expiry_days = int(cookie_cfg["expiry_days"])
 
 # ---- create authenticator ----
 authenticator = stauth.Authenticate(
     credentials,
-    cookie_cfg.get("name", "my_cookie"),
-    cookie_cfg.get("key", "some_random_signature_key"),
-    int(cookie_cfg.get("expiry_days", 30))
+    cookie_name,
+    cookie_key,
+    cookie_expiry_days
 )
 
 # ---- login UI ----
@@ -39,7 +44,6 @@ elif authentication_status is False:
     st.error("Username/password is incorrect")
 else:
     st.info("Please enter your username and password")
-
 
 #password_attempt = st.text_input('Please Enter The Password')
 #if password_attempt != 'StaxPeriodicReview':
