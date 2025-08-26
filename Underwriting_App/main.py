@@ -10,7 +10,10 @@ st.set_page_config(
     page_icon="👋",
 )
 
-config = deepcopy(st.secrets)
+config = {
+    "credentials": {k: dict(v) for k, v in st.secrets["credentials"].items()},
+    "cookie": dict(st.secrets["cookie"])
+}
 
 authenticator = stauth.Authenticate(
     config['credentials'],
