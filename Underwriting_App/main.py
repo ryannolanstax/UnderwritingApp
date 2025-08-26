@@ -10,21 +10,25 @@ st.set_page_config(
     page_icon="👋",
 )
 
-secrets = st.secrets
+credentials = st.secrets["credentials"]
+cookie = st.secrets["cookie"]
 
-credentials = {
-    "usernames": {
-        secrets["credentials"]["username"]: {
-            "name": secrets["credentials"]["name"],
-            "password": stauth.Hasher([secrets["credentials"]["password"]]).generate()[0]
-        }
-    }
-}
+authenticator = stauth.Authenticate(
+    credentials,
+    cookie["name"],
+    cookie["key"],
+    int(cookie["expiry_days"])
+)
 
-cookie_cfg = secrets["cookie"]
-cookie_name = cookie_cfg["name"]
-cookie_key = cookie_cfg["key"]
-cookie_expiry_days = int(cookie_cfg["expiry_days"])
+name, authentication_status, username = authenticator.login("Login", "main")
+
+if authentication_status:
+    st.success(f"Welcome {name}!")
+    authenticator.logout("Logout", "sidebar")
+elif authentication_status is False:
+    st.error("Username/password is incorrect")
+elif authentication_status is None:
+    st.info("Please enter your username and password")
 
 # ---- create authenticator ----
 authenticator = stauth.Authenticate(
