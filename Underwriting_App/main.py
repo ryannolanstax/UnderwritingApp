@@ -10,27 +10,35 @@ st.set_page_config(
     page_icon="👋",
 )
 
-config = {
-    "credentials": {k: dict(v) for k, v in st.secrets["credentials"].items()},
-    "cookie": dict(st.secrets["cookie"])
-}
 
+# ---- convert secrets to mutable dict ----
+credentials = {k: dict(v) for k, v in st.secrets["credentials"].items()}
+cookie_cfg = dict(st.secrets["cookie"])
+
+# ---- hash plaintext password in memory ----
+for uname, urec in credentials["usernames"].items():
+    pwd = urec.get("password", "")
+    if pwd and not pwd.startswith("$2"):  # simple check for hashed
+        urec["password"] = stauth.Hasher([pwd]).generate()[0]
+
+# ---- create authenticator ----
 authenticator = stauth.Authenticate(
-    config['credentials'],
-    config['cookie']['name'],
-    config['cookie']['key'],
-    config['cookie']['expiry_days']
+    credentials,
+    cookie_cfg.get("name", "my_cookie"),
+    cookie_cfg.get("key", "some_random_signature_key"),
+    int(cookie_cfg.get("expiry_days", 30))
 )
 
-name, authentication_status, username = authenticator.login('Login', 'main')
+# ---- login UI ----
+name, authentication_status, username = authenticator.login("Login", "main")
 
 if authentication_status:
     st.success(f"Welcome {name}!")
     authenticator.logout("Logout", "sidebar")
 elif authentication_status is False:
     st.error("Username/password is incorrect")
-elif authentication_status is None:
-    st.warning("Please enter your username and password")
+else:
+    st.info("Please enter your username and password")
 
 
 #password_attempt = st.text_input('Please Enter The Password')
