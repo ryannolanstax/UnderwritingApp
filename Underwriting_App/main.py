@@ -77,5 +77,13 @@ with st.sidebar:
     if st.session_state.authentication_status == True:
         st.success("✅ Authenticated")
         st.write(f"User: {st.session_state.name}")
+        st.write(f"Email: {st.session_state.username}")  # This will show the email
     else:
         st.warning("🔒 Not authenticated")
+        
+    # Show available usernames (emails) for testing
+    if st.checkbox("Show available emails"):
+        available_emails = list(credentials.get('usernames', {}).keys())
+        st.write("Available email addresses:")
+        for email in available_emails:
+            st.write(f"📧 {email}")
