@@ -10,6 +10,17 @@ st.set_page_config(
     page_icon="👋",
 )
 
+# ---- convert secrets to mutable dict ----
+credentials = st.secrets["credentials"].to_dict()
+cookie_cfg = st.secrets["cookie"].to_dict()
+
+# ---- create authenticator ----
+authenticator = stauth.Authenticate(
+    credentials,
+    cookie_cfg["name"],
+    cookie_cfg["key"],
+    int(cookie_cfg["expiry_days"])
+)
 
 # ---- Updated login method (newer versions) ----
 try:
