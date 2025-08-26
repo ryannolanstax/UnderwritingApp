@@ -35,7 +35,7 @@ authenticator = stauth.Authenticate(
 )
 
 # ---- login UI ----
-name, authentication_status, username = authenticator.login("Login", "main")
+name, authentication_status, username = authenticator.login("Login", location="main")  # <-- fix here
 
 if authentication_status:
     st.success(f"Welcome {name}!")
