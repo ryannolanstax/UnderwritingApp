@@ -23,14 +23,13 @@ authenticator = stauth.Authenticate(
     int(cookie_cfg["expiry_days"])
 )
 
-# ---- login widget (no location param) ----
-name, authentication_status, username = authenticator.login()
+login_result = authenticator.login()
 
 # ---- check login ----
-if authentication_status:
-    st.success(f"Welcome {name}!")
+if login_result["authentication_status"]:
+    st.success(f"Welcome {login_result['name']}!")
     authenticator.logout("Logout", "sidebar")
-elif authentication_status is False:
+elif login_result["authentication_status"] is False:
     st.error("Username/password is incorrect")
 else:
     st.info("Please enter your username and password")
