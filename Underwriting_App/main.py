@@ -1,6 +1,7 @@
 import streamlit as st
 from PIL import Image
 import streamlit_authenticator as stauth
+from copy import deepcopy
 #import streamlit-authenticator
 #https://blog.streamlit.io/streamlit-authenticator-part-1-adding-an-authentication-component-to-your-app/
 
@@ -9,7 +10,7 @@ st.set_page_config(
     page_icon="👋",
 )
 
-config = st.secrets
+config = deepcopy(st.secrets)
 
 authenticator = stauth.Authenticate(
     config['credentials'],
