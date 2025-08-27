@@ -13,7 +13,7 @@ st.set_page_config(page_title="Exposure Decay Portfolio", page_icon="☢️", la
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 # This will check authentication and redirect if not logged in
-if require_auth("Your Page Title"):
+if require_auth("Exposure Decay Portfolio"):
     # Your protected page content goes here
     user_info = get_user_info()
 
