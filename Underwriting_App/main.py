@@ -81,9 +81,4 @@ with st.sidebar:
     else:
         st.warning("🔒 Not authenticated")
         
-    # Show available usernames (emails) for testing
-    if st.checkbox("Show available emails"):
-        available_emails = list(credentials.get('usernames', {}).keys())
-        st.write("Available email addresses:")
-        for email in available_emails:
-            st.write(f"📧 {email}")
+
