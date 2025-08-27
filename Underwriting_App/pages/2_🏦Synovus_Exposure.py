@@ -30,7 +30,7 @@ if require_auth("Synovus Underwriting and Risk Calculator"):
 
   
   
- # st.title("Synovus Underwriting and Risk Calculator")
+  st.title("Synovus Underwriting and Risk Calculator")
   st.markdown("Having Issues or Ideas to improve the APP? Reach out to Ryan Nolan")
   
   st.header('Exposure Fields')
