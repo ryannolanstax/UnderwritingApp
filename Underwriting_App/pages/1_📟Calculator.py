@@ -28,11 +28,11 @@ st.set_page_config(page_title="Underwriting Calculator", page_icon="💾", layou
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 # This will check authentication and redirect if not logged in
-if require_auth("Your Page Title"):
+if require_auth("Underwriting and Risk Calculator 8/27/25 Updates"):
     # Your protected page content goes here
     user_info = get_user_info()
    
-   st.title("Underwriting and Risk Calculator 8/25/25 Updates")
+  # st.title("Underwriting and Risk Calculator 8/25/25 Updates")
    st.markdown("This New Calculator Combines the older Tiering + Exposure Calculators")
    st.markdown("Having Issues or Ideas to improve the APP? Reach out to Ryan Nolan")
    
