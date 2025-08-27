@@ -45,23 +45,6 @@ if st.session_state.authentication_status == True:
     # Your main app content here
     st.header("🎉 Main Application")
     st.write("You are successfully logged in and can now access the application!")
-    
-    # Add your actual app content below
-    st.subheader("Application Features")
-    
-    col1, col2 = st.columns(2)
-    with col1:
-        st.info("📊 Feature 1")
-        st.write("Add your first feature here")
-        
-    with col2:
-        st.info("📈 Feature 2") 
-        st.write("Add your second feature here")
-    
-    # Example of protected content
-    with st.expander("Protected Data"):
-        st.write("This content is only visible to authenticated users")
-        st.dataframe({"Sample": [1, 2, 3], "Data": [4, 5, 6]})
 
 elif st.session_state.authentication_status == False:
     st.error('Username/password is incorrect')
