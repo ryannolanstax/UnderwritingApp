@@ -45,6 +45,7 @@ if st.session_state.authentication_status == True:
     # Your main app content here
     st.header("🎉 Main Application")
     st.write("You are successfully logged in and can now access the application!")
+    st.write("Having issues with the App? Reach out to your Manager and or Ryan Nolan")
 
 elif st.session_state.authentication_status == False:
     st.error('Username/password is incorrect')
