@@ -24,13 +24,13 @@ st.set_page_config(page_title="Synovus Underwriting Calculator", page_icon="💾
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 # This will check authentication and redirect if not logged in
-if require_auth("Your Page Title"):
+if require_auth("Synovus Underwriting and Risk Calculator"):
     # Your protected page content goes here
     user_info = get_user_info()
 
   
   
-  st.title("Synovus Underwriting and Risk Calculator")
+ # st.title("Synovus Underwriting and Risk Calculator")
   st.markdown("Having Issues or Ideas to improve the APP? Reach out to Ryan Nolan")
   
   st.header('Exposure Fields')
