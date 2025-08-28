@@ -15,7 +15,8 @@ import io
 import matplotlib.pyplot as plt  
 import sys
 import os
-from auth_utils import require_auth, get_user_info
+#from auth_utils import require_auth, get_user_info
+from auth_utils import require_role, get_user_info
 
 
 #set default max dd
@@ -28,7 +29,9 @@ st.set_page_config(page_title="Underwriting Calculator", page_icon="💾", layou
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 # This will check authentication and redirect if not logged in
-if require_auth("Underwriting and Risk Calculator 8/27/25 Updates"):
+#if require_auth("Underwriting and Risk Calculator 8/27/25 Updates"):
+if require_role(["Risk", "Underwriting"], "Underwriting and Risk Calculator"):
+
     # Your protected page content goes here
     user_info = get_user_info()
     
