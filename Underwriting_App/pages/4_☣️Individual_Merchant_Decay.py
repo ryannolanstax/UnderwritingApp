@@ -7,7 +7,9 @@ from datetime import datetime, timedelta
 import io
 import sys
 import os
-from auth_utils import require_auth, get_user_info
+#from auth_utils import require_auth, get_user_info
+from auth_utils import require_role, get_user_info
+
 
 st.set_page_config(page_title="Individual Merchant Decay", page_icon="☣️", layout="wide")
 
@@ -16,7 +18,9 @@ st.set_page_config(page_title="Individual Merchant Decay", page_icon="☣️", l
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 # This will check authentication and redirect if not logged in
-if require_auth("Individul Merchant Decay"):
+#if require_auth("Individul Merchant Decay"):
+if require_role(["Risk"], "Individul Merchant Decay"):
+
     # Your protected page content goes here
     user_info = get_user_info()
 
