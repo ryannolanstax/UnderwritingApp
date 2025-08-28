@@ -5,7 +5,9 @@ import matplotlib.pyplot as plt
 import io
 import sys
 import os
-from auth_utils import require_auth, get_user_info
+from auth_utils import require_role, get_user_info
+#from auth_utils import require_role, get_user_info
+
 
 st.set_page_config(page_title="Exposure Decay Portfolio", page_icon="☢️", layout="wide")
 
@@ -13,7 +15,9 @@ st.set_page_config(page_title="Exposure Decay Portfolio", page_icon="☢️", la
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 # This will check authentication and redirect if not logged in
-if require_auth("Exposure Decay Portfolio"):
+#if require_auth("Exposure Decay Portfolio"):
+if require_role(["Risk"], "Exposure Decay Portfolio"):
+
     # Your protected page content goes here
     user_info = get_user_info()
 
