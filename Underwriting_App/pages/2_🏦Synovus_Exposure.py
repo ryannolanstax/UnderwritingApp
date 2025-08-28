@@ -15,7 +15,8 @@ import io
 import matplotlib.pyplot as plt  
 import sys
 import os
-from auth_utils import require_auth, get_user_info
+#from auth_utils import require_auth, get_user_info
+from auth_utils import require_role, get_user_info
 
 
 st.set_page_config(page_title="Synovus Underwriting Calculator", page_icon="💾", layout="wide")
@@ -24,7 +25,9 @@ st.set_page_config(page_title="Synovus Underwriting Calculator", page_icon="💾
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 # This will check authentication and redirect if not logged in
-if require_auth("Synovus Underwriting and Risk Calculator"):
+#if require_auth("Synovus Underwriting and Risk Calculator"):
+if require_role(["Risk", "Underwriting"], "Synovus Underwriting and Risk Calculator"):
+
     # Your protected page content goes here
     user_info = get_user_info()
     
