@@ -1,6 +1,10 @@
 import os
 import streamlit as st
 import requests
+import io
+import sys
+from auth_utils import require_role, get_user_info
+
 
 # Load API key (Streamlit Cloud secrets preferred, fallback to local env var)
 PERPLEXITY_API_KEY = st.secrets["PERPLEXITY_API_KEY"]
@@ -12,12 +16,6 @@ if not PERPLEXITY_API_KEY:
 
 # Streamlit app
 st.set_page_config(page_title="Adverse Media Finder", page_icon="🔍")
-
-import io
-import sys
-import os
-from auth_utils import require_role, get_user_info
-#from auth_utils import require_role, get_user_info
 
 # Add the parent directory to Python path to import auth_utils
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
