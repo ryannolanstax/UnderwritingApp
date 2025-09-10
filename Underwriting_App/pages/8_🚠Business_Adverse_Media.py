@@ -3,7 +3,7 @@ import streamlit as st
 import requests
 
 # Load API key (Streamlit Cloud secrets preferred, fallback to local env var)
-PERPLEXITY_API_KEY = st.secrets.get("PERPLEXITY_API_KEY") or os.getenv("PERPLEXITY_API_KEY")
+PERPLEXITY_API_KEY = st.secrets["PERPLEXITY_API_KEY"]
 
 # Safety check
 if not PERPLEXITY_API_KEY:
