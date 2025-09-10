@@ -7,7 +7,7 @@ from auth_utils import require_role, get_user_info
 
 
 # Load API key (Streamlit Cloud secrets preferred, fallback to local env var)
-PERPLEXITY_API_KEY = st.secrets["PERPLEXITY_API_KEY"]
+PERPLEXITY_API_KEY = st.secrets[api]["PERPLEXITY_API_KEY"]
 
 # Safety check
 if not PERPLEXITY_API_KEY:
