@@ -47,10 +47,10 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
             Tell me any adverse media or negative news you can find regarding a business in {city_state}.
             The business legal name is: {business_legal_name}
             The business dba name is: {business_dba_name}
-
-            This can be anything from terrible reviews, lawsuits, bankruptcy, a restaurant shutting down due to health code violations.
-
             This is the businesses website: {website}
+
+            This can be anything from terrible reviews on (Google, Yelp, Reddit), lawsuits, bankruptcy, a restaurant shutting down due to health code violations.
+            It can also be politicans or lawmakers wanting to see changes or upset 
 
             If you cannot find this information for the business, print: “Can’t Locate Business”
 
