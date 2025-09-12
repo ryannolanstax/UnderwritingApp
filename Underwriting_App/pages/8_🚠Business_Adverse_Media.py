@@ -5,7 +5,6 @@ import io
 import sys
 from auth_utils import require_role, get_user_info
 
-
 # Load API key (Streamlit Cloud secrets preferred, fallback to local env var)
 PERPLEXITY_API_KEY = st.secrets["api"]["PERPLEXITY_API_KEY"]
 
@@ -21,7 +20,6 @@ st.set_page_config(page_title="Adverse Media Finder", page_icon="🔍")
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 # This will check authentication and redirect if not logged in
-#if require_auth("Exposure Decay Portfolio"):
 if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
 
     # Your protected page content goes here
@@ -43,15 +41,15 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
             # Build prompt
             prompt = f"""
             You are a business researcher looking for bad publicity on a business.
-    
+
             Tell me any adverse media or negative news you can find regarding {business_name} in {city_state}. 
-    
+
             This is the businesses website: {website}
-    
+
             If you cannot find this information for the business, print: “Can’t Locate Business”
-    
+
             If you cannot find adverse media or negative news, print: “No adverse media or negative news”
-    
+
             Otherwise, for the output have a two sentence summary and a link to each article on the adverse media or negative news.
             """
     
@@ -72,9 +70,19 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
     
             if response.status_code == 200:
                 result = response.json()
+
+                # Main output
                 output_text = result["choices"][0]["message"]["content"]
-    
                 st.subheader("📢 Results")
-                st.markdown(output_text)  # Markdown makes links clickable
+                st.markdown(output_text)
+
+                # Sources / citations if available
+                sources = result.get("citations", [])
+                if sources:
+                    st.subheader("🔗 Sources")
+                    for i, src in enumerate(sources, 1):
+                        st.markdown(f"{i}. [{src}]({src})")
+                else:
+                    st.info("No sources returned for this query.")
             else:
                 st.error(f"❌ API request failed: {response.status_code} - {response.text}")
