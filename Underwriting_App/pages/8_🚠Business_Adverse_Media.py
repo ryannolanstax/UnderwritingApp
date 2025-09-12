@@ -42,21 +42,24 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
         else:
             # Build prompt
             prompt = f"""
-            You are a business researcher looking for bad publicity on a business.
+            You are a business researcher looking for any adverse media, controversies, or negative news regarding a business. 
+            The business may be referred to by multiple names or aliases:
+            - Legal name: {business_legal_name} 
+            - DBA name: {business_dba_name} 
+            #- Known aliases or brand names: {aliases if available}
+            
+            Location: {city_state}. Website: {website}
+            
+            Report on ANY type of negative coverage, including but not limited to:
+            - Lawsuits, regulatory scrutiny, fines, or bankruptcy
+            - Negative or critical news articles, reviews, or complaints
+            - Political, social, or cultural controversies where the business is named
+            - Public closures, safety/health code violations, or other scandals
+            
+            Include a two-sentence summary and a link to each article found. 
+            If the business cannot be located, print: "Can’t Locate Business." 
+            If no adverse media, controversies, or negative news exist, print: "No adverse media or negative news."
 
-            Tell me any adverse media or negative news you can find regarding a business in {city_state}.
-            The business legal name is: {business_legal_name}
-            The business dba name is: {business_dba_name}
-            This is the businesses website: {website}
-
-            This can be anything from terrible reviews on (Google, Yelp, Reddit), lawsuits, bankruptcy, a restaurant shutting down due to health code violations.
-            It can also be politicans or lawmakers wanting to see changes or upset 
-
-            If you cannot find this information for the business, print: “Can’t Locate Business”
-
-            If you cannot find adverse media or negative news, print: “No adverse media or negative news”
-
-            Otherwise, for the output have a two sentence summary and a link to each article on the adverse media or negative news.
             """
     
             # Call Perplexity API
