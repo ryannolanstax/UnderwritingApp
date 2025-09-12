@@ -37,7 +37,7 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
     website = st.text_input("Website (optional)")
     
     if st.button("Search"):
-        if not business_name or not city_state:
+        if not business_legal_name or not business_dba_name or not city_state:
             st.warning("⚠️ Please provide both Business Name and City, State.")
         else:
             # Build prompt
