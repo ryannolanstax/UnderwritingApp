@@ -44,6 +44,8 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
 
             Tell me any adverse media or negative news you can find regarding {business_name} in {city_state}. 
 
+            This can be anything from terrible reviews, lawsuits, bankruptcy, a restaurant shutting down due to health code violations.
+
             This is the businesses website: {website}
 
             If you cannot find this information for the business, print: “Can’t Locate Business”
