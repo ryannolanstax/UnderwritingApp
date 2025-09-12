@@ -30,7 +30,9 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
     st.markdown("Enter details below to check for **adverse media or negative news** on a business.")
     
     # User input
-    business_name = st.text_input("Business Name")
+    business_legal_name = st.text_input("Business Legal Name")
+    business_dba_name = st.text_input("Business DBA Name")
+    
     city_state = st.text_input("City, State")
     website = st.text_input("Website (optional)")
     
@@ -42,7 +44,9 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
             prompt = f"""
             You are a business researcher looking for bad publicity on a business.
 
-            Tell me any adverse media or negative news you can find regarding {business_name} in {city_state}. 
+            Tell me any adverse media or negative news you can find regarding a business in {city_state}.
+            The business legal name is: {business_legal_name}
+            The business dba name is: {business_dba_name}
 
             This can be anything from terrible reviews, lawsuits, bankruptcy, a restaurant shutting down due to health code violations.
 
