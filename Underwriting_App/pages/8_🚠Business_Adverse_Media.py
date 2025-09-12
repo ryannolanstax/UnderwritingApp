@@ -46,7 +46,6 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
             The business may be referred to by multiple names or aliases:
             - Legal name: {business_legal_name} 
             - DBA name: {business_dba_name} 
-            #- Known aliases or brand names: {aliases if available}
             
             Location: {city_state}. Website: {website}
             
