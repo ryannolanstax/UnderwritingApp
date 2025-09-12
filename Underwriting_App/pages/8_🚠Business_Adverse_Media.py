@@ -22,12 +22,13 @@ sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 # This will check authentication and redirect if not logged in
 #if require_auth("Exposure Decay Portfolio"):
-if require_role(["Risk"], "Exposure Decay Portfolio"):
+if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
 
     # Your protected page content goes here
     user_info = get_user_info()
 
     st.title("🔍 Business Adverse Media Finder")
+    st.write("Please Enter ALL Results in here: https://docs.google.com/spreadsheets/d/1eTjNKEeFBisDNHMGgZSxn2o5-L4-pFCQqlJc0LL4HIo/edit?gid=0#gid=0")
     st.markdown("Enter details below to check for **adverse media or negative news** on a business.")
     
     # User input
