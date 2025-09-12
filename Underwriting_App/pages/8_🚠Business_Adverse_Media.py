@@ -76,7 +76,7 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
             }
             payload = {
                 #"model": "sonar-pro",  # Recommended research model
-                #"model": "sonar-reasoning-pro",  # Recommended research model
+                "model": "sonar-reasoning-pro",  # Recommended research model
                 "messages": [{"role": "user", "content": prompt}],
                 "max_tokens": 600
             }
