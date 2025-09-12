@@ -43,17 +43,24 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
             # Build prompt
             prompt = f"""
             You are a business researcher looking for any adverse media, controversies, or negative news regarding a business. 
-            The business may be referred to by multiple names or aliases:
-            - Legal name: {business_legal_name} 
-            - DBA name: {business_dba_name} 
-            
-            Location: {city_state}. Website: {website}
+            The company may appear as: {business_legal_name}, {business_dba_name}, or any variant.       
+            Location: {city_state}. 
+            Website: {website}
+
+            Consider news about the company, its products/platforms, or business practices as relevant, even if the legal name or location is not stated.
+            The location is where the business is located at, not necassarily where the news story or event took place. For example a software company may be located in San Fransisco, California but has news in Tampa, Florida.
             
             Report on ANY type of negative coverage, including but not limited to:
             - Lawsuits, regulatory scrutiny, fines, or bankruptcy
             - Negative or critical news articles, reviews, or complaints
             - Political, social, or cultural controversies where the business is named
             - Public closures, safety/health code violations, or other scandals
+
+            Include:
+            - Lawsuits, regulatory scrutiny, official warnings/letters, political or policy controversies, accusations of ideological bias, negative impacts from government actions, bans, or suspensions.
+            - Negative reviews, user complaints, business failures, or any public criticism—even if indirect.
+
+            If even one article contains a warning, controversy, or negative association, include it, even if it’s about use in another state.
             
             Include a two-sentence summary and a link to each article found. 
             If the business cannot be located, print: "Can’t Locate Business." 
