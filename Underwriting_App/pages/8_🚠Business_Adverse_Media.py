@@ -22,7 +22,10 @@ sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 # This will check authentication and redirect if not logged in
 if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
 
-    # Your protected page content goes here
+    # Initialize session state for inputs/results
+    if "output_text" not in st.session_state:
+        st.session_state.output_text = None
+
     user_info = get_user_info()
 
     st.title("🔍 Business Adverse Media Finder")
@@ -30,11 +33,10 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
     st.markdown("Enter details below to check for **adverse media or negative news** on a business.")
     
     # User input
-    business_legal_name = st.text_input("Business Legal Name")
-    business_dba_name = st.text_input("Business DBA Name")
-    
-    city_state = st.text_input("City, State")
-    website = st.text_input("Website (optional)")
+    business_legal_name = st.text_input("Business Legal Name", key="business_legal_name")
+    business_dba_name = st.text_input("Business DBA Name", key="business_dba_name")
+    city_state = st.text_input("City, State", key="city_state")
+    website = st.text_input("Website (optional)", key="website")
     
     if st.button("Search"):
         if not business_legal_name or not business_dba_name or not city_state:
@@ -48,8 +50,8 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
             Website: {website}
 
             Consider news about the company, its products/platforms, or business practices as relevant, even if the legal name or location is not stated.
-            The location is where the business is located at, not necassarily where the news story or event took place. For example a software company may be located in San Fransisco, California but has news in Tampa, Florida.
-            
+            The location is where the business is located at, not necessarily where the news story or event took place. For example a software company may be located in San Francisco, California but has news in Tampa, Florida.
+
             Report on ANY type of negative coverage, including but not limited to:
             - Lawsuits, regulatory scrutiny, fines, or bankruptcy
             - Negative or critical news articles, reviews, or complaints
@@ -65,7 +67,6 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
             Include a two-sentence summary and a link to each article found. 
             If the business cannot be located, print: "Can’t Locate Business." 
             If no adverse media, controversies, or negative news exist, print: "No adverse media or negative news."
-
             """
     
             # Call Perplexity API
@@ -75,8 +76,7 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                 "Content-Type": "application/json"
             }
             payload = {
-                "model": "sonar-pro",  # Recommended research model
-                #"model": "sonar-reasoning-pro",  # Recommended research model
+                "model": "sonar-pro",
                 "messages": [{"role": "user", "content": prompt}],
                 "max_tokens": 600
             }
@@ -86,19 +86,29 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
     
             if response.status_code == 200:
                 result = response.json()
-
-                # Main output
-                output_text = result["choices"][0]["message"]["content"]
-                st.subheader("📢 Results")
-                st.markdown(output_text)
-
-                # Sources / citations if available
-                sources = result.get("citations", [])
-                if sources:
-                    st.subheader("🔗 Sources")
-                    for i, src in enumerate(sources, 1):
-                        st.markdown(f"{i}. [{src}]({src})")
-                else:
-                    st.info("No sources returned for this query.")
+                st.session_state.output_text = result["choices"][0]["message"]["content"]
+                st.session_state.sources = result.get("citations", [])
             else:
                 st.error(f"❌ API request failed: {response.status_code} - {response.text}")
+
+    # Show results if available
+    if st.session_state.output_text:
+        st.subheader("📢 Results")
+        st.markdown(st.session_state.output_text)
+
+        if st.session_state.sources:
+            st.subheader("🔗 Sources")
+            for i, src in enumerate(st.session_state.sources, 1):
+                st.markdown(f"{i}. [{src}]({src})")
+        else:
+            st.info("No sources returned for this query.")
+
+        # Reset button
+        if st.button("🔄 Reset"):
+            st.session_state.output_text = None
+            st.session_state.sources = []
+            st.session_state.business_legal_name = ""
+            st.session_state.business_dba_name = ""
+            st.session_state.city_state = ""
+            st.session_state.website = ""
+            st.experimental_rerun()
