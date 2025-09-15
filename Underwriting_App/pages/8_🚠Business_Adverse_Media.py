@@ -120,7 +120,7 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                         )
 
                         # Access all news items directly
-                        news_items = fc_results.data.get("news", [])
+                        news_items = fc_results.get("news", [])
 
                         # --- Print all 20 news URLs ---
                         st.subheader("📰 Firecrawl News URLs (all results)")
