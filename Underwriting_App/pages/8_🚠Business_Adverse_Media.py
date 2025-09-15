@@ -67,6 +67,12 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                 initial_prompt = f"""
                 You are a business researcher looking for any adverse media, controversies, or negative news 
                 regarding a business. 
+                
+                Report on ANY type of negative coverage, including but not limited to:
+                - Lawsuits, regulatory scrutiny, fines, or bankruptcy
+                - Negative or critical news articles, reviews, or complaints
+                - Political, social, or cultural controversies where the business is named
+                - Public closures, safety/health code violations, or other scandals
 
                 The company may appear as: {business_legal_name}, {business_dba_name}.       
                 Location: {city_state}. Website: {website}
@@ -80,6 +86,13 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                 initial_prompt = f"""
                 You are a business researcher looking for any adverse media, controversies, or negative news 
                 regarding a business. 
+
+                
+                Report on ANY type of negative coverage, including but not limited to:
+                - Lawsuits, regulatory scrutiny, fines, or bankruptcy
+                - Negative or critical news articles, reviews, or complaints
+                - Political, social, or cultural controversies where the business is named
+                - Public closures, safety/health code violations, or other scandals
 
                 The company may appear as: {business_legal_name}, {business_dba_name}.  
                 Website: {website}. Ignore location.
