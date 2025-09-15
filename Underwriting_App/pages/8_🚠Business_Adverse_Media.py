@@ -136,7 +136,7 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                         query=fc_query,
                         limit=20,
                         sources=["news"],
-                        scrape_options={"formats": ["markdown", "links"]}
+                     #   scrape_options={"formats": ["markdown", "links"]}
                     )
             
                     # The correct way to access search results
