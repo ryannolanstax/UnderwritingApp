@@ -6,3 +6,4 @@ seaborn
 datetime==5.2
 redshift_connector
 streamlit-authenticator==0.2.3
+Firecrawl
