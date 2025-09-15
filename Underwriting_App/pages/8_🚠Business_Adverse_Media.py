@@ -74,6 +74,8 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                 - Local news articles, reviews, or complaints
                 - Safety/health code violations, closures, or scandals
 
+                Start your web search with {business_legal_name} {city_state} news
+
                 Include a two-sentence summary and a link to each article found. 
                 If the business cannot be located, print: "Can’t Locate Business." 
                 If no adverse media exists, print: "No adverse media or negative news."
@@ -94,6 +96,8 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                 - National or global news coverage, reviews, or complaints
                 - Political, social, or cultural controversies
                 - Public closures, safety/health code violations, or other scandals
+
+                Start your web search with {business_legal_name} news
 
                 Include a two-sentence summary and a link to each article found. 
                 If the business cannot be located, print: "Can’t Locate Business." 
