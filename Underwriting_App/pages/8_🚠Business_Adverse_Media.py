@@ -80,7 +80,6 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                 Focus on news within ~200 miles radius.
                 
                 Report ANY negative coverage. Start search with '{business_legal_name} {city_state} news'.
-
                 
                 Include two-sentence summaries + links. If not found, return 'No adverse media or negative news.'
                 """
@@ -96,7 +95,6 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                 - Public closures, safety or health code violations, or other scandals
                 
                 The company may appear as: {business_legal_name}, {business_dba_name}.  
-                
                 Website: {website}. Ignore location.
                 
                 Report ANY negative coverage. Start search with '{business_legal_name} news'.
@@ -128,10 +126,7 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                     st.info("ℹ️ No results from Perplexity. Searching Firecrawl (20 results)...")
 
                     firecrawl = Firecrawl(api_key=FIRECRAWL_API_KEY)
-                    if st.session_state.prompt_version == "Regional Coverage":
-                        fc_query = f"{business_legal_name} {city_state} news"
-                    else:
-                        fc_query = f"{business_legal_name} news"
+                    fc_query = f"{business_legal_name} {city_state} news" if st.session_state.prompt_version == "Regional Coverage" else f"{business_legal_name} news"
 
                     try:
                         fc_results = firecrawl.search(
@@ -141,20 +136,22 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                             scrape_options={"formats": ["markdown", "links"]}
                         )
 
-                        # Access all news items directly
-                        news_items = fc_results.news  # <-- Fixed: .news attribute
+                        # Access the search results correctly
+                        news_items = fc_results.data  # <-- list of dicts
 
                         # --- Print all 20 news URLs ---
                         st.subheader("📰 Firecrawl News URLs (all results)")
                         if news_items:
                             for i, item in enumerate(news_items, 1):
-                                st.markdown(f"{i}. [{item.title}]({item.url})")
+                                title = item.get("title", "No Title")
+                                url = item.get("url", "")
+                                st.markdown(f"{i}. [{title}]({url})")
                         else:
                             st.info("No news items returned from Firecrawl.")
 
                         # Optional: send URLs back to Perplexity for summaries
                         if news_items:
-                            urls_text = "\n".join([item.url for item in news_items])
+                            urls_text = "\n".join([item.get("url","") for item in news_items if item.get("url")])
                             followup_prompt = f"""
                             You are a business researcher. Summarize any adverse media from the following URLs.
                             Provide two-sentence summaries for each. URLs:
@@ -172,7 +169,7 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                             if response_followup.status_code == 200:
                                 followup_result = response_followup.json()
                                 st.session_state["results"] = followup_result["choices"][0]["message"]["content"]
-                                st.session_state["sources"] = [item.url for item in news_items]
+                                st.session_state["sources"] = [item.get("url","") for item in news_items]
                             else:
                                 st.error(f"❌ Perplexity follow-up failed: {response_followup.status_code}")
 
