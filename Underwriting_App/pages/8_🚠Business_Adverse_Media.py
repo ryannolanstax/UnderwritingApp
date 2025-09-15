@@ -121,63 +121,101 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                 st.session_state["results"] = perplexity_text
                 st.session_state["sources"] = result.get("citations", [])
 
-                # --- Step 2: Firecrawl fallback if Perplexity found nothing ---
-                if "No adverse media or negative news" in perplexity_text and FIRECRAWL_API_KEY:
-                    st.info("ℹ️ No results from Perplexity. Searching Firecrawl (20 results)...")
-
-                    firecrawl = Firecrawl(api_key=FIRECRAWL_API_KEY)
-                    fc_query = f"{business_legal_name} {city_state} news" if st.session_state.prompt_version == "Regional Coverage" else f"{business_legal_name} news"
-
-                    try:
-                        fc_results = firecrawl.search(
-                            query=fc_query,
-                            limit=20,
-                            sources=["news"],
-                            scrape_options={"formats": ["markdown", "links"]}
-                        )
-
-                        # Access the search results correctly
-                        news_items = fc_results.data  # <-- list of dicts
-
-                        # --- Print all 20 news URLs ---
-                        st.subheader("📰 Firecrawl News URLs (all results)")
-                        if news_items:
-                            for i, item in enumerate(news_items, 1):
-                                title = item.get("title", "No Title")
-                                url = item.get("url", "")
+            # Replace your existing Firecrawl section with this corrected version:
+            
+            if "No adverse media or negative news" in perplexity_text and FIRECRAWL_API_KEY:
+                st.info("ℹ️ No results from Perplexity. Searching Firecrawl (20 results)...")
+            
+                firecrawl = Firecrawl(api_key=FIRECRAWL_API_KEY)
+                if st.session_state.prompt_version == "Regional Coverage":
+                    fc_query = f"{business_legal_name} {city_state} news"
+                else:
+                    fc_query = f"{business_legal_name} news"
+            
+                try:
+                    fc_results = firecrawl.search(
+                        query=fc_query,
+                        limit=20,
+                        sources=["news"],
+                        scrape_options={"formats": ["markdown", "links"]}
+                    )
+            
+                    # The correct way to access search results
+                    # fc_results should be a dict-like object with 'data' key containing the results
+                    if hasattr(fc_results, 'data') and fc_results.data:
+                        news_items = fc_results.data
+                    elif isinstance(fc_results, dict) and 'data' in fc_results:
+                        news_items = fc_results['data']
+                    elif isinstance(fc_results, list):
+                        # Sometimes results come directly as a list
+                        news_items = fc_results
+                    else:
+                        # Try to access the results directly if it's a different structure
+                        news_items = fc_results
+            
+                    # --- Print all news URLs ---
+                    st.subheader("📰 Firecrawl News URLs (all results)")
+                    if news_items:
+                        # Handle different possible structures of news_items
+                        for i, item in enumerate(news_items, 1):
+                            if isinstance(item, dict):
+                                # If item is a dictionary, try different possible keys
+                                title = item.get('title', item.get('name', f'Article {i}'))
+                                url = item.get('url', item.get('link', '#'))
                                 st.markdown(f"{i}. [{title}]({url})")
-                        else:
-                            st.info("No news items returned from Firecrawl.")
-
-                        # Optional: send URLs back to Perplexity for summaries
-                        if news_items:
-                            urls_text = "\n".join([item.get("url","") for item in news_items if item.get("url")])
+                            elif hasattr(item, 'title') and hasattr(item, 'url'):
+                                # If item has attributes
+                                st.markdown(f"{i}. [{item.title}]({item.url})")
+                            else:
+                                # Fallback - try to display whatever we have
+                                st.markdown(f"{i}. {item}")
+                    else:
+                        st.info("No news items returned from Firecrawl.")
+            
+                    # Optional: send URLs back to Perplexity for summaries
+                    if news_items:
+                        # Extract URLs from the results
+                        urls = []
+                        for item in news_items:
+                            if isinstance(item, dict):
+                                url = item.get('url', item.get('link'))
+                                if url:
+                                    urls.append(url)
+                            elif hasattr(item, 'url'):
+                                urls.append(item.url)
+                        
+                        if urls:
+                            urls_text = "\n".join(urls)
                             followup_prompt = f"""
                             You are a business researcher. Summarize any adverse media from the following URLs.
                             Provide two-sentence summaries for each. URLs:
                             {urls_text}
                             """
-
+            
                             payload_followup = {
                                 "model": "sonar-pro",
                                 "messages": [{"role": "user", "content": followup_prompt}],
                                 "max_tokens": 1000
                             }
-
+            
                             response_followup = requests.post(perplexity_url, headers=headers, json=payload_followup)
-
+            
                             if response_followup.status_code == 200:
                                 followup_result = response_followup.json()
                                 st.session_state["results"] = followup_result["choices"][0]["message"]["content"]
-                                st.session_state["sources"] = [item.get("url","") for item in news_items]
+                                st.session_state["sources"] = urls
                             else:
                                 st.error(f"❌ Perplexity follow-up failed: {response_followup.status_code}")
-
-                    except Exception as e:
-                        st.error(f"❌ Firecrawl search failed: {e}")
-
-            else:
-                st.error(f"❌ Perplexity API request failed: {response.status_code} - {response.text}")
+            
+                except Exception as e:
+                    st.error(f"❌ Firecrawl search failed: {e}")
+                    # Add debug information
+                    st.error(f"Debug: fc_results type: {type(fc_results)}")
+                    if hasattr(fc_results, '__dict__'):
+                        st.error(f"Debug: fc_results attributes: {list(fc_results.__dict__.keys())}")
+                    else:
+                        st.error(f"Debug: fc_results content: {fc_results}")            
+     
 
     # --- Show results if available ---
     if "results" in st.session_state:
