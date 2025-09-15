@@ -105,12 +105,9 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
 
         # Reset button
         if st.button("🔄 Reset"):
-            # Safely clear values
-            st.session_state.pop("output_text", None)
-            st.session_state.pop("sources", None)
-            st.session_state.pop("business_legal_name", None)
-            st.session_state.pop("business_dba_name", None)
-            st.session_state.pop("city_state", None)
-            st.session_state.pop("website", None)
+            # Clear values safely
+            for key in ["output_text", "sources", "business_legal_name", "business_dba_name", "city_state", "website"]:
+                if key in st.session_state:
+                    del st.session_state[key]
         
-            st.experimental_rerun()
+            st.rerun()
