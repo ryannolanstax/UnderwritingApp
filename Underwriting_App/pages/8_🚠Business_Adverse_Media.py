@@ -105,7 +105,7 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
 
         # Reset button
         if st.button("🔄 Reset"):
-            # Clear values safely
+            # Clear values including widget inputs
             for key in ["output_text", "sources", "business_legal_name", "business_dba_name", "city_state", "website"]:
                 if key in st.session_state:
                     del st.session_state[key]
