@@ -9,7 +9,7 @@ from firecrawl import Firecrawl
 
 # --- API Keys ---
 PERPLEXITY_API_KEY = st.secrets["api"]["PERPLEXITY_API_KEY"]
-FIRECRAWL_API_KEY = st.secrets.get("FIRECRAWL_API_KEY")
+FIRECRAWL_API_KEY = st.secrets["api"]["FIRECRAWL_API_KEY"]
 
 # Safety checks
 if not PERPLEXITY_API_KEY:
