@@ -119,7 +119,8 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                             scrape_options={"formats": ["markdown", "links"]}
                         )
 
-                        news_items = fc_results.get("data", {}).get("news", [])
+                        # --- Access news correctly ---
+                        news_items = fc_results.data.get("news", [])
 
                         # --- Filter & sort: last 6 months, prioritize keywords ---
                         six_months_ago_date = date.today() - relativedelta(months=6)
@@ -127,14 +128,12 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
 
                         filtered_news = []
                         for item in news_items:
-                            # Filter by approximate date if available
                             item_date_str = item.get("date", "")
                             if "month" in item_date_str:
                                 months_ago = int(item_date_str.split()[0])
                                 approximate_date = date.today() - relativedelta(months=months_ago)
                                 if approximate_date < six_months_ago_date:
                                     continue
-                            # Keyword filtering
                             content = (item.get("title","") + " " + item.get("snippet","")).lower()
                             if any(k in content for k in keywords):
                                 filtered_news.append(item)
