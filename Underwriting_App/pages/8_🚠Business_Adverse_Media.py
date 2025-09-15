@@ -108,68 +108,6 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                 st.session_state["results"] = perplexity_text
                 st.session_state["sources"] = result.get("citations", [])
 
-                # --- Step 2: Firecrawl fallback if Perplexity found nothing ---
-                if "No adverse media or negative news" in perplexity_text and FIRECRAWL_API_KEY:
-                    st.info("ℹ️ No results from Perplexity. Searching Firecrawl (20 results)...")
-
-                    firecrawl = Firecrawl(api_key=FIRECRAWL_API_KEY)
-                    if st.session_state.prompt_version == "Regional Coverage":
-                        fc_query = f"{business_legal_name} {city_state} news"
-                    else:
-                        fc_query = f"{business_legal_name} news"
-
-                    try:
-                        fc_results = firecrawl.search(
-                            query=fc_query,
-                            limit=20,
-                            sources=["news"],
-                            scrape_options={"formats": ["markdown", "links"]}
-                        )
-
-                        # 🔑 Firecrawl returns a dict — inspect raw response
-                        st.subheader("🔎 Raw Firecrawl Response")
-                        st.json(fc_results)
-
-                        # ✅ Extract results safely
-                        news_items = fc_results.get("data", [])
-
-                        st.subheader("📰 Firecrawl News URLs (all results)")
-                        if news_items:
-                            for i, item in enumerate(news_items, 1):
-                                st.markdown(f"{i}. [{item.get('title','No Title')}]({item.get('url','')})")
-                        else:
-                            st.info("No news items returned from Firecrawl.")
-
-                        # Optional: follow-up summary
-                        if news_items:
-                            urls_text = "\n".join([item.get("url","") for item in news_items])
-                            followup_prompt = f"""
-                            You are a business researcher. Summarize any adverse media from the following URLs.
-                            Provide two-sentence summaries for each. URLs:
-                            {urls_text}
-                            """
-
-                            payload_followup = {
-                                "model": "sonar-pro",
-                                "messages": [{"role": "user", "content": followup_prompt}],
-                                "max_tokens": 1000
-                            }
-
-                            response_followup = requests.post(perplexity_url, headers=headers, json=payload_followup)
-
-                            if response_followup.status_code == 200:
-                                followup_result = response_followup.json()
-                                st.session_state["results"] = followup_result["choices"][0]["message"]["content"]
-                                st.session_state["sources"] = [item.get("url","") for item in news_items]
-                            else:
-                                st.error(f"❌ Perplexity follow-up failed: {response_followup.status_code}")
-
-                    except Exception as e:
-                        st.error(f"❌ Firecrawl search failed: {e}")
-
-            else:
-                st.error(f"❌ Perplexity API request failed: {response.status_code} - {response.text}")
-
     # --- Show results if available ---
     if "results" in st.session_state:
         st.subheader("📢 Results")
