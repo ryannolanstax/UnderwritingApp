@@ -136,7 +136,7 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                         query=fc_query,
                         limit=20,
                         sources=["news"],
-                     #   scrape_options={"formats": ["markdown", "links"]}
+                        scrape_options={"formats": ["markdown", "links"]}
                     )
             
                     # The correct way to access search results
@@ -214,6 +214,7 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                         st.error(f"Debug: fc_results attributes: {list(fc_results.__dict__.keys())}")
                     else:
                         st.error(f"Debug: fc_results content: {fc_results}")
+
      
 
     # --- Show results if available ---
