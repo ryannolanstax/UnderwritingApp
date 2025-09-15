@@ -122,7 +122,6 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                 st.session_state["sources"] = result.get("citations", [])
 
             # Replace your existing Firecrawl section with this corrected version:
-            
             if "No adverse media or negative news" in perplexity_text and FIRECRAWL_API_KEY:
                 st.info("ℹ️ No results from Perplexity. Searching Firecrawl (20 results)...")
             
@@ -214,7 +213,7 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                     if hasattr(fc_results, '__dict__'):
                         st.error(f"Debug: fc_results attributes: {list(fc_results.__dict__.keys())}")
                     else:
-                        st.error(f"Debug: fc_results content: {fc_results}")            
+                        st.error(f"Debug: fc_results content: {fc_results}")
      
 
     # --- Show results if available ---
