@@ -72,7 +72,7 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                 - Lawsuits, regulatory scrutiny, fines, or bankruptcy
                 - Negative or critical news articles, reviews, or complaints
                 - Political, social, or cultural controversies where the business is named
-                - Public closures, safety/health code violations, or other scandals
+                - Public closures, safety or health code violations, or other scandals
                 
                 The company may appear as: {business_legal_name}, {business_dba_name}.       
                 Location: {city_state}. Website: {website}
@@ -93,7 +93,7 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                 - Lawsuits, regulatory scrutiny, fines, or bankruptcy
                 - Negative or critical news articles, reviews, or complaints
                 - Political, social, or cultural controversies where the business is named
-                - Public closures, safety/health code violations, or other scandals
+                - Public closures, safety or health code violations, or other scandals
                 
                 The company may appear as: {business_legal_name}, {business_dba_name}.  
                 
@@ -142,19 +142,19 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                         )
 
                         # Access all news items directly
-                        news_items = fc_results.get("news", [])
+                        news_items = fc_results.news  # <-- Fixed: .news attribute
 
                         # --- Print all 20 news URLs ---
                         st.subheader("📰 Firecrawl News URLs (all results)")
                         if news_items:
                             for i, item in enumerate(news_items, 1):
-                                st.markdown(f"{i}. [{item.get('title','No Title')}]({item.get('url','')})")
+                                st.markdown(f"{i}. [{item.title}]({item.url})")
                         else:
                             st.info("No news items returned from Firecrawl.")
 
                         # Optional: send URLs back to Perplexity for summaries
                         if news_items:
-                            urls_text = "\n".join([item.get("url","") for item in news_items])
+                            urls_text = "\n".join([item.url for item in news_items])
                             followup_prompt = f"""
                             You are a business researcher. Summarize any adverse media from the following URLs.
                             Provide two-sentence summaries for each. URLs:
@@ -172,7 +172,7 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                             if response_followup.status_code == 200:
                                 followup_result = response_followup.json()
                                 st.session_state["results"] = followup_result["choices"][0]["message"]["content"]
-                                st.session_state["sources"] = [item.get("url","") for item in news_items]
+                                st.session_state["sources"] = [item.url for item in news_items]
                             else:
                                 st.error(f"❌ Perplexity follow-up failed: {response_followup.status_code}")
 
