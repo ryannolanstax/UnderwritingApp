@@ -119,44 +119,20 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                             scrape_options={"formats": ["markdown", "links"]}
                         )
 
-                        # --- Access news correctly ---
+                        # Access all news items directly
                         news_items = fc_results.data.get("news", [])
 
-                        # --- Filter & sort: last 6 months, prioritize keywords ---
-                        six_months_ago_date = date.today() - relativedelta(months=6)
-                        keywords = ["lawsuit", "complaint", "violation", "fine", "closure", "scandal", "regulatory"]
-
-                        filtered_news = []
-                        for item in news_items:
-                            item_date_str = item.get("date", "")
-                            if "month" in item_date_str:
-                                months_ago = int(item_date_str.split()[0])
-                                approximate_date = date.today() - relativedelta(months=months_ago)
-                                if approximate_date < six_months_ago_date:
-                                    continue
-                            content = (item.get("title","") + " " + item.get("snippet","")).lower()
-                            if any(k in content for k in keywords):
-                                filtered_news.append(item)
-
-                        # --- Remove duplicates by URL ---
-                        seen_urls = set()
-                        unique_news = []
-                        for n in filtered_news:
-                            if n["url"] not in seen_urls:
-                                unique_news.append(n)
-                                seen_urls.add(n["url"])
-
-                        # --- Show all Firecrawl URLs for testing ---
-                        st.subheader("📰 Firecrawl News URLs (for testing)")
-                        if unique_news:
-                            for i, item in enumerate(unique_news, 1):
-                                st.markdown(f"{i}. [{item['title']}]({item['url']})")
+                        # --- Print all 20 news URLs ---
+                        st.subheader("📰 Firecrawl News URLs (all results)")
+                        if news_items:
+                            for i, item in enumerate(news_items, 1):
+                                st.markdown(f"{i}. [{item.get('title','No Title')}]({item.get('url','')})")
                         else:
-                            st.info("No relevant news found in Firecrawl results.")
+                            st.info("No news items returned from Firecrawl.")
 
-                        # --- Step 3: Send filtered URLs to Perplexity ---
-                        if unique_news:
-                            urls_text = "\n".join([item["url"] for item in unique_news])
+                        # Optional: send URLs back to Perplexity for summaries
+                        if news_items:
+                            urls_text = "\n".join([item.get("url","") for item in news_items])
                             followup_prompt = f"""
                             You are a business researcher. Summarize any adverse media from the following URLs.
                             Provide two-sentence summaries for each. URLs:
@@ -174,7 +150,7 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                             if response_followup.status_code == 200:
                                 followup_result = response_followup.json()
                                 st.session_state["results"] = followup_result["choices"][0]["message"]["content"]
-                                st.session_state["sources"] = [item["url"] for item in unique_news]
+                                st.session_state["sources"] = [item.get("url","") for item in news_items]
                             else:
                                 st.error(f"❌ Perplexity follow-up failed: {response_followup.status_code}")
 
