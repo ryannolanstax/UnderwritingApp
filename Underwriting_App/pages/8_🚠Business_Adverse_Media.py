@@ -65,7 +65,7 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                 Focus your search on coverage relevant to the business and its location. 
                 If the same-named business exists elsewhere but is unrelated, ignore it. 
                 Prioritize adverse news tied to the business’s operations, customers, or regulatory environment 
-                in the stated region.
+                in the stated region. Use a radius of news sources around 200 miles from the city,state. 
 
                 Report on ANY type of negative coverage, including but not limited to:
                 - Lawsuits, regulatory scrutiny, fines, or bankruptcy
