@@ -214,6 +214,10 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                         st.error(f"Debug: fc_results attributes: {list(fc_results.__dict__.keys())}")
                     else:
                         st.error(f"Debug: fc_results content: {fc_results}")
+
+
+
+    
      
 
     # --- Show results if available ---
