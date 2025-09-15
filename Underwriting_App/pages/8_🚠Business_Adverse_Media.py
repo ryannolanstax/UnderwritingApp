@@ -215,8 +215,6 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                     else:
                         st.error(f"Debug: fc_results content: {fc_results}")
 
-
-
     
      
 
