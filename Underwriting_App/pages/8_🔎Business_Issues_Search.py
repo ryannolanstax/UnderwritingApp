@@ -89,7 +89,7 @@ else:
     st.warning("⚠️ Please enter at least a Business Legal Name or DBA Name to generate search queries")
 
 # Input for Claude API key
-claude_api_key = st.text_input("Claude API Key", type="password", help="Enter your Anthropic API key")
+#claude_api_key = st.text_input("Claude API Key", type="password", help="Enter your Anthropic API key")
 
 if st.button("Search & Analyze"):
     if not search_queries:
