@@ -4,6 +4,8 @@ import requests
 import io
 import sys
 from auth_utils import require_role, get_user_info
+from datetime import date
+from dateutil.relativedelta import relativedelta
 
 # Load API key
 PERPLEXITY_API_KEY = st.secrets["api"]["PERPLEXITY_API_KEY"]
@@ -104,11 +106,21 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                 "Authorization": f"Bearer {PERPLEXITY_API_KEY}",
                 "Content-Type": "application/json"
             }
+
+            six_months_ago = (date.today() - relativedelta(months=6)).isoformat()
+
             payload = {
                 "model": "sonar-pro",
                 "messages": [{"role": "user", "content": prompt}],
-                "max_tokens": 600
+                "max_tokens": 1000,
+                "web_search_options": {
+                    "search_context_size": "high",
+                    "latest_updated": six_months_ago
+                },
+                "enable_search_classifier": True  # Optional: boosts recall on news queries
             }
+
+            
 
             with st.spinner("🔎 Searching for adverse media..."):
                 response = requests.post(url, headers=headers, json=payload)
