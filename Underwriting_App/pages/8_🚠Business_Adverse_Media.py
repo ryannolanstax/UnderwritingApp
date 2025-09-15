@@ -126,10 +126,13 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                             scrape_options={"formats": ["markdown", "links"]}
                         )
 
-                        # Access all news items directly
-                        news_items = fc_results.data.get("news", [])
+                        # 🔑 Firecrawl returns a dict — inspect raw response
+                        st.subheader("🔎 Raw Firecrawl Response")
+                        st.json(fc_results)
 
-                        # --- Print all 20 news URLs ---
+                        # ✅ Extract results safely
+                        news_items = fc_results.get("data", [])
+
                         st.subheader("📰 Firecrawl News URLs (all results)")
                         if news_items:
                             for i, item in enumerate(news_items, 1):
@@ -137,7 +140,7 @@ if require_role(["Risk", "Underwriting"], "Exposure Decay Portfolio"):
                         else:
                             st.info("No news items returned from Firecrawl.")
 
-                        # Optional: send URLs back to Perplexity for summaries
+                        # Optional: follow-up summary
                         if news_items:
                             urls_text = "\n".join([item.get("url","") for item in news_items])
                             followup_prompt = f"""
