@@ -127,7 +127,7 @@ PERPLEXITY_API_KEY = "your-perplexity-api-key"
                 "query": query,
                 "sources": ["web"],
                 "categories": [],
-                "limit": 15 if len(search_queries) > 1 else 20  # Reduce per-query limit if multiple queries
+                "limit": 20 if len(search_queries) > 1 else 30  # Reduce per-query limit if multiple queries
             }
             
             with st.spinner(f"Searching Firecrawl for: {query}"):
