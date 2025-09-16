@@ -10,7 +10,7 @@ st.set_page_config(page_title="Firecrawl, Perplexity, and Claude Analysis", page
 
 # Add the parent directory to Python path to import auth_utils
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-
+f
 # This will check authentication and redirect if not logged in
 #if require_auth("Exposure Decay Portfolio"):
 if require_role(["Risk"], "Exposure Decay Portfolio"):
@@ -105,7 +105,7 @@ if require_role(["Risk"], "Exposure Decay Portfolio"):
         st.warning("⚠️ Please enter at least a Business Legal Name or DBA Name to generate search queries")
     
     # Input for Claude API key
-    claude_api_key = st.text_input("Claude API Key", type="password", help="Enter your Anthropic API key")
+    #claude_api_key = st.text_input("Claude API Key", type="password", help="Enter your Anthropic API key")
     
     if st.button("Search & Analyze"):
         if not search_queries:
