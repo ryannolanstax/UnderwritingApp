@@ -6,7 +6,7 @@ import sys
 import os
 from auth_utils import require_role, get_user_info
 
-st.set_page_config(page_title="Firecrawl + Claude Analysis", page_icon="🔎")
+st.set_page_config(page_title="Firecrawl, Perplexity, and Claude Analysis", page_icon="🔎")
 
 # Add the parent directory to Python path to import auth_utils
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
@@ -25,6 +25,7 @@ if require_role(["Risk"], "Exposure Decay Portfolio"):
     try:
         FIRECRAWL_API_KEY = st.secrets["api"]["FIRECRAWL_API_KEY"]
         CLAUDE_API_KEY = st.secrets["api"]["CLAUDE_API_KEY"]
+        PERPLEXITY_API_KEY = st.secrets["api"]["PERPLEXITY_API_KEY"]
     except KeyError as e:
         st.error(f"Missing API key in secrets: {e}")
         st.error("Please add your API keys to .streamlit/secrets.toml")
@@ -32,6 +33,7 @@ if require_role(["Risk"], "Exposure Decay Portfolio"):
     [api]
     FIRECRAWL_API_KEY = "your-firecrawl-api-key"
     CLAUDE_API_KEY = "your-claude-api-key"
+    PERPLEXITY_API_KEY = "your-perplexity-api-key"
         """)
         st.stop()
     
@@ -103,7 +105,7 @@ if require_role(["Risk"], "Exposure Decay Portfolio"):
         st.warning("⚠️ Please enter at least a Business Legal Name or DBA Name to generate search queries")
     
     # Input for Claude API key
-    #claude_api_key = st.text_input("Claude API Key", type="password", help="Enter your Anthropic API key")
+    claude_api_key = st.text_input("Claude API Key", type="password", help="Enter your Anthropic API key")
     
     if st.button("Search & Analyze"):
         if not search_queries:
@@ -165,8 +167,8 @@ if require_role(["Risk"], "Exposure Decay Portfolio"):
                 if i < len(all_results):
                     st.divider()
         
-        # Step 2: Send to Claude for Analysis
-        st.subheader("🤖 Step 2: Analyzing with Claude Sonnet 4...")
+        # Step 3: Send to Claude for Analysis
+        st.subheader("🤖 Step 3: Analyzing with Claude Sonnet 4...")
         
         # Prepare the prompt for Claude with all search results
         business_info = f"Legal Name: {st.session_state.business_legal_name}"
@@ -175,10 +177,16 @@ if require_role(["Risk"], "Exposure Decay Portfolio"):
         if city_state:
             business_info += f" | Location: {city_state}"
         
-        search_summary = f"Conducted {len(all_results)} searches:\n"
-        for i, result in enumerate(all_results, 1):
+        search_summary = f"Conducted searches using two different engines:\n"
+        search_summary += f"FIRECRAWL: {len(all_firecrawl_results)} searches with {total_firecrawl} total results\n"
+        search_summary += f"PERPLEXITY: {len(all_perplexity_results)} AI-powered analyses\n\n"
+        
+        for i, result in enumerate(all_firecrawl_results, 1):
             result_count = len(result.get('data', []))
-            search_summary += f"  {i}. '{result['search_query']}' - {result_count} results\n"
+            search_summary += f"  Firecrawl {i}. '{result['search_query']}' - {result_count} results\n"
+        
+        for i, result in enumerate(all_perplexity_results, 1):
+            search_summary += f"  Perplexity {i}. '{result['search_query']}' - AI analysis completed\n"
         
         claude_prompt = f"""You are a business researcher looking for any adverse media, controversies, or negative news regarding a business. 
     
@@ -188,7 +196,7 @@ if require_role(["Risk"], "Exposure Decay Portfolio"):
     SEARCH OVERVIEW:
     {search_summary}
     
-    Based on the search results below, please analyze if there are any potential issues such as:
+    I've conducted comprehensive searches using both Firecrawl (web scraping) and Perplexity (AI-powered search). Please analyze ALL results from both sources to identify potential issues such as:
     
     - Lawsuits, regulatory scrutiny, fines, or bankruptcy
     - Negative or critical news articles, reviews, or complaints  
@@ -196,12 +204,13 @@ if require_role(["Risk"], "Exposure Decay Portfolio"):
     - Public closures, safety/health code violations, or other scandals
     
     Please provide:
-    1. A summary of any concerning findings
+    1. A summary of any concerning findings from both search sources
     2. Specific details about each issue found (with source URLs if available)
-    3. An overall risk assessment (Low/Medium/High)
-    4. Recommendations for further investigation if needed
+    3. Cross-reference findings between Firecrawl and Perplexity results
+    4. An overall risk assessment (Low/Medium/High)
+    5. Recommendations for further investigation if needed
     
-    SEARCH RESULTS:
+    COMBINED SEARCH RESULTS:
     
     {json.dumps(all_results, indent=2)}"""
     
@@ -225,9 +234,7 @@ if require_role(["Risk"], "Exposure Decay Portfolio"):
             ]
         }
         
-        total_results = sum(len(result.get('data', [])) for result in all_results)
-        
-        with st.spinner(f"Claude is analyzing {total_results} total results from {len(all_results)} searches..."):
+        with st.spinner(f"Claude is analyzing {total_firecrawl + total_perplexity} total results from both search engines..."):
             try:
                 claude_response = requests.post(claude_url, json=claude_payload, headers=claude_headers)
                 claude_response.raise_for_status()
@@ -243,8 +250,8 @@ if require_role(["Risk"], "Exposure Decay Portfolio"):
                 st.stop()
         
         # Display Claude's Analysis
-        st.subheader("📊 Claude's Business Risk Analysis")
-        st.info(f"Analysis based on {total_results} total results from {len(all_results)} search queries")
+        st.subheader("📊 Claude's Comprehensive Business Risk Analysis")
+        st.info(f"Analysis based on {total_firecrawl} Firecrawl results + {total_perplexity} Perplexity analyses from {len(search_queries)} search queries")
         st.markdown(claude_analysis)
         
         # Optional: Show raw Claude response in expander
