@@ -6,7 +6,7 @@ import sys
 import os
 from auth_utils import require_role, get_user_info
 
-st.set_page_config(page_title="Firecrawl, Perplexity, and Claude Analysis", page_icon="🔎")
+st.set_page_config(page_title="Firecrawl + Claude Analysis", page_icon="🔎")
 
 # Add the parent directory to Python path to import auth_utils
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
@@ -17,6 +17,8 @@ if require_role(["Risk"], "Exposure Decay Portfolio"):
 
     # Your protected page content goes here
     user_info = get_user_info()
+
+    
     
     st.title("🔎 Firecrawl News Search + Claude Analysis")
     st.write("Enter business information to search for adverse media and analyze with Claude Sonnet 4.")
