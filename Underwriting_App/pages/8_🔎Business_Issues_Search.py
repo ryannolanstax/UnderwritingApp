@@ -12,14 +12,11 @@ st.set_page_config(page_title="Firecrawl + Claude Analysis", page_icon="🔎")
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 # This will check authentication and redirect if not logged in
-#if require_auth("Exposure Decay Portfolio"):
 if require_role(["Risk"], "Exposure Decay Portfolio"):
 
     # Your protected page content goes here
     user_info = get_user_info()
 
-    
-    
     st.title("🔎 Firecrawl News Search + Claude Analysis")
     st.write("Enter business information to search for adverse media and analyze with Claude Sonnet 4.")
     
@@ -32,10 +29,10 @@ if require_role(["Risk"], "Exposure Decay Portfolio"):
         st.error(f"Missing API key in secrets: {e}")
         st.error("Please add your API keys to .streamlit/secrets.toml")
         st.code("""
-    [api]
-    FIRECRAWL_API_KEY = "your-firecrawl-api-key"
-    CLAUDE_API_KEY = "your-claude-api-key"
-    PERPLEXITY_API_KEY = "your-perplexity-api-key"
+[api]
+FIRECRAWL_API_KEY = "your-firecrawl-api-key"
+CLAUDE_API_KEY = "your-claude-api-key"
+PERPLEXITY_API_KEY = "your-perplexity-api-key"
         """)
         st.stop()
     
@@ -106,9 +103,6 @@ if require_role(["Risk"], "Exposure Decay Portfolio"):
     else:
         st.warning("⚠️ Please enter at least a Business Legal Name or DBA Name to generate search queries")
     
-    # Input for Claude API key
-    # claude_api_key = st.text_input("Claude API Key", type="password", help="Enter your Anthropic API key")
-    
     if st.button("Search & Analyze"):
         if not search_queries:
             st.error("Please enter at least a Business Legal Name or DBA Name")
@@ -117,7 +111,7 @@ if require_role(["Risk"], "Exposure Decay Portfolio"):
         # Step 1: Firecrawl Search(es)
         st.subheader(f"🔍 Step 1: Searching with Firecrawl ({len(search_queries)} queries)...")
         
-        all_results = []
+        all_firecrawl_results = []
         firecrawl_url = "https://api.firecrawl.dev/v2/search"
         
         firecrawl_headers = {
@@ -125,9 +119,9 @@ if require_role(["Risk"], "Exposure Decay Portfolio"):
             "Content-Type": "application/json"
         }
         
-        # Run searches for each query
+        # Run Firecrawl searches for each query
         for i, query in enumerate(search_queries, 1):
-            st.write(f"🔎 Running search {i}/{len(search_queries)}: **{query}**")
+            st.write(f"🔎 Running Firecrawl search {i}/{len(search_queries)}: **{query}**")
             
             payload = {
                 "query": query,
@@ -136,7 +130,7 @@ if require_role(["Risk"], "Exposure Decay Portfolio"):
                 "limit": 15 if len(search_queries) > 1 else 20  # Reduce per-query limit if multiple queries
             }
             
-            with st.spinner(f"Searching for: {query}"):
+            with st.spinner(f"Searching Firecrawl for: {query}"):
                 try:
                     response = requests.post(firecrawl_url, json=payload, headers=firecrawl_headers)
                     response.raise_for_status()
@@ -145,28 +139,105 @@ if require_role(["Risk"], "Exposure Decay Portfolio"):
                     # Add query context to results
                     data['search_query'] = query
                     data['search_number'] = i
-                    all_results.append(data)
+                    data['source'] = 'Firecrawl'
+                    all_firecrawl_results.append(data)
                     
                     # Show brief summary
                     result_count = len(data.get('data', []))
-                    st.success(f"✅ Found {result_count} results for: {query}")
+                    st.success(f"✅ Firecrawl found {result_count} results for: {query}")
                     
                 except Exception as e:
                     st.error(f"Firecrawl request failed for '{query}': {e}")
                     continue
         
-        if not all_results:
+        # Step 2: Perplexity Search(es)
+        st.subheader(f"🧠 Step 2: Searching with Perplexity ({len(search_queries)} queries)...")
+        
+        all_perplexity_results = []
+        perplexity_url = "https://api.perplexity.ai/chat/completions"
+        
+        perplexity_headers = {
+            "Authorization": f"Bearer {PERPLEXITY_API_KEY}",
+            "Content-Type": "application/json"
+        }
+        
+        # Run Perplexity searches for each query
+        for i, query in enumerate(search_queries, 1):
+            st.write(f"🧠 Running Perplexity search {i}/{len(search_queries)}: **{query}**")
+            
+            perplexity_prompt = f"""Search for recent news, controversies, legal issues, or negative coverage about: {query}
+
+Focus on finding:
+- Lawsuits, regulatory actions, or legal troubles
+- Negative news coverage or scandals
+- Safety violations or business closures
+- Customer complaints or public controversies
+- Financial issues or bankruptcy
+
+Provide specific details with sources and dates where available."""
+            
+            payload = {
+                "model": "sonar-pro",
+                "messages": [
+                    {
+                        "role": "user",
+                        "content": perplexity_prompt
+                    }
+                ],
+                "max_tokens": 2000,
+                "temperature": 0.1
+            }
+            
+            with st.spinner(f"Searching Perplexity for: {query}"):
+                try:
+                    response = requests.post(perplexity_url, json=payload, headers=perplexity_headers)
+                    response.raise_for_status()
+                    data = response.json()
+                    
+                    # Add query context to results
+                    data['search_query'] = query
+                    data['search_number'] = i
+                    data['source'] = 'Perplexity'
+                    all_perplexity_results.append(data)
+                    
+                    # Show brief summary
+                    st.success(f"✅ Perplexity completed search for: {query}")
+                    
+                except Exception as e:
+                    st.error(f"Perplexity request failed for '{query}': {e}")
+                    continue
+        
+        # Combine all results and calculate totals
+        all_results = {
+            'firecrawl_results': all_firecrawl_results,
+            'perplexity_results': all_perplexity_results
+        }
+        
+        if not all_firecrawl_results and not all_perplexity_results:
             st.error("All searches failed. Please try again.")
             st.stop()
         
-        st.success(f"✅ All Firecrawl searches completed! Total queries: {len(all_results)}")
+        # Calculate totals
+        total_firecrawl = sum(len(result.get('data', [])) for result in all_firecrawl_results)
+        total_perplexity = len(all_perplexity_results)
+        
+        # Show summary
+        st.success(f"✅ Search completed! Firecrawl: {total_firecrawl} results | Perplexity: {total_perplexity} analyses")
         
         # Show raw API responses in expander
-        with st.expander("📦 Raw Firecrawl API Responses", expanded=False):
-            for i, result in enumerate(all_results, 1):
-                st.write(f"**Search {i}: {result['search_query']}**")
+        with st.expander("📦 Raw Search Results", expanded=False):
+            st.write("**Firecrawl Results:**")
+            for i, result in enumerate(all_firecrawl_results, 1):
+                st.write(f"*Search {i}: {result['search_query']}*")
                 st.json(result)
-                if i < len(all_results):
+                if i < len(all_firecrawl_results):
+                    st.divider()
+            
+            st.write("**Perplexity Results:**")
+            for i, result in enumerate(all_perplexity_results, 1):
+                st.write(f"*Search {i}: {result['search_query']}*")
+                st.json(result)
+                if i < len(all_perplexity_results):
                     st.divider()
         
         # Step 3: Send to Claude for Analysis
@@ -191,31 +262,31 @@ if require_role(["Risk"], "Exposure Decay Portfolio"):
             search_summary += f"  Perplexity {i}. '{result['search_query']}' - AI analysis completed\n"
         
         claude_prompt = f"""You are a business researcher looking for any adverse media, controversies, or negative news regarding a business. 
-    
-    BUSINESS INFORMATION:
-    {business_info}
-    
-    SEARCH OVERVIEW:
-    {search_summary}
-    
-    I've conducted comprehensive searches using both Firecrawl (web scraping) and Perplexity (AI-powered search). Please analyze ALL results from both sources to identify potential issues such as:
-    
-    - Lawsuits, regulatory scrutiny, fines, or bankruptcy
-    - Negative or critical news articles, reviews, or complaints  
-    - Political, social, or cultural controversies where the business is named
-    - Public closures, safety/health code violations, or other scandals
-    
-    Please provide:
-    1. A summary of any concerning findings from both search sources
-    2. Specific details about each issue found (with source URLs if available)
-    3. Cross-reference findings between Firecrawl and Perplexity results
-    4. An overall risk assessment (Low/Medium/High)
-    5. Recommendations for further investigation if needed
-    
-    COMBINED SEARCH RESULTS:
-    
-    {json.dumps(all_results, indent=2)}"""
-    
+
+BUSINESS INFORMATION:
+{business_info}
+
+SEARCH OVERVIEW:
+{search_summary}
+
+I've conducted comprehensive searches using both Firecrawl (web scraping) and Perplexity (AI-powered search). Please analyze ALL results from both sources to identify potential issues such as:
+
+- Lawsuits, regulatory scrutiny, fines, or bankruptcy
+- Negative or critical news articles, reviews, or complaints  
+- Political, social, or cultural controversies where the business is named
+- Public closures, safety/health code violations, or other scandals
+
+Please provide:
+1. A summary of any concerning findings from both search sources
+2. Specific details about each issue found (with source URLs if available)
+3. Cross-reference findings between Firecrawl and Perplexity results
+4. An overall risk assessment (Low/Medium/High)
+5. Recommendations for further investigation if needed
+
+COMBINED SEARCH RESULTS:
+
+{json.dumps(all_results, indent=2)}"""
+
         # Send to Claude API
         claude_url = "https://api.anthropic.com/v1/messages"
         
