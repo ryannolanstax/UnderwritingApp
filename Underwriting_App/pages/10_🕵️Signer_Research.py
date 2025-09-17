@@ -10,7 +10,7 @@ st.title("🕵️ Applicant Reputation & Fraud Screening")
 
 # --- Inputs ---
 name = st.text_input("Name")
-dob = st.date_input("Date of Birth", value=date(1980, 1, 1))
+dob = st.date_input("Date of Birth", value=date(1980, 1, 1), min_value=date.today().replace(year=date.today().year - 90))
 business = st.text_input("Business")
 home_address = st.text_input("Home Address")
 
