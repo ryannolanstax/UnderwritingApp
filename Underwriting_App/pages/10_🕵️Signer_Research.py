@@ -50,7 +50,7 @@ Return your findings in a structured format:
                 "Content-Type": "application/json",
             },
             json={
-                "model": "sonar-medium-chat",
+                "model": "sonar-pro",
                 "messages": [
                     {"role": "system", "content": "You are a highly accurate research assistant."},
                     {"role": "user", "content": prompt},
