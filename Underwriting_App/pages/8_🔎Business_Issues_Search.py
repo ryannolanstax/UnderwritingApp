@@ -20,7 +20,7 @@ if require_role(["Risk"], "Exposure Decay Portfolio"):
     st.title("🔎 Firecrawl News Search + Claude Analysis")
     st.write("Enter business information to search for adverse media and analyze with Claude Sonnet 4.")
     st.write("This is the Spreadsheet to Update")
-    st.write("https://docs.google.com/spreadsheets/d/1eTjNKEeFBisDNHMGgZSxn2o5-L4-pFCQqlJc0LL4HIo/edit?gid=198587092#gid=198587092"
+    st.write("https://docs.google.com/spreadsheets/d/1eTjNKEeFBisDNHMGgZSxn2o5-L4-pFCQqlJc0LL4HIo/edit?gid=198587092#gid=198587092")
     
     # Load API keys from secrets
     try:
