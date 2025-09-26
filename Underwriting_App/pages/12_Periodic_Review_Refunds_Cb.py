@@ -8,7 +8,7 @@ import numpy as np
 import datetime
 from datetime import date, timedelta #, datetime
 import io
-from auth_utils import require_auth, get_user_info
+from auth_utils import require_role, get_user_info
 import sys
 import os
 
