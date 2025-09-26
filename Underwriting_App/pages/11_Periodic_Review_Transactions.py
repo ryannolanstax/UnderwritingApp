@@ -19,8 +19,7 @@ st.set_page_config(page_title="Transactions", page_icon="🛍️")
 
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
-if require_auth("Your Page Title"):
-    # Your protected page content goes here
+if require_role(["Risk", "Underwriting"], "Synovus Underwriting and Risk Calculator"):    # Your protected page content goes here
     user_info = get_user_info()
 
     
