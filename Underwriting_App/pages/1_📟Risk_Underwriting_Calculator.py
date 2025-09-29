@@ -177,9 +177,21 @@ if require_role(["Risk", "Underwriting"], "Underwriting and Risk Calculator"):
     
        st.table(df_display)
 
-    CNP_DD = delayed.loc[delayed['MCC'].astype(str) == str(MCC), 'CNP Delayed Delivery'].iloc[0]
-    CP_DD = delayed.loc[delayed['MCC'].astype(str) == str(MCC), 'CP/ACH Delayed Delivery'].iloc[0]
-    ACH_DD = delayed.loc[delayed['MCC'].astype(str) == str(MCC), 'CP/ACH Delayed Delivery'].iloc[0]
+    delayed['MCC_str'] = delayed['MCC'].astype(str).str.strip()
+    MCC_str = str(int(MCC))
+    row = delayed.loc[delayed['MCC_str'] == MCC_str]
+
+    if not row.empty:
+        CNP_DD = row['CNP Delayed Delivery'].iloc[0]
+        CP_DD = row['CP/ACH Delayed Delivery'].iloc[0]
+        ACH_DD = min(CP_DD, 60)
+    else:
+        st.error(f"MCC {MCC} not found in the data")
+
+    
+   # CNP_DD = delayed.loc[delayed['MCC'].astype(str) == str(MCC), 'CNP Delayed Delivery'].iloc[0]
+   # CP_DD = delayed.loc[delayed['MCC'].astype(str) == str(MCC), 'CP/ACH Delayed Delivery'].iloc[0]
+   # ACH_DD = delayed.loc[delayed['MCC'].astype(str) == str(MCC), 'CP/ACH Delayed Delivery'].iloc[0]
 
 
     #OLD VERSION 9/29
