@@ -321,8 +321,8 @@ if require_role(["Risk", "Underwriting"], "Underwriting and Risk Calculator"):
     #Calculations Section Exposure
     Refund_Risk = (Annual_CNP_Volume/365) * Refund_Rate * Refund_Days 
     Chargeback_Risk = (Annual_CNP_Volume/365) * Chargeback_Rate * Chargeback_Days 
-    CNP_DD_Risk = (Annual_CNP_Volume/365) * CNP_Delayed_Delivey 
-    CP_DD_Risk = (Annual_CP_Volume/365)*CP_Delayed_delivery
+    CNP_DD_Risk = (Annual_CNP_Volume / 365) * CNP_Delayed_Delivery
+    CP_DD_Risk = (Annual_CP_Volume / 365) * CP_Delayed_Delivery
     ACH_New_Reject_Exposure = (Annual_ACH_Volume/365) * ACH_Reject_Rate * ACH_Reject_Days
     ACH_DD_Risk = (Annual_ACH_Volume/365)*ACH_Delayed_Delivery
     
