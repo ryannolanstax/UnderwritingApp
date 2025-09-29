@@ -176,10 +176,16 @@ if require_role(["Risk", "Underwriting"], "Underwriting and Risk Calculator"):
        df_display.index = [''] * len(df_display)
     
        st.table(df_display)
-    
-    CNP_DD = delayed.loc[delayed['MCC'] == MCC, ['CNP Delayed Delivery']].iloc[0, 0]
-    CP_DD = delayed.loc[delayed['MCC'] == MCC, ['CP/ACH Delayed Delivery']].iloc[0, 0]
-    ACH_DD = delayed.loc[delayed['MCC'] == MCC, ['CP/ACH Delayed Delivery']].iloc[0, 0]
+
+    CNP_DD = delayed.loc[delayed['MCC'].astype(str) == str(MCC), 'CNP Delayed Delivery'].iloc[0]
+    CP_DD = delayed.loc[delayed['MCC'].astype(str) == str(MCC), 'CP/ACH Delayed Delivery'].iloc[0]
+    ACH_DD = delayed.loc[delayed['MCC'].astype(str) == str(MCC), 'CP/ACH Delayed Delivery'].iloc[0]
+
+
+    #OLD VERSION 9/29
+    #CNP_DD = delayed.loc[delayed['MCC'] == MCC, ['CNP Delayed Delivery']].iloc[0, 0]
+    #CP_DD = delayed.loc[delayed['MCC'] == MCC, ['CP/ACH Delayed Delivery']].iloc[0, 0]
+    #ACH_DD = delayed.loc[delayed['MCC'] == MCC, ['CP/ACH Delayed Delivery']].iloc[0, 0]
     ACH_DD = min(ACH_DD, 60)
     
     
