@@ -280,15 +280,10 @@ if require_role(["Risk", "Underwriting"], "Underwriting and Risk Calculator"):
     #Delayed_Delivery = st.number_input("Delayed Delivery (DD)", key='Delayed_Delivery', value=max_dd)
 
 
-    # Initialize session state defaults if they don't exist
-    if 'CNP_Delayed_Delivery' not in st.session_state:
-        st.session_state['CNP_Delayed_Delivery'] = CNP_DD
-    
-    if 'CP_Delayed_Delivery' not in st.session_state:
-        st.session_state['CP_Delayed_Delivery'] = CP_DD
-    
-    if 'ACH_Delayed_Delivery' not in st.session_state:
-        st.session_state['ACH_Delayed_Delivery'] = ACH_DD
+    st.session_state['CNP_Delayed_Delivery'] = CNP_DD
+    st.session_state['CP_Delayed_Delivery'] = CP_DD
+    st.session_state['ACH_Delayed_Delivery'] = ACH_DD
+
     
     # Render inputs with session_state values
     CNP_Delayed_Delivery = st.number_input(
