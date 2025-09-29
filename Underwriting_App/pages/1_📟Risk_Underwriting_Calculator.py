@@ -180,7 +180,7 @@ if require_role(["Risk", "Underwriting"], "Underwriting and Risk Calculator"):
     delayed['MCC_str'] = delayed['MCC'].astype(str).str.strip()
     MCC_str = str(int(MCC))
     row = delayed.loc[delayed['MCC_str'] == MCC_str]
-    st.write(row[['MCC','CNP Delayed Delivery']])
+  #  st.write(row[['MCC','CNP Delayed Delivery']])
 
     if not row.empty:
         CNP_DD = row['CNP Delayed Delivery'].iloc[0]
@@ -278,12 +278,44 @@ if require_role(["Risk", "Underwriting"], "Underwriting and Risk Calculator"):
     
     # Now max_dd is defined outside the "Calculate" block and can be used as a default value in st.number_input
     #Delayed_Delivery = st.number_input("Delayed Delivery (DD)", key='Delayed_Delivery', value=max_dd)
+
+
+    # Initialize session state defaults if they don't exist
+    if 'CNP_Delayed_Delivery' not in st.session_state:
+        st.session_state['CNP_Delayed_Delivery'] = CNP_DD
+    
+    if 'CP_Delayed_Delivery' not in st.session_state:
+        st.session_state['CP_Delayed_Delivery'] = CP_DD
+    
+    if 'ACH_Delayed_Delivery' not in st.session_state:
+        st.session_state['ACH_Delayed_Delivery'] = ACH_DD
+    
+    # Render inputs with session_state values
+    CNP_Delayed_Delivery = st.number_input(
+        "CNP Delayed Delivery (DD)", 
+        key='CNP_Delayed_Delivery', 
+        value=st.session_state['CNP_Delayed_Delivery']
+    )
+    
+    CP_Delayed_Delivery = st.number_input(
+        "CP Delayed Delivery (DD)", 
+        key='CP_Delayed_Delivery', 
+        value=st.session_state['CP_Delayed_Delivery']
+    )
+    
+    ACH_Delayed_Delivery = st.number_input(
+        "ACH Delayed Delivery (DD)", 
+        key='ACH_Delayed_Delivery', 
+        value=st.session_state['ACH_Delayed_Delivery'],
+        max_value=60
+    )
+    
     
     #temp fix
-    CNP_Delayed_Delivey = st.number_input("CNP Delayed Delivery (DD)", key='CNP_Delayed_Delivery', value=CNP_DD)
-    CP_Delayed_delivery = st.number_input("CP Delayed Delivery (DD)", key='CP_Delayed_Delivery', value=CP_DD)
-    st.write("The MAX ACH DD is 60 Days. This is due to (WRITE MORE INFO HERE)")
-    ACH_Delayed_Delivery = st.number_input("ACH Delayed Delivery (DD)", key='ACH_Delayed_Delivery', value=ACH_DD, max_value=60)
+    #CNP_Delayed_Delivey = st.number_input("CNP Delayed Delivery (DD)", key='CNP_Delayed_Delivery', value=CNP_DD)
+    #CP_Delayed_delivery = st.number_input("CP Delayed Delivery (DD)", key='CP_Delayed_Delivery', value=CP_DD)
+    #st.write("The MAX ACH DD is 60 Days. This is due to (WRITE MORE INFO HERE)")
+    #ACH_Delayed_Delivery = st.number_input("ACH Delayed Delivery (DD)", key='ACH_Delayed_Delivery', value=ACH_DD, max_value=60)
     
     
     #Calculations Section Exposure
