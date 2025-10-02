@@ -510,7 +510,7 @@ if require_role(["Risk", "Underwriting"], "Underwriting and Risk Calculator"):
     
     
     if  max_tier == 5:
-       accepted_risk = 10000
+       accepted_risk = 1000
     elif  max_tier == 4:
        accepted_risk = 25000
     elif  max_tier == 3:
