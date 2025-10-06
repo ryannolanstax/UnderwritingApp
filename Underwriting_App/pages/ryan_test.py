@@ -182,26 +182,16 @@ if require_role(["Risk", "Underwriting"], "Underwriting and Risk Calculator"):
     row = delayed.loc[delayed['MCC_str'] == MCC_str]
   #  st.write(row[['MCC','CNP Delayed Delivery']])
 
+
     if not row.empty and st.session_state.get("last_mcc") != MCC_str:
-        st.session_state.update({
-            "CNP_Delayed_Delivery": float(row['CNP Delayed Delivery'].iloc[0]),
-            "CP_Delayed_Delivery": float(row['CP/ACH Delayed Delivery'].iloc[0]),
-            "ACH_Delayed_Delivery": float(row['CP/ACH Delayed Delivery'].iloc[0]),
-            "last_mcc": MCC_str
-        })
-    
-   # CNP_DD = delayed.loc[delayed['MCC'].astype(str) == str(MCC), 'CNP Delayed Delivery'].iloc[0]
-   # CP_DD = delayed.loc[delayed['MCC'].astype(str) == str(MCC), 'CP/ACH Delayed Delivery'].iloc[0]
-   # ACH_DD = delayed.loc[delayed['MCC'].astype(str) == str(MCC), 'CP/ACH Delayed Delivery'].iloc[0]
+        if "CNP Delayed Delivery" in row.columns:
+            st.session_state['CNP_Delayed_Delivery'] = float(row["CNP Delayed Delivery"].iloc[0])
+        if "CP Delayed Delivery" in row.columns:
+            st.session_state['CP_Delayed_Delivery'] = float(row["CP/ACH Delayed Delivery"].iloc[0])
+        if "ACH Delayed Delivery" in row.columns:
+            st.session_state['ACH_Delayed_Delivery'] = float(row["CP/ACH Delayed Delivery"].iloc[0])
+        st.session_state['last_mcc'] = MCC_str
 
-
-    #OLD VERSION 9/29
-    #CNP_DD = delayed.loc[delayed['MCC'] == MCC, ['CNP Delayed Delivery']].iloc[0, 0]
-    #CP_DD = delayed.loc[delayed['MCC'] == MCC, ['CP/ACH Delayed Delivery']].iloc[0, 0]
-    #ACH_DD = delayed.loc[delayed['MCC'] == MCC, ['CP/ACH Delayed Delivery']].iloc[0, 0]
-    #ACH_DD = min(ACH_DD, 60)
-    
-    
     
     #max_cnp_cp_dd = max(CNP_DD, CP_ACH_DD) TEMP PAUSE
     
@@ -281,9 +271,6 @@ if require_role(["Risk", "Underwriting"], "Underwriting and Risk Calculator"):
     #Delayed_Delivery = st.number_input("Delayed Delivery (DD)", key='Delayed_Delivery', value=max_dd)
 
 
-    st.session_state['CNP_Delayed_Delivery'] = CNP_DD
-    st.session_state['CP_Delayed_Delivery'] = CP_DD
-    st.session_state['ACH_Delayed_Delivery'] = ACH_DD
 
     
     # Render inputs with session_state values
@@ -302,6 +289,8 @@ if require_role(["Risk", "Underwriting"], "Underwriting and Risk Calculator"):
         key='ACH_Delayed_Delivery',
         max_value=60
     )
+
+
     
     
     #temp fix
