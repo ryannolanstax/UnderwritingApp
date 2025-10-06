@@ -185,8 +185,8 @@ if require_role(["Risk", "Underwriting"], "Underwriting and Risk Calculator"):
     if not row.empty and st.session_state.get("last_mcc") != MCC_str:
         st.session_state.update({
             "CNP_Delayed_Delivery": float(row['CNP Delayed Delivery'].iloc[0]),
-            "CP_Delayed_Delivery": float(row['CP Delayed Delivery'].iloc[0]),
-            "ACH_Delayed_Delivery": float(row['ACH Delayed Delivery'].iloc[0]),
+            "CP_Delayed_Delivery": float(row['CP/ACH Delayed Delivery'].iloc[0]),
+            "ACH_Delayed_Delivery": float(row['CP/ACH Delayed Delivery'].iloc[0]),
             "last_mcc": MCC_str
         })
     
