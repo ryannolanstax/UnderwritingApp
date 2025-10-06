@@ -198,7 +198,7 @@ if require_role(["Risk", "Underwriting"], "Underwriting and Risk Calculator"):
     #CNP_DD = delayed.loc[delayed['MCC'] == MCC, ['CNP Delayed Delivery']].iloc[0, 0]
     #CP_DD = delayed.loc[delayed['MCC'] == MCC, ['CP/ACH Delayed Delivery']].iloc[0, 0]
     #ACH_DD = delayed.loc[delayed['MCC'] == MCC, ['CP/ACH Delayed Delivery']].iloc[0, 0]
-    ACH_DD = min(ACH_DD, 60)
+    #ACH_DD = min(ACH_DD, 60)
     
     
     
