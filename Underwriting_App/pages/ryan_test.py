@@ -269,9 +269,6 @@ if require_role(["Risk", "Underwriting"], "Underwriting and Risk Calculator"):
     
     # Now max_dd is defined outside the "Calculate" block and can be used as a default value in st.number_input
     #Delayed_Delivery = st.number_input("Delayed Delivery (DD)", key='Delayed_Delivery', value=max_dd)
-
-
-
     
     # Render inputs with session_state values
     CNP_Delayed_Delivery = st.number_input(
