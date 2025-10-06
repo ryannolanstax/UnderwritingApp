@@ -182,12 +182,13 @@ if require_role(["Risk", "Underwriting"], "Underwriting and Risk Calculator"):
     row = delayed.loc[delayed['MCC_str'] == MCC_str]
   #  st.write(row[['MCC','CNP Delayed Delivery']])
 
-    if not row.empty:
-        CNP_DD = row['CNP Delayed Delivery'].iloc[0]
-        CP_DD = row['CP/ACH Delayed Delivery'].iloc[0]
-        ACH_DD = min(CP_DD, 60)
-    else:
-        st.error(f"MCC {MCC} not found in the data")
+    if not row.empty and st.session_state.get("last_mcc") != MCC_str:
+        st.session_state.update({
+            "CNP_Delayed_Delivery": float(row['CNP Delayed Delivery'].iloc[0]),
+            "CP_Delayed_Delivery": float(row['CP Delayed Delivery'].iloc[0]),
+            "ACH_Delayed_Delivery": float(row['ACH Delayed Delivery'].iloc[0]),
+            "last_mcc": MCC_str
+        })
     
    # CNP_DD = delayed.loc[delayed['MCC'].astype(str) == str(MCC), 'CNP Delayed Delivery'].iloc[0]
    # CP_DD = delayed.loc[delayed['MCC'].astype(str) == str(MCC), 'CP/ACH Delayed Delivery'].iloc[0]
@@ -288,20 +289,17 @@ if require_role(["Risk", "Underwriting"], "Underwriting and Risk Calculator"):
     # Render inputs with session_state values
     CNP_Delayed_Delivery = st.number_input(
         "CNP Delayed Delivery (DD)", 
-        key='CNP_Delayed_Delivery', 
-        value=st.session_state['CNP_Delayed_Delivery']
+        key='CNP_Delayed_Delivery'
     )
     
     CP_Delayed_Delivery = st.number_input(
         "CP Delayed Delivery (DD)", 
-        key='CP_Delayed_Delivery', 
-        value=st.session_state['CP_Delayed_Delivery']
+        key='CP_Delayed_Delivery'
     )
     
     ACH_Delayed_Delivery = st.number_input(
         "ACH Delayed Delivery (DD)", 
-        key='ACH_Delayed_Delivery', 
-        value=st.session_state['ACH_Delayed_Delivery'],
+        key='ACH_Delayed_Delivery',
         max_value=60
     )
     
