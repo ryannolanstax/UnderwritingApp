@@ -567,7 +567,7 @@ if require_role(["Risk", "Underwriting"], "Underwriting and Risk Calculator"):
        final_reserve_amount = Reserve_amount
     
     
-    st.write(f'Total_Exposure: {Total_Exposure} -  coverage_amount: {coverage_amount} -  accepted_risk: {final_accepted_risk}', )
+    st.write(f'Total_Exposure: {formatted_exposure} -  coverage_amount: {coverage_amount} -  accepted_risk: {final_accepted_risk}', )
     
     
     st.write('Final Reserve Amount: ', final_reserve_amount)
