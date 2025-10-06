@@ -1,3 +1,5 @@
+# python3 -m streamlit run Underwriting_App/pages/calc_2025.py
+
 # python3 -m streamlit run Underwriting_App/pages/calc_2025.py 
 #last Updated Beginning of July
 
@@ -182,25 +184,15 @@ if require_role(["Risk", "Underwriting"], "Underwriting and Risk Calculator"):
     row = delayed.loc[delayed['MCC_str'] == MCC_str]
   #  st.write(row[['MCC','CNP Delayed Delivery']])
 
-    if not row.empty:
-        CNP_DD = row['CNP Delayed Delivery'].iloc[0]
-        CP_DD = row['CP/ACH Delayed Delivery'].iloc[0]
-        ACH_DD = min(CP_DD, 60)
-    else:
-        st.error(f"MCC {MCC} not found in the data")
-    
-   # CNP_DD = delayed.loc[delayed['MCC'].astype(str) == str(MCC), 'CNP Delayed Delivery'].iloc[0]
-   # CP_DD = delayed.loc[delayed['MCC'].astype(str) == str(MCC), 'CP/ACH Delayed Delivery'].iloc[0]
-   # ACH_DD = delayed.loc[delayed['MCC'].astype(str) == str(MCC), 'CP/ACH Delayed Delivery'].iloc[0]
 
+    if not row.empty and st.session_state.get("last_mcc") != MCC_str:
+        if "CNP Delayed Delivery" in row.columns:
+            st.session_state['CNP_Delayed_Delivery'] = float(row["CNP Delayed Delivery"].iloc[0])
+        if "CP/ACH Delayed Delivery" in row.columns:
+            st.session_state['CP_Delayed_Delivery'] = float(row["CP/ACH Delayed Delivery"].iloc[0])
+            st.session_state['ACH_Delayed_Delivery'] = float(row["CP/ACH Delayed Delivery"].iloc[0])
+        st.session_state['last_mcc'] = MCC_str
 
-    #OLD VERSION 9/29
-    #CNP_DD = delayed.loc[delayed['MCC'] == MCC, ['CNP Delayed Delivery']].iloc[0, 0]
-    #CP_DD = delayed.loc[delayed['MCC'] == MCC, ['CP/ACH Delayed Delivery']].iloc[0, 0]
-    #ACH_DD = delayed.loc[delayed['MCC'] == MCC, ['CP/ACH Delayed Delivery']].iloc[0, 0]
-    #ACH_DD = min(ACH_DD, 60)
-    
-    
     
     #max_cnp_cp_dd = max(CNP_DD, CP_ACH_DD) TEMP PAUSE
     
@@ -278,34 +270,30 @@ if require_role(["Risk", "Underwriting"], "Underwriting and Risk Calculator"):
     
     # Now max_dd is defined outside the "Calculate" block and can be used as a default value in st.number_input
     #Delayed_Delivery = st.number_input("Delayed Delivery (DD)", key='Delayed_Delivery', value=max_dd)
-
-
-    st.session_state['CNP_Delayed_Delivery'] = CNP_DD
-    st.session_state['CP_Delayed_Delivery'] = CP_DD
-    st.session_state['ACH_Delayed_Delivery'] = ACH_DD
-
     
     # Render inputs with session_state values
     CNP_Delayed_Delivery = st.number_input(
         "CNP Delayed Delivery (DD)", 
-        key='CNP_Delayed_Delivery', 
-        value=st.session_state['CNP_Delayed_Delivery']
+        key='CNP_Delayed_Delivery',
+        step=1,
+        format="%d"
     )
     
     CP_Delayed_Delivery = st.number_input(
         "CP Delayed Delivery (DD)", 
-        key='CP_Delayed_Delivery', 
-        value=st.session_state['CP_Delayed_Delivery']
+        key='CP_Delayed_Delivery',
+        step=1,
+        format="%d"
     )
     
     ACH_Delayed_Delivery = st.number_input(
         "ACH Delayed Delivery (DD)", 
-        key='ACH_Delayed_Delivery', 
-        value=st.session_state['ACH_Delayed_Delivery'],
-        max_value=60
+        key='ACH_Delayed_Delivery',
+        max_value=60,
+        step=1,
+        format="%d"
     )
-    
-    
+
     #temp fix
     #CNP_Delayed_Delivey = st.number_input("CNP Delayed Delivery (DD)", key='CNP_Delayed_Delivery', value=CNP_DD)
     #CP_Delayed_delivery = st.number_input("CP Delayed Delivery (DD)", key='CP_Delayed_Delivery', value=CP_DD)
@@ -580,8 +568,10 @@ if require_role(["Risk", "Underwriting"], "Underwriting and Risk Calculator"):
     else:
        final_reserve_amount = Reserve_amount
     
-    
-    st.write(f'Total_Exposure: {Total_Exposure} -  coverage_amount: {coverage_amount} -  accepted_risk: {final_accepted_risk}', )
+
+  #  formatted_coverage_amount = "${:,.0f}".format(coverage_amount)
+
+    st.write(f'Total_Exposure: {formatted_exposure} -  coverage_amount: {coverage_amount} -  accepted_risk: {final_accepted_risk}', )
     
     
     st.write('Final Reserve Amount: ', final_reserve_amount)
