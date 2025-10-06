@@ -272,23 +272,26 @@ if require_role(["Risk", "Underwriting"], "Underwriting and Risk Calculator"):
     # Render inputs with session_state values
     CNP_Delayed_Delivery = st.number_input(
         "CNP Delayed Delivery (DD)", 
-        key='CNP_Delayed_Delivery'
+        key='CNP_Delayed_Delivery',
+        step=1,
+        format="%d"
     )
     
     CP_Delayed_Delivery = st.number_input(
         "CP Delayed Delivery (DD)", 
-        key='CP_Delayed_Delivery'
+        key='CP_Delayed_Delivery',
+        step=1,
+        format="%d"
     )
     
     ACH_Delayed_Delivery = st.number_input(
         "ACH Delayed Delivery (DD)", 
         key='ACH_Delayed_Delivery',
-        max_value=60
+        max_value=60,
+        step=1,
+        format="%d"
     )
 
-
-    
-    
     #temp fix
     #CNP_Delayed_Delivey = st.number_input("CNP Delayed Delivery (DD)", key='CNP_Delayed_Delivery', value=CNP_DD)
     #CP_Delayed_delivery = st.number_input("CP Delayed Delivery (DD)", key='CP_Delayed_Delivery', value=CP_DD)
