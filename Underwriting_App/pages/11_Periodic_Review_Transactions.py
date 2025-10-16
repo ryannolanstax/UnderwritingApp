@@ -261,10 +261,10 @@ if require_role(["Risk", "Underwriting"], "Synovus Underwriting and Risk Calcula
     
             # apply filter across multiple columns
             namefinal = df[
-                df['payment_person_name'].str.contains(name_pattern, case=False, na=False) |
-                df['customer_lastname'].str.contains(name_pattern, case=False, na=False) |
-                df['customer_firstname'].str.contains(name_pattern, case=False, na=False) |
-                df['customer_company'].str.contains(name_pattern, case=False, na=False)
+                df['payment_person_name'].astype(str).str.contains(name_pattern, case=False, na=False) |
+                df['customer_lastname'].astype(str).str.contains(name_pattern, case=False, na=False) |
+                df['customer_firstname'].astype(str).str.contains(name_pattern, case=False, na=False) |
+                df['customer_company'].astype(str).str.contains(name_pattern, case=False, na=False)
             ]
 
             namefinal2 = namefinal.loc[:,['payment_person_name', 'customer_firstname', 'customer_lastname', 'created_at', 'total', \
