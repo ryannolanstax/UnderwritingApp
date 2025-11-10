@@ -577,8 +577,8 @@ if require_role(["Risk", "Underwriting"], "Underwriting and Risk Calculator"):
     st.write('Final Reserve Amount: ', final_reserve_amount)
     
     if final_reserve_amount > 0:
-        reserve_override = st.number_input("Reserve ($)", key='reserve_override', value=final_reserve_amount, step=1)
-        Capture_Rate = st.number_input("Capture Rate (Whole Number, e.g. 5 for 5%)", key='capture_rate', value=5, max_value=100)
+        reserve_override = st.number_input("Reserve ($)", key='reserve_override', value=final_reserve_amount, step=0.1)
+        Capture_Rate = st.number_input("Capture Rate (Whole Number, e.g. 5 for 5%)", key='capture_rate', value=5, max_value=100, step=0.1)
         
         # Convert to decimal
         Capture_rate_decimal = Capture_Rate / 100
