@@ -576,4 +576,19 @@ if require_role(["Risk", "Underwriting"], "Underwriting and Risk Calculator"):
     
     st.write('Final Reserve Amount: ', final_reserve_amount)
     
+    if final_reserve_amount > 0:
+    
+        reserve_override = st.number_input("Reserve", key='reserve_override', value=final_reserve_amount)
+        Capture_Rate = st.number_input("Capture Rate (Whole Number, e.g. 15 for 15%)", key='capture_rate', value=15, max_value=100)
+        Capture_rate_decimal = Capture_Rate / 100
+        Total_Volume = 3892915  # example
+    
+        Full_capture_days = reserve_override / ((Total_Volume / 360)) / Capture_rate_decimal
+        Full_Capture_Month = Full_capture_days / 30
+    
+        st.write('Capture Days:', round(Full_capture_days, 1))
+        st.write('Capture Month:', round(Full_Capture_Month, 1))
+
+
+    
     
