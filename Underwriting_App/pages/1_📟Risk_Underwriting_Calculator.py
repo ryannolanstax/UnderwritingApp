@@ -571,19 +571,15 @@ if require_role(["Risk", "Underwriting"], "Underwriting and Risk Calculator"):
 
   #  formatted_coverage_amount = "${:,.0f}".format(coverage_amount)
 
-    st.write(f'Total_Exposure: {formatted_exposure} -  coverage_amount: {coverage_amount} -  accepted_risk: {final_accepted_risk}', )
-    
-    
+    st.write(f'Total_Exposure: {formatted_exposure} -  coverage_amount: {coverage_amount} -  accepted_risk: {final_accepted_risk}', )   
     st.write('Final Reserve Amount: ', final_reserve_amount)
     
     if final_reserve_amount > 0:
-        reserve_override = st.number_input("Reserve ($)", key='reserve_override', value=final_reserve_amount, step=0.1)
-        Capture_Rate = st.number_input("Capture Rate (Whole Number, e.g. 5 for 5%)", key='capture_rate', value=5, max_value=100, step=0.1)
-        
-        # Convert to decimal
+    
+        reserve_override = st.number_input("Reserve", key='reserve_override', value=final_reserve_amount)
+        Capture_Rate = st.number_input("Capture Rate (Whole Number, e.g. 15 for 15%)", key='capture_rate', value=15, max_value=100)
         Capture_rate_decimal = Capture_Rate / 100
     
-        # Excel-equivalent formula: =Reserve / ((Volume / 360)) / Rate
         Full_capture_days = reserve_override / ((Total_Volume / 360)) / Capture_rate_decimal
         Full_Capture_Month = Full_capture_days / 30
     
