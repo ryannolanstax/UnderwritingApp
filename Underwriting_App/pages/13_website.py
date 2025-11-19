@@ -37,7 +37,7 @@ if not firecrawl_api_key:
 if not whois_api_key:
     missing_keys.append("WHOIS_API_KEY")
 if not anthropic_api_key:
-    missing_keys.append("ANTHROPIC_API_KEY")
+    missing_keys.append("CLAUDE_API_KEY")
 
 if missing_keys:
     st.error(f"⚠️ Missing environment variables: {', '.join(missing_keys)}")
@@ -272,7 +272,7 @@ def extract_contact_info(url, api_key, all_site_urls=None):
         
         # Use Claude to extract contact info
         import anthropic
-        client = anthropic.Anthropic(api_key=st.secrets["api"]["ANTHROPIC_API_KEY"])
+        client = anthropic.Anthropic(api_key=st.secrets["api"]["CLAUDE_API_KEY"])
         
         message = client.messages.create(
             model="claude-sonnet-4-5-20250929",
