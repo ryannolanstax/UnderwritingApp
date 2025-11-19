@@ -8,3 +8,4 @@ redshift_connector
 streamlit-authenticator==0.2.3
 Firecrawl
 openpyxl
+anthropic
