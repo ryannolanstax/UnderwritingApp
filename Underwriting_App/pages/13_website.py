@@ -27,7 +27,8 @@ st.write("Comprehensive website analysis: policy pages, content extraction, and 
 # --- Load API Keys from Streamlit Secrets ---
 firecrawl_api_key = st.secrets["api"]["FIRECRAWL_API_KEY"]
 whois_api_key = st.secrets["api"]["WHOIS_API_KEY"]
-anthropic_api_key = st.secrets["api"]["ANTHROPIC_API_KEY"]
+anthropic_api_key = st.secrets["api"]["CLAUDE_API_KEY"]
+
 
 # Check for missing API keys
 missing_keys = []
